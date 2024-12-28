@@ -3,9 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import styles from "../../styles/Sidebar.module.css";
+import { getCollectionsList } from "../../features/selectors/selectors";
 
 const Sidebar = () => {
-  const { list } = useSelector(({ collections }) => collections);
+  const list = useSelector(getCollectionsList);
 
   return (
     <section className={styles.sidebar}>
