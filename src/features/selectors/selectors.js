@@ -12,4 +12,13 @@ export const getProducts = (state) =>
     };
   });
 
-export const getCollections = (state) => state.collections.list;
+export const getCollectionsList = (state) => state.collections.list;
+
+export const getCollections = (state) =>
+  state.collections.list.map((collection) => {
+    return {
+      id: collection.id,
+      title: collection.title,
+      image: collection.image.src,
+    };
+  });
