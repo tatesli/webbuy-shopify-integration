@@ -1,0 +1,42 @@
+.banner {
+  display: flex;
+  width: 100%;
+  height: 570px;
+  justify-content: flex-end;
+}
+.left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.text {
+  color: var(--violet);
+  font-weight: 300;
+  font-size: 70px;
+  line-height: 84px;
+  text-align: center;
+}
+.text span {
+  line-height: 183px;
+  font-size: 150px;
+  display: block;
+}
+.right {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.discount {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--bg);
+  margin: 24px;
+}
+.discount span {
+  color: var(--violet);
+  font-weight: 700;
+}
