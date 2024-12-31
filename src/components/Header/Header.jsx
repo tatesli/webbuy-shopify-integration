@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import styles from "../../styles/Header.module.css";
-
 import { ROUTES } from "../../utils/routes";
+
+import styles from "../../styles/Header.module.css";
 
 import LOGO from "../../images/logo.svg";
 import AVATAR from "../../images/avatar.jpg";

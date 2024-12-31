@@ -1,7 +1,8 @@
 import React from "react";
-import POSTER from "../../images/devices.png";
 
 import styles from "../../styles/Home.module.css";
+
+import POSTER from "../../images/devices.png";
 
 const Poster = () => {
   return (

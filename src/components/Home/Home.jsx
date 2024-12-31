@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Poster from "../Poster/Poster";
 import Products from "../Products/Products";
@@ -8,10 +8,23 @@ import Banner from "../Banner/Banner";
 
 import { getProducts } from "../../features/selectors/selectors";
 import { getCollections } from "../../features/selectors/selectors";
+import { getFilteredProducts } from "../../features/selectors/selectors";
+import { filterByPrice } from "../../features/products/productsSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const products = useSelector(getProducts);
   const collections = useSelector(getCollections);
+  const filteredProducts = useSelector(getFilteredProducts);
+
+  const [isFiltered, setIsFiltered] = useState(false);
+
+  useEffect(() => {
+    if (products.length === 0 || isFiltered) return;
+    console.log("Dispatching filterByPrice");
+    dispatch(filterByPrice(100));
+    setIsFiltered(true);
+  }, [dispatch, products, isFiltered]);
 
   return (
     <>
@@ -19,6 +32,7 @@ const Home = () => {
       <Products products={products} amount={5} title="Trending" />
       <Collections collections={collections} amount={5} title="Worth Seeing" />
       <Banner />
+      <Products products={filteredProducts} amount={5} title="Less than 100$" />
     </>
   );
 };
