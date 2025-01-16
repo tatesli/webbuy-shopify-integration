@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Client from "shopify-buy";
 
+import { shuffle } from "../../utils/common";
+
 const client = Client.buildClient({
   domain: "edu-dev-shop.myshopify.com",
   storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
@@ -11,19 +13,34 @@ export const getProducts = createAsyncThunk(
 
   async () => {
     const products = await client.product.fetchAll();
-    return products;
+    return products.map((product) => {
+      const image = product.images[0]?.src;
+      const rawPrice = product.variants[0]?.price?.amount;
+      const price = rawPrice ? parseFloat(rawPrice) : 0;
+      return {
+        id: product.id,
+        title: product.title,
+        description: product.description,
+        image,
+        price,
+        productType: product.productType,
+      };
+    });
   }
 );
 
 const productsSlice = createSlice({
   name: "products",
-  initialState: { list: [], filtered: [], isLoading: false },
+  initialState: { list: [], filtered: [], related: [], isLoading: false },
   reducers: {
     filterByPrice: (state, { payload }) => {
-      state.filtered = state.list.filter((product) => {
-        const price = parseFloat(product.variants[0]?.price?.amount || 0);
-        return price < payload;
-      });
+      state.filtered = state.list.filter((product) => product.price < payload);
+    },
+    getRelatedByType: (state, { payload }) => {
+      const list = state.list.filter(
+        (product) => product.productType === payload
+      );
+      state.related = shuffle(list);
     },
   },
   extraReducers: (builder) => {
@@ -41,5 +58,5 @@ const productsSlice = createSlice({
     });
   },
 });
-export const { filterByPrice } = productsSlice.actions;
+export const { filterByPrice, getRelatedByType } = productsSlice.actions;
 export default productsSlice.reducer;

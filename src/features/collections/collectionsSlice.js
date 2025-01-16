@@ -11,7 +11,11 @@ export const getCollections = createAsyncThunk(
 
   async () => {
     const collections = await client.collection.fetchAll();
-    return collections;
+    return collections.map((collection) => ({
+      id: collection.id,
+      title: collection.title,
+      image: collection.image ? collection.image.src : null,
+    }));
   }
 );
 
