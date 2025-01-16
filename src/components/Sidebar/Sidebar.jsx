@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 
 import styles from "../../styles/Sidebar.module.css";
 
-import { getCollectionsList } from "../../features/selectors/selectors";
+import { getCollections } from "../../features/selectors/selectors";
 
 const Sidebar = () => {
-  const list = useSelector(getCollectionsList);
+  const list = useSelector(getCollections);
 
   return (
     <section className={styles.sidebar}>

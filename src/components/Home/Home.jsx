@@ -21,7 +21,6 @@ const Home = () => {
 
   useEffect(() => {
     if (products.length === 0 || isFiltered) return;
-    console.log("Dispatching filterByPrice");
     dispatch(filterByPrice(100));
     setIsFiltered(true);
   }, [dispatch, products, isFiltered]);
