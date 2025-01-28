@@ -6,9 +6,10 @@ import styles from "../../styles/Sidebar.module.css";
 
 import { getCollections } from "../../features/selectors/selectors";
 
+export const collectionId = (id) => id.replace("gid://shopify/Collection/", "");
+
 const Sidebar = () => {
   const list = useSelector(getCollections);
-
   return (
     <section className={styles.sidebar}>
       <h2 className={styles.title}>CATEGORIES</h2>
@@ -20,7 +21,7 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `${styles.link} ${isActive ? styles.active : ""}`
                 }
-                to={`/collections/${id}`}
+                to={`/collections/${collectionId(id)}`}
               >
                 {title}
               </NavLink>

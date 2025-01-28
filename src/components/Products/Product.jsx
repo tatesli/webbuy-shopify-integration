@@ -15,7 +15,6 @@ const Product = (item) => {
   const colors = variants
     .map((variant) => variant.color)
     .filter((color, index, self) => self.indexOf(color) === index);
-  console.log(colors);
 
   const sizes = variants
     .map((variant) => variant.size)
