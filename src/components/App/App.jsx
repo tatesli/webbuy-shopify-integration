@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import AppRoutes from "../Routes/Routes";
 import Header from "../Header/Header";
+import UserForm from "../User/UserForm";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
+      <UserForm />
       <div className="container">
         <Sidebar />
         <AppRoutes />

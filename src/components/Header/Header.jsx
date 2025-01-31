@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
-
+import { getProducts } from "../../features/selectors/selectors";
 import styles from "../../styles/Header.module.css";
 
 import LOGO from "../../images/logo.svg";
 import AVATAR from "../../images/avatar.jpg";
+import { all } from "axios";
 
 const Header = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const allProducts = useSelector(getProducts);
+  console.log(allProducts);
+
+  useEffect(() => {
+    if (!searchValue) {
+      setSearchResults([]);
+      return;
+    }
+
+    const filtered = allProducts.filter((product) =>
+      product.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setSearchResults(filtered);
+  }, [searchValue, allProducts]);
+
+  const handleSearch = (event) => {
+    setSearchValue(event.target.value);
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -36,11 +60,31 @@ const Header = () => {
               name="search"
               placeholder="Search for anything.."
               autoComplete="off"
-              onChange={() => {}}
-              value=""
+              onChange={handleSearch}
+              value={searchValue}
             />
           </div>
-          {false && <div className={styles.box}></div>}
+          {searchValue && (
+            <div className={styles.box}>
+              {searchResults.length === 0 ? (
+                <p>No results</p>
+              ) : (
+                searchResults.map(({ id, title, image }) => (
+                  <Link
+                    key={id}
+                    to={`/products/${id}`}
+                    onClick={() => setSearchValue("")}
+                    className={styles.item}
+                  >
+                    <div className={styles.image}>
+                      <img src={image ? image : "default-image.jpg"} />
+                    </div>
+                    <div className={styles.title}>{title}</div>
+                  </Link>
+                ))
+              )}
+            </div>
+          )}
         </form>
         <div className={styles.account}>
           <Link to={ROUTES.HOME} className={styles.favourites}>
