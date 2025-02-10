@@ -11,8 +11,6 @@ export const getProduct = createAsyncThunk(
 
   async (productId) => {
     const product = await client.product.fetch(productId);
-    console.log("Fetched product:", product);
-
     const variants = product.variants.map((variant) => {
       const price = parseFloat(variant.price.amount);
       const color = variant.selectedOptions.find(
