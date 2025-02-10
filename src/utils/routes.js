@@ -1,6 +1,6 @@
 export const ROUTES = {
   HOME: "/",
-  CART: "/",
+  CART: "/cart",
   PRODUCT: "/products/:productId",
   COLLECTION: "/collections/:collectionId",
 };

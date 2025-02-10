@@ -18,12 +18,13 @@ const Products = ({ title, style = {}, products = [], amount }) => {
             key={id}
             className={styles.product}
           >
-            <div
+            {/* <div
               className={styles.image}
               style={{
                 backgroundImage: `url(${image})`,
               }}
-            />
+            /> */}
+            <img className={styles.image} src={image} alt="product" />
             <div className={styles.wrapper}>
               <h3 className={styles.title}>{title}</h3>
               <div className={styles.info}>

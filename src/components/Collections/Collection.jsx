@@ -15,9 +15,6 @@ const Collection = () => {
   const { title, list, isLoading, isSuccess } = useSelector(
     (state) => state.collectionProducts
   );
-  console.log("isSuccess: ", isSuccess);
-  console.log("isLoading: ", isLoading);
-
   const [name, setName] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");

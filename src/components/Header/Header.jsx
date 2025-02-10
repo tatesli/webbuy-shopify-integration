@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts } from "../../features/selectors/selectors";
+import { selectCartQuantity } from "../../features/cart/cartSlice";
 import styles from "../../styles/Header.module.css";
 
 import LOGO from "../../images/logo.svg";
@@ -15,7 +16,7 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const allProducts = useSelector(getProducts);
-  console.log(allProducts);
+  const cartQuantity = useSelector(selectCartQuantity);
 
   useEffect(() => {
     if (!searchValue) {
@@ -32,6 +33,8 @@ const Header = () => {
   const handleSearch = (event) => {
     setSearchValue(event.target.value);
   };
+
+  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
   return (
     <div className={styles.header}>
@@ -72,8 +75,11 @@ const Header = () => {
                 searchResults.map(({ id, title, image }) => (
                   <Link
                     key={id}
-                    to={`/products/${id}`}
-                    onClick={() => setSearchValue("")}
+                    to={`/products/${cleanId(id)}`}
+                    onClick={() => {
+                      console.log("Navigating to:", `/products/${id}`);
+                      setSearchValue("");
+                    }}
                     className={styles.item}
                   >
                     <div className={styles.image}>
@@ -97,7 +103,7 @@ const Header = () => {
             <svg className={styles["icon-cart"]}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`} />
             </svg>
-            <span className={styles.count}>2</span>
+            <span className={styles.count}>{cartQuantity}</span>
           </Link>
         </div>
       </div>
