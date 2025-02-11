@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 
 import { addToCart } from "../../features/cart/cartSlice";
+import { addToFavList } from "../../features/favorites/favoritesSlice";
 import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {
@@ -33,6 +34,10 @@ const Product = (item) => {
 
   const addItemToCart = () => {
     dispatch(addToCart(item));
+  };
+
+  const addItemToFav = () => {
+    dispatch(addToFavList(item));
   };
   return (
     <section className={styles.product}>
@@ -87,7 +92,9 @@ const Product = (item) => {
             Add to cart
           </button>
 
-          <button className={styles.favorite}>Add to favorites</button>
+          <button onClick={addItemToFav} className={styles.favorite}>
+            Add to favorites
+          </button>
         </div>
         <div className={styles.bottom}>
           <div className={styles.purchase}>19 people purchased</div>

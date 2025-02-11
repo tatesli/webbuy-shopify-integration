@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts } from "../../features/selectors/selectors";
-import { selectCartQuantity } from "../../features/cart/cartSlice";
+import { selectCartQuantity } from "../../utils/common";
 import styles from "../../styles/Header.module.css";
 
 import LOGO from "../../images/logo.svg";
@@ -93,7 +93,7 @@ const Header = () => {
           )}
         </form>
         <div className={styles.account}>
-          <Link to={ROUTES.HOME} className={styles.favourites}>
+          <Link to={ROUTES.FAVORITES} className={styles.favourites}>
             <svg className={styles["icon-fav"]}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#heart`} />
             </svg>

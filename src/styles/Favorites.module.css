@@ -1,17 +1,15 @@
-.cart {
+.favorites {
   width: calc(100% - 324px);
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
 }
-
 .empty {
   margin-top: 24px;
   font-size: 24px;
   line-height: 30px;
   color: var(--light);
 }
-
 .list {
   display: flex;
   flex-direction: column;
@@ -19,16 +17,14 @@
   margin-top: 16px;
   margin-bottom: 24px;
 }
-
 .item {
   background: var(--bg);
   padding: 12px 16px;
   display: grid;
-  grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 16px;
+  grid-template-columns: 120px 4fr 5fr 40px;
   align-items: center;
   border-radius: 6px;
 }
-
 .image {
   object-fit: cover;
   object-position: center;
@@ -43,7 +39,6 @@
   flex-direction: column;
   row-gap: 4px;
 }
-
 .name {
   font-weight: 600;
   font-size: 13px;
@@ -60,48 +55,6 @@
   font-size: 14px;
   line-height: 18px;
 }
-
-.quantity {
-  display: flex;
-  align-items: center;
-}
-
-.quantity span {
-  width: 40px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 17px;
-  color: var(--dark-sea);
-}
-
-.minus,
-.plus {
-  background: var(--dark-sea);
-  border-radius: 6px;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.quantity svg {
-  width: 17px;
-  height: 17px;
-  fill: rgba(255, 255, 255, 0.5);
-}
-
-.plus:hover,
-.minus:hover {
-  background: var(--violet);
-}
-
-.plus:hover svg,
-.minus:hover svg {
-  fill: rgba(255, 255, 255, 1);
-}
-
 .close {
   cursor: pointer;
 }
@@ -114,22 +67,4 @@
 
 .close:hover svg {
   stroke: rgba(255, 255, 255, 1);
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
-
-.total {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--grey);
-}
-
-.total span {
-  color: #fff;
 }
