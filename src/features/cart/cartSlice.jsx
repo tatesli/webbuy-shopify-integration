@@ -54,10 +54,10 @@ const cartSlice = createSlice({
       );
       saveCartToLocalStorage(state.itemsList);
     },
-    clearCart: (state) => {
-      state.itemsList = [];
-      saveCartToLocalStorage(state.itemsList);
-    },
+    // clearCart: (state) => {
+    //   state.itemsList = [];
+    //   saveCartToLocalStorage(state.itemsList);
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(createCheckout.pending, (state) => {
@@ -74,9 +74,5 @@ const cartSlice = createSlice({
 });
 
 export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
-
-export const selectCartQuantity = (state) => {
-  return state.cart.itemsList.reduce((total, item) => total + item.quantity, 0);
-};
 
 export default cartSlice.reducer;

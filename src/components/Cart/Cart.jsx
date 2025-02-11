@@ -23,7 +23,7 @@ const Cart = () => {
   );
   return (
     <section className={styles.cart}>
-      <h2 className={styles.title}>Your Cart</h2>
+      <h2>Your Cart</h2>
 
       {isLoading && <p>Loading cart...</p>}
 
