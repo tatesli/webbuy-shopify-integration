@@ -116,3 +116,7 @@
 .favourite:hover {
   background: #7a8690;
 }
+.add:disabled {
+  cursor: not-allowed;
+  background: var(--bg);
+}

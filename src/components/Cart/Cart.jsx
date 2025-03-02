@@ -12,7 +12,11 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { itemsList = [], isLoading } = useSelector((state) => state.cart);
   const changeQuantity = (item, quantity) => {
-    dispatch(addToCart({ ...item, quantity }));
+    if (quantity <= 0) {
+      dispatch(removeFromCart(item.id));
+    } else {
+      dispatch(addToCart({ ...item, quantity }));
+    }
   };
 
   const totalPrice = sumBy(
@@ -60,7 +64,7 @@ const Cart = () => {
                     <div
                       className={styles.minus}
                       onClick={() =>
-                        changeQuantity(item, Math.max(1, quantity - 1))
+                        changeQuantity(item, Math.max(0, quantity - 1))
                       }
                     >
                       <svg className="icon">

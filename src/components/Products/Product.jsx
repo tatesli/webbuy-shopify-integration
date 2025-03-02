@@ -11,20 +11,17 @@ import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {
   const dispatch = useDispatch();
-
-  const { title, images, description, variants } = item;
+  const { title, images, description, variants, quantity } = item;
 
   const [currentImage, setCurrentImage] = useState();
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const price = variants && variants.length > 0 ? variants[0].price : 0;
 
-  const colors = variants
-    .map((variant) => variant.color)
-    .filter((color, index, self) => self.indexOf(color) === index);
+  const colors = [...new Set(variants.map((variant) => variant.color))];
 
-  const sizes = variants
-    .map((variant) => variant.size)
-    .filter((size, index, self) => self.indexOf(size) === index);
+  const sizes = [...new Set(variants.map((variant) => variant.size))];
 
   useEffect(() => {
     if (!images || !images.length) return;
@@ -33,12 +30,20 @@ const Product = (item) => {
   }, [images]);
 
   const addItemToCart = () => {
-    dispatch(addToCart(item));
+    const selectedVariant = variants.find(
+      (variant) =>
+        variant.color === selectedColor && variant.size === selectedSize
+    );
+    if (!selectedVariant) return;
+    dispatch(addToCart({ ...item, id: selectedVariant.id }));
   };
 
   const addItemToFav = () => {
     dispatch(addToFavList(item));
   };
+
+  const isDisabled = !selectedColor || !selectedSize;
+
   return (
     <section className={styles.product}>
       <div className={styles.images}>
@@ -66,7 +71,13 @@ const Product = (item) => {
             <span>Color:</span>
             <div className={styles.list}>
               {colors.map((color, index) => (
-                <div key={index} className={styles.color}>
+                <div
+                  key={index}
+                  className={`${styles.color} ${
+                    selectedColor === color ? styles.active : ""
+                  }`}
+                  onClick={() => setSelectedColor(color)}
+                >
                   {color}
                 </div>
               ))}
@@ -78,7 +89,13 @@ const Product = (item) => {
             <span>Size:</span>
             <div className={styles.list}>
               {sizes.map((size, index) => (
-                <div key={index} className={styles.size}>
+                <div
+                  key={index}
+                  className={`${styles.size} ${
+                    selectedSize === size ? styles.active : ""
+                  }`}
+                  onClick={() => setSelectedSize(size)}
+                >
                   {size}
                 </div>
               ))}
@@ -88,7 +105,11 @@ const Product = (item) => {
 
         <p className={styles.description}>{description}</p>
         <div className={styles.actions}>
-          <button onClick={addItemToCart} className={styles.add}>
+          <button
+            onClick={addItemToCart}
+            className={styles.add}
+            disabled={isDisabled}
+          >
             Add to cart
           </button>
 

@@ -1,22 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts } from "../../features/selectors/selectors";
 import { selectCartQuantity } from "../../utils/common";
+import { toggleForm } from "../../features/user/userSlice";
+
 import styles from "../../styles/Header.module.css";
 
 import LOGO from "../../images/logo.svg";
 import AVATAR from "../../images/avatar.jpg";
-import { all } from "axios";
+import Profile from "../Profile/Profile";
+import UserForm from "../User/UserForm";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [showProfile, setShowProfile] = useState(false);
 
   const allProducts = useSelector(getProducts);
   const cartQuantity = useSelector(selectCartQuantity);
+  console.log("Cart quantity:", cartQuantity);
+  const user = useSelector((state) => state.user.user);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+  console.log(user);
+  console.log(isAuthenticated);
 
   useEffect(() => {
     if (!searchValue) {
@@ -33,6 +45,13 @@ const Header = () => {
   const handleSearch = (event) => {
     setSearchValue(event.target.value);
   };
+  const handleClick = () => {
+    if (isAuthenticated) {
+      setShowProfile((prev) => !prev);
+    } else {
+      dispatch(toggleForm(true));
+    }
+  };
 
   const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
@@ -44,13 +63,16 @@ const Header = () => {
         </Link>
       </div>
       <div className={styles.info}>
-        <div className={styles.user}>
-          <div
+        <div className={styles.user} onClick={handleClick}>
+          <img
             className={styles.avatar}
-            style={{ backgroundImage: `url(${AVATAR})` }}
+            src={user?.avatar || AVATAR}
+            alt="avatar"
           />
-          <div className={styles.username}>Guest</div>
+          <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
+        {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
+        <UserForm />
         <form className={styles.form}>
           <div className={styles.icon}>
             <svg className="icon">
@@ -83,7 +105,10 @@ const Header = () => {
                     className={styles.item}
                   >
                     <div className={styles.image}>
-                      <img src={image ? image : "default-image.jpg"} />
+                      <img
+                        src={image ? image : "default-image.jpg"}
+                        alt="product"
+                      />
                     </div>
                     <div className={styles.title}>{title}</div>
                   </Link>
@@ -98,7 +123,6 @@ const Header = () => {
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#heart`} />
             </svg>
           </Link>
-
           <Link to={ROUTES.CART} className={styles.cart}>
             <svg className={styles["icon-cart"]}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`} />
