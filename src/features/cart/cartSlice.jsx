@@ -6,12 +6,14 @@ const client = Client.buildClient({
   storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
 });
 
-const loadCartFromLocalStorage = () => {
-  const savedCart = localStorage.getItem("cart");
-  return savedCart ? JSON.parse(savedCart) : [];
+const loadCart = (user) => {
+  const key = user ? `cart_user_${user.email}` : "cart_guest";
+  const storedCart = localStorage.getItem(key);
+  return storedCart ? JSON.parse(storedCart) : [];
 };
-const saveCartToLocalStorage = (cart) => {
-  localStorage.setItem("cart", JSON.stringify(cart));
+const saveCart = (itemList, user) => {
+  const key = user ? `cart_user_${user.email}` : "cart_guest";
+  localStorage.setItem(key, JSON.stringify(itemList));
 };
 
 export const createCheckout = createAsyncThunk(
@@ -27,37 +29,61 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cartId: null,
-    itemsList: loadCartFromLocalStorage(),
+    itemsList: loadCart(null),
     isLoading: false,
   },
   reducers: {
     addToCart: (state, action) => {
-      console.log(action);
-      const itemToAdd = {
-        ...action.payload,
-        quantity: action.payload.quantity || 1,
-      };
-      const existingItemIndex = state.itemsList.findIndex(
-        (item) => item.id === itemToAdd.id
-      );
-      if (existingItemIndex >= 0) {
-        state.itemsList[existingItemIndex].quantity = itemToAdd.quantity;
-      } else {
-        state.itemsList.push(itemToAdd);
+      let newCart = state.itemsList.map((item) => {
+        if (item.id === action.payload.id) {
+          const updatedItem = {
+            ...item,
+            quantity: action.payload.quantity || 1,
+          };
+          return updatedItem.quantity === 0 ? null : updatedItem;
+        }
+        return item;
+      });
+      newCart = newCart.filter((item) => item.quantity > 0);
+      if (!newCart.some((item) => item.id === action.payload.id)) {
+        newCart = [...newCart, { ...action.payload, quantity: 1 }];
       }
-      saveCartToLocalStorage(state.itemsList);
+
+      saveCart(newCart, null);
+      return { ...state, itemsList: newCart };
     },
 
     removeFromCart: (state, action) => {
-      state.itemsList = state.itemsList.filter(
+      const newCart = state.itemsList.filter(
         (item) => item.id !== action.payload
       );
-      saveCartToLocalStorage(state.itemsList);
+      saveCart(newCart, null);
+      return { ...state, itemsList: newCart };
     },
-    // clearCart: (state) => {
-    //   state.itemsList = [];
-    //   saveCartToLocalStorage(state.itemsList);
-    // },
+
+    switchCartToUser: (state, action) => {
+      const user = action.payload;
+      const guestCart = loadCart(null);
+      const userCart = loadCart(user);
+      const mergedCart = [...guestCart];
+      userCart.forEach((userItem) => {
+        const existingItem = mergedCart.find((item) => item.id === userItem.id);
+        if (existingItem) {
+          existingItem.quantity += userItem.quantity;
+        } else {
+          mergedCart.push(userItem);
+        }
+      });
+
+      saveCart(mergedCart, user);
+      localStorage.removeItem("cart_guest");
+      return { ...state, itemsList: mergedCart };
+    },
+    clearCart: (state) => {
+      state.itemsList = [];
+      localStorage.removeItem("cart_guest");
+      localStorage.removeItem("cart_user_" + state.user?.email);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(createCheckout.pending, (state) => {
@@ -67,12 +93,13 @@ const cartSlice = createSlice({
       state.cartId = action.payload.id;
       state.isLoading = false;
     });
-    builder.addCase(createCheckout.rejected, (state, action) => {
+    builder.addCase(createCheckout.rejected, (state) => {
       state.isLoading = false;
     });
   },
 });
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, switchCartToUser, clearCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

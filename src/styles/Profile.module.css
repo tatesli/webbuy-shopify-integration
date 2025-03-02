@@ -1,0 +1,46 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: var(--dark);
+  width: 320px;
+  height: 100vh;
+  z-index: 99;
+  padding: 60px 24px 24px 24px;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.close svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--dark-sea);
+}
+
+.close:hover svg {
+  stroke: #fff;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-align: center;
+  gap: 10px;
+  padding: 24px;
+}
+.logout {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
