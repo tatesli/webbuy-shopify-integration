@@ -20,6 +20,7 @@ const Footer = () => {
       </div>
       <div className={styles.socials}>
         <a href="https://instagram.com">
+          {/* TODO: ReactComponent */}
           <svg className="icon">
             <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#instagram`} />
           </svg>

@@ -7,6 +7,8 @@ import { removeFromFavList } from "../../features/favorites/favoritesSlice";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
+//TODO: Favorites i Cart sa takie same komponenty, utworz common component do prezentacji  favorites i cart
+
 const Favorites = () => {
   const favorites = useSelector((state) => state.favorites.favListItem);
   const dispatch = useDispatch();

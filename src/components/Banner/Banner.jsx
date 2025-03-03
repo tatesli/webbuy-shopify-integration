@@ -15,6 +15,7 @@ const Banner = () => {
       </div>
       <div
         className={styles.right}
+        //TODO: img
         style={{ backgroundImage: `url(${BANNER})` }}
       >
         <p className={styles.discount}>

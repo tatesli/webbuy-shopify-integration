@@ -13,8 +13,10 @@ const Collection = () => {
   const dispatch = useDispatch();
 
   const { title, list, isLoading, isSuccess } = useSelector(
+    //TODO: the same
     (state) => state.collectionProducts
   );
+  //TODO: https://www.react-hook-form.com/
   const [name, setName] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");

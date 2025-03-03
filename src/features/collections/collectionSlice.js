@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Client from "shopify-buy";
 
+//TODO: the same
 const client = Client.buildClient({
   domain: "edu-dev-shop.myshopify.com",
   storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
@@ -21,6 +22,7 @@ export const getCollectionProducts = createAsyncThunk(
         const image = product.images[0]?.src;
         const rawPrice = product.variants[0]?.price?.amount;
         const price = rawPrice ? parseFloat(rawPrice) : 0;
+
         return {
           id: product.id,
           title: product.title,

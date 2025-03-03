@@ -3,6 +3,7 @@ import Client from "shopify-buy";
 
 import { shuffle } from "../../utils/common";
 
+//TODO: the same
 const client = Client.buildClient({
   domain: "edu-dev-shop.myshopify.com",
   storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
@@ -58,5 +59,7 @@ const productsSlice = createSlice({
     });
   },
 });
+
 export const { filterByPrice, getRelatedByType } = productsSlice.actions;
+
 export default productsSlice.reducer;

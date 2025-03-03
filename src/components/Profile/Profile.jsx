@@ -21,6 +21,10 @@ const Profile = ({ closeProfile }) => {
 
     closeProfile();
   };
+  //TODO: the same if statement
+  // if (!user) {
+  //   return null;
+  // }
   if (!user) return null;
 
   return (
@@ -28,6 +32,7 @@ const Profile = ({ closeProfile }) => {
       {user ? (
         <>
           <div className={styles.close} onClick={closeProfile}>
+            {/* //TODO: */}
             <svg className={styles.icon}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
             </svg>

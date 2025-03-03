@@ -18,6 +18,7 @@ const Products = ({ title, style = {}, products = [], amount }) => {
             key={id}
             className={styles.product}
           >
+            {/* TODO: remove all comments  */}
             {/* <div
               className={styles.image}
               style={{

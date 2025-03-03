@@ -11,6 +11,7 @@ import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {
   const dispatch = useDispatch();
+  //TODO: do usuniecia nie uzywane variables
   const { title, images, description, variants, quantity } = item;
 
   const [currentImage, setCurrentImage] = useState();
@@ -34,6 +35,10 @@ const Product = (item) => {
       (variant) =>
         variant.color === selectedColor && variant.size === selectedSize
     );
+    //TODO:
+    // if (!selectedVariant) {
+    //   return;
+    // }
     if (!selectedVariant) return;
     dispatch(addToCart({ ...item, id: selectedVariant.id }));
   };
@@ -49,6 +54,7 @@ const Product = (item) => {
       <div className={styles.images}>
         <div
           className={styles.current}
+          //TODO: img
           style={{ backgroundImage: `url(${currentImage})` }}
         />
         <div className={styles["images-list"]}>
@@ -57,6 +63,7 @@ const Product = (item) => {
               <div
                 key={i}
                 className={styles.image}
+                //TODO: img
                 style={{ backgroundImage: `url(${image})` }}
                 onClick={() => setCurrentImage(image)}
               />

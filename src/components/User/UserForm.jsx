@@ -9,6 +9,7 @@ import styles from "../../styles/User.module.css";
 import { toggleForm, toggleFormType } from "../../features/user/userSlice";
 
 const UserForm = () => {
+  //TODO: the same
   const { showForm, formType } = useSelector(({ user }) => user);
 
   const dispatch = useDispatch();

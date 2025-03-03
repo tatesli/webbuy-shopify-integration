@@ -23,6 +23,7 @@ const Header = () => {
 
   const allProducts = useSelector(getProducts);
   const cartQuantity = useSelector(selectCartQuantity);
+  //TODO: remove all console.log
   console.log("Cart quantity:", cartQuantity);
   const user = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -52,7 +53,7 @@ const Header = () => {
       dispatch(toggleForm(true));
     }
   };
-
+  //TODO: w utils/common i do reuzycia (wszedzie)
   const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
   return (
@@ -119,6 +120,7 @@ const Header = () => {
         </form>
         <div className={styles.account}>
           <Link to={ROUTES.FAVORITES} className={styles.favourites}>
+            {/* TODO: reactComponent */}
             <svg className={styles["icon-fav"]}>
               <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#heart`} />
             </svg>

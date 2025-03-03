@@ -10,6 +10,11 @@ const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
 const Cart = () => {
   const dispatch = useDispatch();
+  //TODO:
+  // The function below is called a selector and allows us to select a value from
+  // the state. Selectors can also be defined inline where they're used instead of
+  //  in the slice file. For example: `useSelector((state) => state.counter.value)`
+  // export const selectCount = (state) => state.counter.value // w slice eg: https://redux-toolkit.js.org/tutorials/quick-start#what-youve-learned
   const { itemsList = [], isLoading } = useSelector((state) => state.cart);
   const changeQuantity = (item, quantity) => {
     if (quantity <= 0) {
@@ -67,6 +72,7 @@ const Cart = () => {
                         changeQuantity(item, Math.max(0, quantity - 1))
                       }
                     >
+                      {/* TODO: zmiana na https://www.telerik.com/blogs/how-to-use-svg-react albo cos innego (jako ReactComponent) */}
                       <svg className="icon">
                         <use
                           xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#minus`}
@@ -80,6 +86,7 @@ const Cart = () => {
                         changeQuantity(item, Math.max(1, quantity + 1))
                       }
                     >
+                      {/* TODO: the same */}
                       <svg className="icon">
                         <use
                           xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#plus`}
@@ -92,6 +99,7 @@ const Cart = () => {
                     className={styles.close}
                     onClick={() => dispatch(removeFromCart(item.id))}
                   >
+                    {/* TODO: the same */}
                     <svg className="icon">
                       <use
                         xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`}

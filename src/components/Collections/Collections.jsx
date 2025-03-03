@@ -20,6 +20,7 @@ const Collections = ({ title, collections = [], amount }) => {
           >
             <div
               className={styles.image}
+              // TODO: the same
               style={{ backgroundImage: `url(${image})` }}
             />
             <div className={styles.title}>{title}</div>

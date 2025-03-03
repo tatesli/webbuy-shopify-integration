@@ -7,7 +7,7 @@ import styles from "../../styles/User.module.css";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
-
+  //TODO: react-hook-form
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -34,6 +34,7 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.close} onClick={closeForm}>
+        {/* TODO: the same */}
         <svg className={styles.icon}>
           <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
         </svg>

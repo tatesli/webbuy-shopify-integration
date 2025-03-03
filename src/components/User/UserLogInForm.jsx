@@ -7,6 +7,7 @@ import { switchCartToUser } from "../../features/cart/cartSlice";
 
 const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
+  //TODO: react-hook-form
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
