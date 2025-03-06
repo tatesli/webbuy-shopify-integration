@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userSlice";
+import { CloseIcon } from "../Icons/Icons";
 
 import styles from "../../styles/User.module.css";
 
@@ -34,10 +35,7 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.close} onClick={closeForm}>
-        {/* TODO: the same */}
-        <svg className={styles.icon}>
-          <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
-        </svg>
+        <CloseIcon className={styles.icon} />
       </div>
       <h1 className={styles.title}>Sign Up</h1>
       <form className={styles.form} onSubmit={handleSubmit}>

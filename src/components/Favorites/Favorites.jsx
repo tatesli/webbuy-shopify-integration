@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "../../styles/Favorites.module.css";
+import { CloseIcon } from "../Icons/Icons";
 
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
 
@@ -44,11 +45,7 @@ const Favorites = () => {
                     className={styles.close}
                     onClick={() => dispatch(removeFromFavList(item.id))}
                   >
-                    <svg className="icon">
-                      <use
-                        xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`}
-                      />
-                    </svg>
+                    <CloseIcon className={styles.icon} />
                   </div>
                 </div>
               );

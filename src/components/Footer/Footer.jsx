@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 
 import styles from "../../styles/Footer.module.css";
+import { InstagramIcon, FacebookIcon, YoutubeIcon } from "../Icons/Icons";
 import LOGO from "../../images/logo.svg";
 
 const Footer = () => {
@@ -20,20 +21,13 @@ const Footer = () => {
       </div>
       <div className={styles.socials}>
         <a href="https://instagram.com">
-          {/* TODO: ReactComponent */}
-          <svg className="icon">
-            <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#instagram`} />
-          </svg>
+           <InstagramIcon className={styles.icon} />
         </a>
         <a href="https://facebook.com">
-          <svg className="icon">
-            <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#facebook`} />
-          </svg>
+          <FacebookIcon className={styles.icon} />
         </a>
         <a href="https://youtube.com">
-          <svg className="icon">
-            <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#youtube`} />
-          </svg>
+          <YoutubeIcon className={styles.icon} />
         </a>
       </div>
     </section>
