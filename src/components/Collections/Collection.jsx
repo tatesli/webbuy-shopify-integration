@@ -3,6 +3,12 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCollectionProducts } from "../../features/collections/collectionSlice";
+import {
+  selectTitle,
+  selectList,
+  selectIsLoading,
+  selectIsSuccess,
+} from "../../features/selectors/selectors";
 
 import Products from "../Products/Products";
 
@@ -12,10 +18,11 @@ const Collection = () => {
   const { collectionId } = useParams();
   const dispatch = useDispatch();
 
-  const { title, list, isLoading, isSuccess } = useSelector(
-    //TODO: the same
-    (state) => state.collectionProducts
-  );
+  const title = useSelector(selectTitle);
+  const list = useSelector(selectList);
+  const isLoading = useSelector(selectIsLoading);
+  const isSuccess = useSelector(selectIsSuccess);
+
   //TODO: https://www.react-hook-form.com/
   const [name, setName] = useState("");
   const [minPrice, setMinPrice] = useState("");

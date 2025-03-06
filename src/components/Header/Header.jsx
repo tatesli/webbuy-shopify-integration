@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
-import { getProducts } from "../../features/selectors/selectors";
+import {
+  getProducts,
+  selectUser,
+  selectIsAuthenticated,
+} from "../../features/selectors/selectors";
 import { selectCartQuantity } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 
@@ -25,8 +29,8 @@ const Header = () => {
   const cartQuantity = useSelector(selectCartQuantity);
   //TODO: remove all console.log
   console.log("Cart quantity:", cartQuantity);
-  const user = useSelector((state) => state.user.user);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector(selectUser);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   console.log(user);
   console.log(isAuthenticated);

@@ -1,21 +1,25 @@
 import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
-import styles from "../../styles/Cart.module.css";
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
+import {
+  selectIsLoadingCart,
+  selectItemsList,
+} from "../../features/selectors/selectors.js";
 import { sumBy } from "../../utils/common.js";
+
+import styles from "../../styles/Cart.module.css";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
 const Cart = () => {
   const dispatch = useDispatch();
-  //TODO:
-  // The function below is called a selector and allows us to select a value from
-  // the state. Selectors can also be defined inline where they're used instead of
-  //  in the slice file. For example: `useSelector((state) => state.counter.value)`
-  // export const selectCount = (state) => state.counter.value // w slice eg: https://redux-toolkit.js.org/tutorials/quick-start#what-youve-learned
-  const { itemsList = [], isLoading } = useSelector((state) => state.cart);
+
+  const isLoading = useSelector(selectIsLoadingCart);
+  const itemsList = useSelector(selectItemsList);
+
   const changeQuantity = (item, quantity) => {
     if (quantity <= 0) {
       dispatch(removeFromCart(item.id));
