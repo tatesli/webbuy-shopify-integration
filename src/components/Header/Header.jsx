@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts } from "../../features/selectors/selectors";
-import { selectCartQuantity } from "../../utils/common";
+import { selectCartQuantity, cleanId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 
 import styles from "../../styles/Header.module.css";
@@ -53,8 +53,6 @@ const Header = () => {
       dispatch(toggleForm(true));
     }
   };
-  //TODO: w utils/common i do reuzycia (wszedzie)
-  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
   return (
     <div className={styles.header}>

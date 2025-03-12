@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { collectionId } from "../Sidebar/Sidebar";
+import { collectionId } from "../../utils/common";
 
 import styles from "../../styles/Collections.module.css";
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { cleanId } from "../../utils/common";
+
 import styles from "../../styles/Products.module.css";
 
 const Products = ({ title, style = {}, products = [], amount }) => {
-  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
-
   const list = products.filter((_, i) => i < amount);
 
   return (

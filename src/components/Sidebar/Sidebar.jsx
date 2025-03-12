@@ -6,7 +6,7 @@ import styles from "../../styles/Sidebar.module.css";
 
 import { getCollections } from "../../features/selectors/selectors";
 
-export const collectionId = (id) => id.replace("gid://shopify/Collection/", "");
+import { collectionId } from "../../utils/common";
 
 const Sidebar = () => {
   const list = useSelector(getCollections);

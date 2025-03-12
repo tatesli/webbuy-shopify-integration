@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/Cart.module.css";
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
-import { sumBy } from "../../utils/common.js";
-
-const cleanId = (id) => id.replace("gid://shopify/Product/", "");
+import { sumBy, cleanId } from "../../utils/common.js";
 
 const Cart = () => {
   const dispatch = useDispatch();

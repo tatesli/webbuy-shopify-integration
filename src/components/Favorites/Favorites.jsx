@@ -5,7 +5,7 @@ import styles from "../../styles/Favorites.module.css";
 
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
 
-const cleanId = (id) => id.replace("gid://shopify/Product/", "");
+import { cleanId } from "../../utils/common";
 
 //TODO: Favorites i Cart sa takie same komponenty, utworz common component do prezentacji  favorites i cart
 
