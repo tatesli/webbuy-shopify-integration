@@ -1,29 +1,22 @@
-import React, { useState } from "react";
-
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userSlice";
-
 import styles from "../../styles/User.module.css";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
-  //TODO: react-hook-form
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-  });
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setUserData({ ...userData, [name]: value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const newUser = { ...userData, id: userData.email };
+    const newUser = { ...data, id: data.email };
 
     const updatedUsers = [...users, newUser];
 
@@ -31,65 +24,67 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
     dispatch(registerUser(newUser));
     closeForm();
   };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.close} onClick={closeForm}>
-        {/* TODO: the same */}
         <svg className={styles.icon}>
           <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
         </svg>
       </div>
       <h1 className={styles.title}>Sign Up</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.group}>
           <input
             type="email"
             name="email"
             placeholder="Your email"
-            value={userData.email}
             autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            required
+            {...register("email", { required: "Email is required" })}
           />
+          {errors.email && (
+            <p className={styles.error}>{errors.email.message}</p>
+          )}
         </div>
         <div className={styles.group}>
           <input
             type="text"
             name="name"
             placeholder="Your name"
-            value={userData.name}
             autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            required
+            {...register("name", { required: "Name is required" })}
           />
+          {errors.name && <p className={styles.error}>{errors.name.message}</p>}
         </div>
         <div className={styles.group}>
           <input
             type="password"
             name="password"
             placeholder="Your password"
-            value={userData.password}
             autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            required
+            {...register("password", { required: "Password is required" })}
           />
+          {errors.password && (
+            <p className={styles.error}>{errors.password.message}</p>
+          )}
         </div>
         <div className={styles.group}>
           <input
             type="text"
             name="avatar"
             placeholder="Your avatar URL"
-            value={userData.avatar}
             autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            required
+            {...register("avatar", { required: "Avatar URL is required" })}
           />
+          {errors.avatar && (
+            <p className={styles.error}>{errors.avatar.message}</p>
+          )}
         </div>
         <div
           className={styles.link}
           onClick={() => toggleCurrentTypeForm("login")}
         >
-          i already have an account
+          I already have an account
         </div>
         <button type="submit" className={styles.submit}>
           Create an account
