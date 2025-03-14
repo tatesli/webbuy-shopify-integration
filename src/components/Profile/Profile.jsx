@@ -33,7 +33,7 @@ const Profile = ({ closeProfile }) => {
       {user ? (
         <>
           <div className={styles.close} onClick={closeProfile}>
-            <CloseIcon className={styles.icon} />
+            <CloseIcon />
           </div>
           <h1 className={styles.title}>Welcome, {user.name}!</h1>
           <div className={styles.links}>

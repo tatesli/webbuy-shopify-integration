@@ -114,10 +114,10 @@ const Header = () => {
         </form>
         <div className={styles.account}>
           <Link to={ROUTES.FAVORITES} className={styles.favourites}>
-            <FavIcon className={styles["icon-fav"]} />
+            <FavIcon className={styles.iconFav} />
           </Link>
           <Link to={ROUTES.CART} className={styles.cart}>
-            <CartIcon className={styles["icon-cart"]} />
+            <CartIcon className={styles.iconCart} />
             <span className={styles.count}>{cartQuantity}</span>
           </Link>
         </div>

@@ -35,7 +35,7 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.close} onClick={closeForm}>
-        <CloseIcon className={styles.icon} />
+        <CloseIcon />
       </div>
       <h1 className={styles.title}>Sign Up</h1>
       <form className={styles.form} onSubmit={handleSubmit}>

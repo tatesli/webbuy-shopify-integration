@@ -73,7 +73,7 @@ const Cart = () => {
                         changeQuantity(item, Math.max(0, quantity - 1))
                       }
                     >
-                      <MinusIcon className={styles.minus} />
+                      <MinusIcon />
                     </div>
                     <span>{quantity}</span>
                     <div
@@ -82,7 +82,7 @@ const Cart = () => {
                         changeQuantity(item, Math.max(1, quantity + 1))
                       }
                     >
-                      <PlusIcon className={styles.plus} />
+                      <PlusIcon />
                     </div>
                   </div>
                   <div className={styles.total}>{price * quantity}$</div>
@@ -90,7 +90,7 @@ const Cart = () => {
                     className={styles.close}
                     onClick={() => dispatch(removeFromCart(item.id))}
                   >
-                    <CloseIcon className={styles.icon} />
+                    <CloseIcon />
                   </div>
                 </div>
               );

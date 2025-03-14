@@ -21,13 +21,13 @@ const Footer = () => {
       </div>
       <div className={styles.socials}>
         <a href="https://instagram.com">
-           <InstagramIcon className={styles.icon} />
+           <InstagramIcon />
         </a>
         <a href="https://facebook.com">
-          <FacebookIcon className={styles.icon} />
+          <FacebookIcon />
         </a>
         <a href="https://youtube.com">
-          <YoutubeIcon className={styles.icon} />
+          <YoutubeIcon />
         </a>
       </div>
     </section>

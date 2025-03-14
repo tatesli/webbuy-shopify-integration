@@ -45,7 +45,7 @@ const Favorites = () => {
                     className={styles.close}
                     onClick={() => dispatch(removeFromFavList(item.id))}
                   >
-                    <CloseIcon className={styles.icon} />
+                    <CloseIcon />
                   </div>
                 </div>
               );

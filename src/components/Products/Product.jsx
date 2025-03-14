@@ -58,7 +58,7 @@ const Product = (item) => {
           alt="current_image"
         />
       </div>
-      <div className={styles["images-list"]}>
+      <div className={styles.imagesList}>
         {Array.isArray(images) &&
           images.map((image, i) => (
             <img
