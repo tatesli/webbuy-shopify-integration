@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
-import { selectUser } from "../../features/selectors/selectors";
+import { getUser } from "../../features/selectors/selectors";
 
 import { logoutUser } from "../../features/user/userSlice";
 import { clearCart } from "../../features/cart/cartSlice";
@@ -12,7 +12,7 @@ import UserForm from "../User/UserForm";
 import styles from "../../styles/Profile.module.css";
 
 const Profile = ({ closeProfile }) => {
-  const user = useSelector(selectUser);
+  const user = useSelector(getUser);
 
   const dispatch = useDispatch();
 

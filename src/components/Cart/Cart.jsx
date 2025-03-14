@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
-import {
-  selectIsLoadingCart,
-  selectItemsList,
-} from "../../features/selectors/selectors.js";
+import { getCart } from "../../features/selectors/selectors.js";
 import { sumBy } from "../../utils/common.js";
 
 import styles from "../../styles/Cart.module.css";
@@ -17,8 +14,7 @@ const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 const Cart = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectIsLoadingCart);
-  const itemsList = useSelector(selectItemsList);
+  const { isLoading, itemsList } = useSelector(getCart);
 
   const changeQuantity = (item, quantity) => {
     if (quantity <= 0) {

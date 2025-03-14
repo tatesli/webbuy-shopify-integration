@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
-import {
-  getProducts,
-  selectUser,
-  selectIsAuthenticated,
-} from "../../features/selectors/selectors";
+import { getProducts, getUser } from "../../features/selectors/selectors";
 import { selectCartQuantity } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 
@@ -27,13 +23,7 @@ const Header = () => {
 
   const allProducts = useSelector(getProducts);
   const cartQuantity = useSelector(selectCartQuantity);
-  //TODO: remove all console.log
-  console.log("Cart quantity:", cartQuantity);
-  const user = useSelector(selectUser);
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-
-  console.log(user);
-  console.log(isAuthenticated);
+  const { user, isAuthenticated } = useSelector(getUser);
 
   useEffect(() => {
     if (!searchValue) {

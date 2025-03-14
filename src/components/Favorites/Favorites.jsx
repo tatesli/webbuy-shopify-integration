@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import styles from "../../styles/Favorites.module.css";
 
-import { selectFavorites } from "../../features/selectors/selectors";
+import { getFavorites } from "../../features/selectors/selectors";
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
@@ -11,7 +11,8 @@ const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 //TODO: Favorites i Cart sa takie same komponenty, utworz common component do prezentacji  favorites i cart
 
 const Favorites = () => {
-  const favorites = useSelector(selectFavorites);
+  const favorites = useSelector(getFavorites);
+  console.log(favorites);
   const dispatch = useDispatch();
 
   return (
@@ -21,7 +22,7 @@ const Favorites = () => {
         <p className={styles.empty}>Here is empty</p>
       ) : (
         <>
-          <div div className={styles.list}>
+          <div className={styles.list}>
             {favorites.map((item) => {
               const {
                 title,
