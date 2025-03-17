@@ -1,8 +1,16 @@
-.cart {
+.container {
   width: calc(100% - 324px);
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
+}
+
+.cart .item {
+  grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 16px;
+}
+
+.favorites .item {
+  grid-template-columns: 120px 4fr 5fr 40px;
 }
 
 .empty {
