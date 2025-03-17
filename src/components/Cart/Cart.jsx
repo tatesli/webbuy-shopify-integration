@@ -1,8 +1,10 @@
 import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
+import { getCart } from "../../features/selectors/selectors.js";
 import { sumBy } from "../../utils/common.js";
 
 import WishlistCart, {
@@ -12,7 +14,8 @@ import WishlistCart, {
 const Cart = () => {
   const dispatch = useDispatch();
 
-  const { itemsList = [], isLoading } = useSelector((state) => state.cart);
+  const { isLoading, itemsList } = useSelector(getCart);
+
   const changeQuantity = (item, quantity) => {
     if (quantity <= 0) {
       dispatch(removeFromCart(item.id));

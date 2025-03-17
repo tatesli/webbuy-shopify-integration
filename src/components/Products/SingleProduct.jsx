@@ -10,8 +10,8 @@ import { getRelatedByType } from "../../features/products/productsSlice";
 
 import {
   getProducts,
-  getProductSelector,
-  getRelatedByTypeSelect,
+  getSingleProduct,
+  getRelatedByTypeProducts,
 } from "../../features/selectors/selectors";
 
 const SingleProduct = () => {
@@ -19,11 +19,11 @@ const SingleProduct = () => {
 
   const dispatch = useDispatch();
 
-  const product = useSelector(getProductSelector);
+  const product = useSelector(getSingleProduct);
 
   const products = useSelector(getProducts);
 
-  const related = useSelector(getRelatedByTypeSelect);
+  const related = useSelector(getRelatedByTypeProducts);
   const isLoading = useSelector((state) => state.product.isLoading);
 
   useEffect(() => {

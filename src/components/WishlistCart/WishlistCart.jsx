@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import styles from "../../styles/WishlistCart.module.css";
 
+import { CloseIcon, MinusIcon, PlusIcon } from "../Icons/Icons.jsx";
+
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
 export const WishlistCartType = {
@@ -61,11 +63,7 @@ const WishlistCart = ({
                           onChangeQuantity(item, Math.max(0, quantity - 1))
                         }
                       >
-                        <svg className="icon">
-                          <use
-                            xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#minus`}
-                          />
-                        </svg>
+                        <MinusIcon />
                       </div>
                       <span>{quantity}</span>
                       <div
@@ -74,11 +72,7 @@ const WishlistCart = ({
                           onChangeQuantity(item, Math.max(1, quantity + 1))
                         }
                       >
-                        <svg className="icon">
-                          <use
-                            xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#plus`}
-                          />
-                        </svg>
+                        <PlusIcon />
                       </div>
                     </div>
                   )}
@@ -91,11 +85,7 @@ const WishlistCart = ({
                     className={styles.close}
                     onClick={() => dispatch(onRemove(item.id))}
                   >
-                    <svg className="icon">
-                      <use
-                        xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`}
-                      />
-                    </svg>
+                    <CloseIcon />
                   </div>
                 </div>
               );
