@@ -14,11 +14,8 @@ const Banner = () => {
         </p>
         <button className={styles.more}>See More</button>
       </div>
-      <div
-        className={styles.right}
-        //TODO: img
-        style={{ backgroundImage: `url(${BANNER})` }}
-      >
+      <div className={styles.right}>
+        <img src={BANNER} alt="Banner" className={styles.image} />
         <p className={styles.discount}>
           save up to<span> 50%</span> off
         </p>

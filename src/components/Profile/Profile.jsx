@@ -7,6 +7,7 @@ import { getUser } from "../../features/selectors/selectors";
 
 import { logoutUser } from "../../features/user/userSlice";
 import { clearCart } from "../../features/cart/cartSlice";
+import { CloseIcon } from "../Icons/Icons";
 import UserForm from "../User/UserForm";
 
 import styles from "../../styles/Profile.module.css";
@@ -33,10 +34,7 @@ const Profile = ({ closeProfile }) => {
       {user ? (
         <>
           <div className={styles.close} onClick={closeProfile}>
-            {/* //TODO: */}
-            <svg className={styles.icon}>
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
-            </svg>
+            <CloseIcon />
           </div>
           <h1 className={styles.title}>Welcome, {user.name}!</h1>
           <div className={styles.links}>
