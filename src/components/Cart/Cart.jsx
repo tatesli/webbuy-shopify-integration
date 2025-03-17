@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "../../styles/Cart.module.css";
+import { CloseIcon, MinusIcon, PlusIcon } from "../Icons/Icons.jsx";
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
 import { sumBy } from "../../utils/common.js";
@@ -72,12 +73,7 @@ const Cart = () => {
                         changeQuantity(item, Math.max(0, quantity - 1))
                       }
                     >
-                      {/* TODO: zmiana na https://www.telerik.com/blogs/how-to-use-svg-react albo cos innego (jako ReactComponent) */}
-                      <svg className="icon">
-                        <use
-                          xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#minus`}
-                        />
-                      </svg>
+                      <MinusIcon />
                     </div>
                     <span>{quantity}</span>
                     <div
@@ -86,12 +82,7 @@ const Cart = () => {
                         changeQuantity(item, Math.max(1, quantity + 1))
                       }
                     >
-                      {/* TODO: the same */}
-                      <svg className="icon">
-                        <use
-                          xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#plus`}
-                        />
-                      </svg>
+                      <PlusIcon />
                     </div>
                   </div>
                   <div className={styles.total}>{price * quantity}$</div>
@@ -99,12 +90,7 @@ const Cart = () => {
                     className={styles.close}
                     onClick={() => dispatch(removeFromCart(item.id))}
                   >
-                    {/* TODO: the same */}
-                    <svg className="icon">
-                      <use
-                        xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`}
-                      />
-                    </svg>
+                    <CloseIcon />
                   </div>
                 </div>
               );
