@@ -5,6 +5,11 @@ import styles from "../../styles/WishlistCart.module.css";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
+export const WishlistCartType = {
+  cart: "cart",
+  favorites: "favorites",
+};
+
 const WishlistCart = ({
   items,
   type,
@@ -16,7 +21,7 @@ const WishlistCart = ({
   const dispatch = useDispatch();
   return (
     <section className={`${styles.container} ${styles[type]}`}>
-      <h2>{type === "cart" ? "Your Cart" : "Favorites"}</h2>
+      <h2>{type === WishlistCartType.cart ? "Your Cart" : "Favorites"}</h2>
 
       {isLoading && <p>Loading {type}...</p>}
 
@@ -48,7 +53,7 @@ const WishlistCart = ({
                   </div>
                   <div>{price} $</div>
 
-                  {type === "cart" && (
+                  {type === WishlistCartType.cart && (
                     <div className={styles.quantity}>
                       <div
                         className={styles.minus}
@@ -78,7 +83,7 @@ const WishlistCart = ({
                     </div>
                   )}
 
-                  {type === "cart" && (
+                  {type === WishlistCartType.cart && (
                     <div className={styles.total}>{price * quantity}$</div>
                   )}
 
@@ -96,8 +101,7 @@ const WishlistCart = ({
               );
             })}
           </div>
-
-          {type === "cart" && (
+          {type === WishlistCartType.cart && (
             <div className={styles.actions}>
               <div className={styles.total}>
                 TOTAL PRICE:

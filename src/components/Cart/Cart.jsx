@@ -5,7 +5,9 @@ import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
 import { sumBy } from "../../utils/common.js";
 
-import WishlistCart from "../WishlistCart/WishlistCart.jsx";
+import WishlistCart, {
+  WishlistCartType,
+} from "../WishlistCart/WishlistCart.jsx";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -30,7 +32,7 @@ const Cart = () => {
       items={itemsList}
       onRemove={removeFromCart}
       onChangeQuantity={changeQuantity}
-      type="cart"
+      type={WishlistCartType.cart}
       isLoading={isLoading}
       totalPrice={totalPrice}
     />

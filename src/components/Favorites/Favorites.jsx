@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
-import WishlistCart from "../WishlistCart/WishlistCart";
+import WishlistCart, { WishlistCartType } from "../WishlistCart/WishlistCart";
 
 const Favorites = () => {
   const favorites = useSelector((state) => state.favorites.favListItem);
@@ -10,7 +10,7 @@ const Favorites = () => {
   return (
     <WishlistCart
       items={favorites}
-      type="favorites"
+      type={WishlistCartType.favorites}
       onRemove={removeFromFavList}
       isLoading={false}
     />
