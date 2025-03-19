@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
-import { getProducts } from "../../features/selectors/selectors";
-import { selectCartQuantity } from "../../utils/common";
+import { getProducts, getUser } from "../../features/selectors/selectors";
+import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
+import { SearchIcon, CartIcon, FavIcon } from "../Icons/Icons";
 
 import styles from "../../styles/Header.module.css";
 
@@ -23,13 +24,7 @@ const Header = () => {
 
   const allProducts = useSelector(getProducts);
   const cartQuantity = useSelector(selectCartQuantity);
-  //TODO: remove all console.log
-  console.log("Cart quantity:", cartQuantity);
-  const user = useSelector((state) => state.user.user);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-
-  console.log(user);
-  console.log(isAuthenticated);
+  const { user, isAuthenticated } = useSelector(getUser);
 
   useEffect(() => {
     if (!searchValue) {
@@ -53,8 +48,6 @@ const Header = () => {
       dispatch(toggleForm(true));
     }
   };
-  //TODO: w utils/common i do reuzycia (wszedzie)
-  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
   return (
     <div className={styles.header}>
@@ -76,9 +69,7 @@ const Header = () => {
         <UserForm />
         <form className={styles.form}>
           <div className={styles.icon}>
-            <svg className="icon">
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#search`} />
-            </svg>
+            <SearchIcon className={styles.icon} />
           </div>
           <div className={styles.input}>
             <input
@@ -98,7 +89,7 @@ const Header = () => {
                 searchResults.map(({ id, title, image }) => (
                   <Link
                     key={id}
-                    to={`/products/${cleanId(id)}`}
+                    to={`/products/${cleanProductId(id)}`}
                     onClick={() => {
                       console.log("Navigating to:", `/products/${id}`);
                       setSearchValue("");
@@ -120,15 +111,10 @@ const Header = () => {
         </form>
         <div className={styles.account}>
           <Link to={ROUTES.FAVORITES} className={styles.favourites}>
-            {/* TODO: reactComponent */}
-            <svg className={styles["icon-fav"]}>
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#heart`} />
-            </svg>
+            <FavIcon className={styles.iconFav} />
           </Link>
           <Link to={ROUTES.CART} className={styles.cart}>
-            <svg className={styles["icon-cart"]}>
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`} />
-            </svg>
+            <CartIcon className={styles.iconCart} />
             <span className={styles.count}>{cartQuantity}</span>
           </Link>
         </div>

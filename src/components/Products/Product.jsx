@@ -7,12 +7,13 @@ import { ROUTES } from "../../utils/routes";
 
 import { addToCart } from "../../features/cart/cartSlice";
 import { addToFavList } from "../../features/favorites/favoritesSlice";
+
 import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {
   const dispatch = useDispatch();
-  //TODO: do usuniecia nie uzywane variables
-  const { title, images, description, variants, quantity } = item;
+
+  const { title, images, description, variants } = item;
 
   const [currentImage, setCurrentImage] = useState();
   const [selectedColor, setSelectedColor] = useState(null);
@@ -51,24 +52,24 @@ const Product = (item) => {
 
   return (
     <section className={styles.product}>
-      <div className={styles.images}>
-        <div
+      <div className={styles.wrapperCurrent}>
+        <img
+          src={currentImage}
           className={styles.current}
-          //TODO: img
-          style={{ backgroundImage: `url(${currentImage})` }}
+          alt="current_image"
         />
-        <div className={styles["images-list"]}>
-          {Array.isArray(images) &&
-            images.map((image, i) => (
-              <div
-                key={i}
-                className={styles.image}
-                //TODO: img
-                style={{ backgroundImage: `url(${image})` }}
-                onClick={() => setCurrentImage(image)}
-              />
-            ))}
-        </div>
+      </div>
+      <div className={styles.imagesList}>
+        {Array.isArray(images) &&
+          images.map((image, i) => (
+            <img
+              alt="images_list"
+              src={image}
+              key={i}
+              className={styles.image}
+              onClick={() => setCurrentImage(image)}
+            />
+          ))}
       </div>
       <div className={styles.info}>
         <h1 className={styles.title}>{title}</h1>

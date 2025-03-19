@@ -6,7 +6,7 @@ import styles from "../../styles/Sidebar.module.css";
 
 import { getCollections } from "../../features/selectors/selectors";
 
-export const collectionId = (id) => id.replace("gid://shopify/Collection/", "");
+import { cleanCollectionId } from "../../utils/common";
 
 const Sidebar = () => {
   const list = useSelector(getCollections);
@@ -21,7 +21,7 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `${styles.link} ${isActive ? styles.active : ""}`
                 }
-                to={`/collections/${collectionId(id)}`}
+                to={`/collections/${cleanCollectionId(id)}`}
               >
                 {title}
               </NavLink>

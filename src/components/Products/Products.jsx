@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { cleanProductId } from "../../utils/common";
+
 import styles from "../../styles/Products.module.css";
 
 const Products = ({ title, style = {}, products = [], amount }) => {
-  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
-
   const list = products.filter((_, i) => i < amount);
 
   return (
@@ -14,17 +14,10 @@ const Products = ({ title, style = {}, products = [], amount }) => {
       <div className={styles.list}>
         {list.map(({ id, title, image, price }) => (
           <Link
-            to={`/products/${cleanId(id)}`}
+            to={`/products/${cleanProductId(id)}`}
             key={id}
             className={styles.product}
           >
-            {/* TODO: remove all comments  */}
-            {/* <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${image})`,
-              }}
-            /> */}
             <img className={styles.image} src={image} alt="product" />
             <div className={styles.wrapper}>
               <h3 className={styles.title}>{title}</h3>
