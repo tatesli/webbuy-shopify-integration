@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { collectionId } from "../Sidebar/Sidebar";
+import { cleanCollectionId } from "../../utils/common";
 
 import styles from "../../styles/Collections.module.css";
 
@@ -14,7 +14,7 @@ const Collections = ({ title, collections = [], amount }) => {
       <div className={styles.list}>
         {list.map(({ id, title, image }) => (
           <Link
-            to={`/collections/${collectionId(id)}`}
+            to={`/collections/${cleanCollectionId(id)}`}
             className={styles.item}
             key={id}
           >

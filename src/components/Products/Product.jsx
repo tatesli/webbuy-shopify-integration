@@ -7,6 +7,7 @@ import { ROUTES } from "../../utils/routes";
 
 import { addToCart } from "../../features/cart/cartSlice";
 import { addToFavList } from "../../features/favorites/favoritesSlice";
+
 import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {

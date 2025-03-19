@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts, getUser } from "../../features/selectors/selectors";
-import { selectCartQuantity } from "../../utils/common";
+import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 import { SearchIcon, CartIcon, FavIcon } from "../Icons/Icons";
 
@@ -48,8 +48,6 @@ const Header = () => {
       dispatch(toggleForm(true));
     }
   };
-  //TODO: w utils/common i do reuzycia (wszedzie)
-  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
   return (
     <div className={styles.header}>
@@ -91,7 +89,7 @@ const Header = () => {
                 searchResults.map(({ id, title, image }) => (
                   <Link
                     key={id}
-                    to={`/products/${cleanId(id)}`}
+                    to={`/products/${cleanProductId(id)}`}
                     onClick={() => {
                       console.log("Navigating to:", `/products/${id}`);
                       setSearchValue("");
