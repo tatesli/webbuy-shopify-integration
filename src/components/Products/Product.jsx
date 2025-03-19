@@ -36,11 +36,9 @@ const Product = (item) => {
       (variant) =>
         variant.color === selectedColor && variant.size === selectedSize
     );
-    //TODO:
-    // if (!selectedVariant) {
-    //   return;
-    // }
-    if (!selectedVariant) return;
+    if (!selectedVariant) {
+      return;
+    }
     dispatch(addToCart({ ...item, id: selectedVariant.id }));
   };
 
