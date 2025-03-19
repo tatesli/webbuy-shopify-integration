@@ -18,11 +18,7 @@ const Collections = ({ title, collections = [], amount }) => {
             className={styles.item}
             key={id}
           >
-            <div
-              className={styles.image}
-              // TODO: the same
-              style={{ backgroundImage: `url(${image})` }}
-            />
+            <img src={image} className={styles.image} />
             <div className={styles.title}>{title}</div>
           </Link>
         ))}

@@ -18,13 +18,6 @@ const Products = ({ title, style = {}, products = [], amount }) => {
             key={id}
             className={styles.product}
           >
-            {/* TODO: remove all comments  */}
-            {/* <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${image})`,
-              }}
-            /> */}
             <img className={styles.image} src={image} alt="product" />
             <div className={styles.wrapper}>
               <h3 className={styles.title}>{title}</h3>
