@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/Cart.module.css";
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
 
-import { sumBy, cleanId } from "../../utils/common.js";
+import { sumBy, cleanProductId } from "../../utils/common.js";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const Cart = () => {
               } = item;
               const image = images[0] || "default_image_url.jpg";
               const price = variants[0]?.price || 0;
-              const uniqueId = cleanId(id);
+              const uniqueId = cleanProductId(id);
               const key = `${uniqueId}-${quantity}`;
               return (
                 <div className={styles.item} key={key}>

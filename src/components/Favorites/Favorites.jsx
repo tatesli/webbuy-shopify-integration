@@ -5,7 +5,7 @@ import styles from "../../styles/Favorites.module.css";
 
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
 
-import { cleanId } from "../../utils/common";
+import { cleanProductId } from "../../utils/common";
 
 //TODO: Favorites i Cart sa takie same komponenty, utworz common component do prezentacji  favorites i cart
 
@@ -31,7 +31,7 @@ const Favorites = () => {
               } = item;
               const image = images[0] || "default_image_url.jpg";
               const price = variants[0]?.price || 0;
-              const key = cleanId(id);
+              const key = cleanProductId(id);
               return (
                 <div className={styles.item} key={key}>
                   <img className={styles.image} src={image} alt={title} />

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts } from "../../features/selectors/selectors";
-import { selectCartQuantity, cleanId } from "../../utils/common";
+import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 
 import styles from "../../styles/Header.module.css";
@@ -96,7 +96,7 @@ const Header = () => {
                 searchResults.map(({ id, title, image }) => (
                   <Link
                     key={id}
-                    to={`/products/${cleanId(id)}`}
+                    to={`/products/${cleanProductId(id)}`}
                     onClick={() => {
                       console.log("Navigating to:", `/products/${id}`);
                       setSearchValue("");

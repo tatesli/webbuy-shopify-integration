@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { cleanId } from "../../utils/common";
+import { cleanProductId } from "../../utils/common";
 
 import styles from "../../styles/Products.module.css";
 
@@ -14,7 +14,7 @@ const Products = ({ title, style = {}, products = [], amount }) => {
       <div className={styles.list}>
         {list.map(({ id, title, image, price }) => (
           <Link
-            to={`/products/${cleanId(id)}`}
+            to={`/products/${cleanProductId(id)}`}
             key={id}
             className={styles.product}
           >
