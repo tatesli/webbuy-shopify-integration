@@ -46,13 +46,19 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
         </svg>
       </div>
       <h1 className={styles.title}>Log In</h1>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form}>
         <div className={styles.group}>
           <input
             type="email"
             placeholder="Your email"
             autoComplete="off"
-            {...register("email", { required: "Email is required" })}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Invalid email format",
+              },
+            })}
           />
           {errors.email && (
             <p className={styles.error}>{errors.email.message}</p>
@@ -65,7 +71,10 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
             autoComplete="off"
             {...register("password", {
               required: "Password is required",
-              minLength: 6,
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters long",
+              },
             })}
           />
           {errors.password && (
@@ -81,7 +90,7 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
         >
           Create an account
         </div>
-        <button className={styles.submit} type="submit">
+        <button className={styles.submit} onClick={handleSubmit(onSubmit)}>
           Login
         </button>
       </form>
