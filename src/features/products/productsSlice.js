@@ -4,8 +4,8 @@ import Client from "shopify-buy";
 import { shuffle } from "../../utils/common";
 
 const client = Client.buildClient({
-  domain: process.env.SHOPIFY_DOMAIN,
-  storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
+  storefrontAccessToken: process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN,
 });
 
 export const getProducts = createAsyncThunk(
