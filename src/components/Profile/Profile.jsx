@@ -23,11 +23,10 @@ const Profile = ({ closeProfile }) => {
 
     closeProfile();
   };
-  //TODO: the same if statement
-  // if (!user) {
-  //   return null;
-  // }
-  if (!user) return null;
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className={styles.wrapper}>

@@ -24,13 +24,10 @@ const Home = () => {
   const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
-    //TODO:
-    // if (products.length === 0 || isFiltered) {
-    //   return;
-    // }
-    if (products.length === 0 || isFiltered) return;
-    dispatch(filterByPrice(100));
-    setIsFiltered(true);
+    if (!isFiltered && products.length > 0) {
+      dispatch(filterByPrice(100));
+      setIsFiltered(true);
+    }
   }, [dispatch, products, isFiltered]);
 
   return (
