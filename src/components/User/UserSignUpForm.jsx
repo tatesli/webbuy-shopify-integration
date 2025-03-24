@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userSlice";
 import { CloseIcon } from "../Icons/Icons";
+import { formTypes } from "./UserForm";
 
+import AVATAR from "../../images/avatar.jpg";
 import styles from "../../styles/User.module.css";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
@@ -11,36 +13,43 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
 
   const [avatar, setAvatar] = useState(null);
 
+  const inputFile = useRef(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
-
-  useEffect(() => {
-    const storedAvatar = localStorage.getItem("avatar");
-    if (storedAvatar) {
-      setAvatar(storedAvatar);
-    }
-  }, []);
 
   const handleFileChange = (e) => {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
       const objectURL = URL.createObjectURL(file);
       setAvatar(objectURL);
-      localStorage.setItem("avatar", objectURL);
     }
   };
 
   const onSubmit = (data) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const existUser = users.some((user) => user.email === data.email);
+    if (existUser) {
+      setError("email", {
+        type: "manual",
+        message: "This email is already registered",
+      });
+      return;
+    }
     const newUser = { ...data, id: data.email, avatar };
     const updatedUsers = [...users, newUser];
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     dispatch(registerUser(newUser));
     closeForm();
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    inputFile.current.click();
   };
 
   return (
@@ -100,18 +109,23 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
           <input
             type="file"
             name="avatar"
+            ref={inputFile}
+            style={{ display: "none" }}
             accept="image/png, image/jpeg, image/gif"
             placeholder="Your avatar URL"
             autoComplete="off"
             onChange={handleFileChange}
           />
-          {errors.avatar && (
-            <p className={styles.error}>{errors.avatar.message}</p>
-          )}
+          <div className={styles.avatar}>
+            <div className={styles.img}>
+              <img src={avatar || AVATAR} alt="avatar" />
+            </div>
+            <button onClick={handleClick}>Select Avatar</button>
+          </div>
         </div>
         <div
           className={styles.link}
-          onClick={() => toggleCurrentTypeForm("login")}
+          onClick={() => toggleCurrentTypeForm(formTypes.login)}
         >
           I already have an account
         </div>

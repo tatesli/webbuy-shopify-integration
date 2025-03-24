@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { formTypes } from "./UserForm";
 
 import styles from "../../styles/User.module.css";
 import { loginUser } from "../../features/user/userSlice";
@@ -17,7 +18,6 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const storedUser = users.find(
       (user) =>
@@ -86,7 +86,7 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
         )}
         <div
           className={styles.link}
-          onClick={() => toggleCurrentTypeForm("signup")}
+          onClick={() => toggleCurrentTypeForm(formTypes.signup)}
         >
           Create an account
         </div>
