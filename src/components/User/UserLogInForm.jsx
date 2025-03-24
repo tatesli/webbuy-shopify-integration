@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { formTypes } from "./UserForm";
 
 import styles from "../../styles/User.module.css";
 import { loginUser } from "../../features/user/userSlice";
@@ -7,31 +8,34 @@ import { switchCartToUser } from "../../features/cart/cartSlice";
 
 const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
-  //TODO: react-hook-form
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setLoginData({ ...loginData, [name]: value });
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const storedUser = users.find(
       (user) =>
-        user.email.toLowerCase() === loginData.email.toLowerCase() &&
-        user.password === loginData.password
+        user.email.toLowerCase() === data.email.toLowerCase() &&
+        user.password === data.password
     );
 
     if (storedUser) {
       localStorage.setItem("currentUser", JSON.stringify(storedUser));
       dispatch(loginUser(storedUser));
       dispatch(switchCartToUser(storedUser));
+      reset();
       closeForm();
     } else {
-      alert("Invalid email or password");
+      setError("server", {
+        type: "manual",
+        message: "Invalid email or password",
+      });
     }
   };
   return (
@@ -42,36 +46,51 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
         </svg>
       </div>
       <h1 className={styles.title}>Log In</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form}>
         <div className={styles.group}>
           <input
             type="email"
-            name="email"
             placeholder="Your email"
-            value={loginData.email}
             autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            required
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Invalid email format",
+              },
+            })}
           />
+          {errors.email && (
+            <p className={styles.error}>{errors.email.message}</p>
+          )}
         </div>
         <div className={styles.group}>
           <input
             type="password"
-            name="password"
             placeholder="Your password"
-            value={loginData.password}
             autoComplete="off"
-            onChange={(e) => handleChange(e)}
-            required
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters long",
+              },
+            })}
           />
+          {errors.password && (
+            <p className={styles.error}>{errors.password.message}</p>
+          )}
         </div>
+        {errors.server && (
+          <p className={styles.error}>{errors.server.message}</p>
+        )}
         <div
           className={styles.link}
-          onClick={() => toggleCurrentTypeForm("signup")}
+          onClick={() => toggleCurrentTypeForm(formTypes.signup)}
         >
           Create an account
         </div>
-        <button className={styles.submit} type="submit">
+        <button className={styles.submit} onClick={handleSubmit(onSubmit)}>
           Login
         </button>
       </form>
