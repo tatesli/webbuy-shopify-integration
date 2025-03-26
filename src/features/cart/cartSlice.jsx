@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Client from "shopify-buy";
 
-//TODO: nie przechowywujemy klucze w repo https://medium.com/@bhairabpatra.iitd/env-file-in-react-js-09d11dc77924
+console.log(process.env.REACT_APP_SHOPIFY_DOMAIN);
+console.log(process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN);
+
 const client = Client.buildClient({
-  domain: "edu-dev-shop.myshopify.com",
-  storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
+  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
+  storefrontAccessToken: process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN,
 });
 
 const loadCart = (user) => {

@@ -42,6 +42,17 @@
   color: var(--light);
   padding: 12px 24px;
 }
+.avatar {
+  display: flex;
+  justify-content: space-around;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
 
 .submit {
   font-weight: 500;
@@ -65,7 +76,14 @@
 .close:hover svg {
   stroke: #fff;
 }
-
+p {
+  font-size: 13px;
+  text-align: center;
+  color: red;
+}
+p:hover {
+  color: var(--light);
+}
 .link {
   font-size: 13px;
   color: var(--dark-sea);

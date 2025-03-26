@@ -3,15 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 import UserSignUpForm from "./UserSignUpForm";
 import UserLogInForm from "./UserLogInForm";
+import { getUser } from "../../features/selectors/selectors";
 
 import styles from "../../styles/User.module.css";
 
 import { toggleForm, toggleFormType } from "../../features/user/userSlice";
-
+export const formTypes = {
+  login: "login",
+  signup: "signup",
+};
 const UserForm = () => {
-  //TODO: the same
-  const { showForm, formType } = useSelector(({ user }) => user);
-
+  const { formType, showForm } = useSelector(getUser);
   const dispatch = useDispatch();
 
   const closeForm = () => {
@@ -25,7 +27,7 @@ const UserForm = () => {
   return showForm ? (
     <>
       <div className={styles.overlay} onClick={closeForm} />
-      {formType === "signup" ? (
+      {formType === formTypes.signup ? (
         <UserSignUpForm
           closeForm={closeForm}
           toggleCurrentTypeForm={toggleCurrentTypeForm}

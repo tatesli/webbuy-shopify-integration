@@ -6,13 +6,17 @@ import Products from "../Products/Products";
 import Collections from "../Collections/Collections";
 import Banner from "../Banner/Banner";
 
-import { getProducts } from "../../features/selectors/selectors";
-import { getCollections } from "../../features/selectors/selectors";
-import { getFilteredProducts } from "../../features/selectors/selectors";
+import {
+  getProducts,
+  getFilteredProducts,
+  getCollections,
+} from "../../features/selectors/selectors";
+
 import { filterByPrice } from "../../features/products/productsSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
+
   const products = useSelector(getProducts);
   const collections = useSelector(getCollections);
   const filteredProducts = useSelector(getFilteredProducts);
@@ -20,13 +24,10 @@ const Home = () => {
   const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
-    //TODO:
-    // if (products.length === 0 || isFiltered) {
-    //   return;
-    // }
-    if (products.length === 0 || isFiltered) return;
-    dispatch(filterByPrice(100));
-    setIsFiltered(true);
+    if (!isFiltered && products.length > 0) {
+      dispatch(filterByPrice(100));
+      setIsFiltered(true);
+    }
   }, [dispatch, products, isFiltered]);
 
   return (

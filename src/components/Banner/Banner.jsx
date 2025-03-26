@@ -1,7 +1,8 @@
 import React from "react";
 
-import styles from "../../styles/Banner.module.css";
 import BANNER from "../../images/banner.png";
+
+import styles from "../../styles/Banner.module.css";
 
 const Banner = () => {
   return (

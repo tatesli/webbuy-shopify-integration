@@ -7,6 +7,7 @@ import { ROUTES } from "../../utils/routes";
 
 import { addToCart } from "../../features/cart/cartSlice";
 import { addToFavList } from "../../features/favorites/favoritesSlice";
+
 import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {
@@ -35,11 +36,9 @@ const Product = (item) => {
       (variant) =>
         variant.color === selectedColor && variant.size === selectedSize
     );
-    //TODO:
-    // if (!selectedVariant) {
-    //   return;
-    // }
-    if (!selectedVariant) return;
+    if (!selectedVariant) {
+      return;
+    }
     dispatch(addToCart({ ...item, id: selectedVariant.id }));
   };
 
