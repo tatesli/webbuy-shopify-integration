@@ -55,12 +55,7 @@
 .icon {
   width: 13px;
   height: 13px;
-}
-
-.icon svg {
-  width: 100%;
-  height: 100%;
-  fill: var(--dark-sea);
+  color: var(--dark-sea);
 }
 
 .input {
@@ -90,23 +85,6 @@
 .account svg {
   width: 24px;
   height: 24px;
-}
-
-.iconFav {
-  stroke: var(--grey);
-  fill: none;
-}
-
-.iconCart {
-  fill: var(--grey);
-}
-
-.iconFav:hover {
-  stroke: var(--white);
-}
-
-.iconCart:hover {
-  fill: var(--white);
 }
 
 .cart {

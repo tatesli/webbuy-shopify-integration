@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 
 import styles from "../../styles/Footer.module.css";
-import { InstagramIcon, FacebookIcon, YoutubeIcon } from "../Icons/Icons";
 import LOGO from "../../images/logo.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faSquareFacebook,
+  faSquareYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
@@ -21,13 +26,20 @@ const Footer = () => {
       </div>
       <div className={styles.socials}>
         <a href="https://instagram.com">
-           <InstagramIcon />
+           <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
         </a>
         <a href="https://facebook.com">
-          <FacebookIcon />
+           
+          <FontAwesomeIcon
+            icon={faSquareFacebook}
+            className={styles.socialIcon}
+          />
         </a>
         <a href="https://youtube.com">
-          <YoutubeIcon />
+          <FontAwesomeIcon
+            icon={faSquareYoutube}
+            className={styles.socialIcon}
+          />
         </a>
       </div>
     </section>

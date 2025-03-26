@@ -29,12 +29,12 @@
   gap: 15px;
 }
 
-.socials svg {
-  width: 24px;
-  height: 24px;
-  fill: var(--dark-sea);
+.socialIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--dark-sea);
 }
 
-.socials svg:hover {
-  fill: var(--violet);
+.socialIcon:hover {
+  color: var(--violet);
 }
