@@ -76,7 +76,14 @@
 .close:hover svg {
   stroke: #fff;
 }
-
+p {
+  font-size: 13px;
+  text-align: center;
+  color: red;
+}
+p:hover {
+  color: var(--light);
+}
 .link {
   font-size: 13px;
   color: var(--dark-sea);
