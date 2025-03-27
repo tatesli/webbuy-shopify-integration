@@ -2,8 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import styles from "../../styles/WishlistCart.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { CloseIcon, MinusIcon, PlusIcon } from "../Icons/Icons.jsx";
+import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
@@ -63,7 +64,7 @@ const WishlistCart = ({
                           onChangeQuantity(item, Math.max(0, quantity - 1))
                         }
                       >
-                        <MinusIcon />
+                        <FontAwesomeIcon icon={faMinus} />
                       </div>
                       <span>{quantity}</span>
                       <div
@@ -72,7 +73,7 @@ const WishlistCart = ({
                           onChangeQuantity(item, Math.max(1, quantity + 1))
                         }
                       >
-                        <PlusIcon />
+                        <FontAwesomeIcon icon={faPlus} />
                       </div>
                     </div>
                   )}
@@ -85,7 +86,7 @@ const WishlistCart = ({
                     className={styles.close}
                     onClick={() => dispatch(onRemove(item.id))}
                   >
-                    <CloseIcon />
+                    <FontAwesomeIcon icon={faClose} />
                   </div>
                 </div>
               );
