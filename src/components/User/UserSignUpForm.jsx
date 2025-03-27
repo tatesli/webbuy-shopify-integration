@@ -2,11 +2,12 @@ import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userSlice";
-import { CloseIcon } from "../Icons/Icons";
 import { formTypes } from "./UserForm";
 
-import AVATAR from "../../images/avatar.jpg";
+import AVATAR from "../../images/avatar.png";
 import styles from "../../styles/User.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.close} onClick={closeForm}>
-        <CloseIcon />
+        <FontAwesomeIcon icon={faClose} />
       </div>
       <h1 className={styles.title}>Sign Up</h1>
       <form className={styles.form}>

@@ -6,12 +6,18 @@ import { ROUTES } from "../../utils/routes";
 import { getProducts, getUser } from "../../features/selectors/selectors";
 import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
-import { SearchIcon, CartIcon, FavIcon } from "../Icons/Icons";
 
 import styles from "../../styles/Header.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+
+import {
+  faMagnifyingGlass,
+  faBagShopping,
+} from "@fortawesome/free-solid-svg-icons";
 
 import LOGO from "../../images/logo.svg";
-import AVATAR from "../../images/avatar.jpg";
+import AVATAR from "../../images/avatar.png";
 import Profile from "../Profile/Profile";
 import UserForm from "../User/UserForm";
 
@@ -69,7 +75,7 @@ const Header = () => {
         <UserForm />
         <form className={styles.form}>
           <div className={styles.icon}>
-            <SearchIcon className={styles.icon} />
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
           <div className={styles.input}>
             <input
@@ -111,10 +117,10 @@ const Header = () => {
         </form>
         <div className={styles.account}>
           <Link to={ROUTES.FAVORITES} className={styles.favourites}>
-            <FavIcon className={styles.iconFav} />
+            <FontAwesomeIcon className={styles.iconFav} icon={faHeart} />
           </Link>
           <Link to={ROUTES.CART} className={styles.cart}>
-            <CartIcon className={styles.iconCart} />
+            <FontAwesomeIcon icon={faBagShopping} />
             <span className={styles.count}>{cartQuantity}</span>
           </Link>
         </div>
