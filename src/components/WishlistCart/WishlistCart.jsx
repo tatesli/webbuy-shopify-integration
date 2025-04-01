@@ -2,8 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import styles from "../../styles/WishlistCart.module.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { Button, ButtonType, ButtonSize } from "../../components/Button/Button";
 
 import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -59,23 +61,23 @@ const WishlistCart = ({
 
                   {type === WishlistCartType.cart && (
                     <div className={styles.quantity}>
-                      <div
-                        className={styles.minus}
+                      <Button
+                        type={ButtonType.icon}
+                        size={ButtonSize.small}
+                        icon={<FontAwesomeIcon icon={faMinus} />}
                         onClick={() =>
                           onChangeQuantity(item, Math.max(0, quantity - 1))
                         }
-                      >
-                        <FontAwesomeIcon icon={faMinus} />
-                      </div>
+                      />
                       <span>{quantity}</span>
-                      <div
-                        className={styles.plus}
+                      <Button
+                        type={ButtonType.icon}
+                        size={ButtonSize.small}
+                        icon={<FontAwesomeIcon icon={faPlus} />}
                         onClick={() =>
                           onChangeQuantity(item, Math.max(1, quantity + 1))
                         }
-                      >
-                        <FontAwesomeIcon icon={faPlus} />
-                      </div>
+                      />
                     </div>
                   )}
 
@@ -83,12 +85,12 @@ const WishlistCart = ({
                     <div className={styles.total}>{price * quantity}$</div>
                   )}
 
-                  <div
-                    className={styles.close}
+                  <Button
+                    type={ButtonType.icon}
+                    size={ButtonSize.small}
+                    icon={<FontAwesomeIcon icon={faClose} />}
                     onClick={() => dispatch(onRemove(item.id))}
-                  >
-                    <FontAwesomeIcon icon={faClose} />
-                  </div>
+                  />
                 </div>
               );
             })}
@@ -99,7 +101,11 @@ const WishlistCart = ({
                 TOTAL PRICE:
                 <span> {totalPrice}$</span>
               </div>
-              <button className={styles.proceed}>Proceed to checkout</button>
+              <Button
+                size={ButtonSize.large}
+                type={ButtonType.primary}
+                label="Proceed to checkout"
+              />
             </div>
           )}
         </>

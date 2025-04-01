@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Button, ButtonType, ButtonSize } from "../Button/Button";
+
 import styles from "../../styles/Home.module.css";
 
 import POSTER from "../../images/devices.png";
@@ -12,10 +14,14 @@ const Poster = () => {
         <div className={styles.text}>
           <h1 className={styles.subtitle}>the bestseller of 2024</h1>
           <div className={styles.head}>LENNON r2d2 NVIDIA 5090 TI</div>
-          <button className={styles.button}>Shop Now</button>
+          <Button
+            type={ButtonType.default}
+            size={ButtonSize.medium}
+            label="Shop Now"
+          />
         </div>
         <div className={styles.image}>
-          <img src={POSTER} />
+          <img src={POSTER} alt="Poster" />
         </div>
       </div>
     </section>

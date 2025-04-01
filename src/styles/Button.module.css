@@ -1,0 +1,42 @@
+.button {
+  background: var(--violet-dark);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 20px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  font-family: Montserrat, Roboto, sans-serif;
+}
+
+button:hover {
+  background: var(--violet);
+}
+.icon {
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 16px;
+}
+/* Sizes for buttons */
+.small {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.medium {
+  padding: 18px 62px;
+  font-size: 16px;
+}
+
+.large {
+  padding: 18px 84px;
+  font-size: 18px;
+}
+
+/* Styl dla przycisku nieaktywnego */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

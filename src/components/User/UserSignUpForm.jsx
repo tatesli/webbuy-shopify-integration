@@ -4,10 +4,11 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userSlice";
 import { formTypes } from "./UserForm";
 
-import AVATAR from "../../images/avatar.png";
 import styles from "../../styles/User.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { Button, ButtonType, ButtonSize } from "../Button/Button";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
@@ -119,9 +120,18 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
           />
           <div className={styles.avatar}>
             <div className={styles.img}>
-              <img src={avatar || AVATAR} alt="avatar" />
+              {avatar ? (
+                <img src={avatar || undefined} alt="avatar" />
+              ) : (
+                <FontAwesomeIcon icon={faUser} />
+              )}
             </div>
-            <button onClick={handleClick}>Select Avatar</button>
+            <Button
+              type={ButtonType.default}
+              size={ButtonSize.medium}
+              onClick={handleClick}
+              label="Select Avatar"
+            />
           </div>
         </div>
         <div
@@ -130,9 +140,12 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
         >
           I already have an account
         </div>
-        <button className={styles.submit} onClick={handleSubmit(onSubmit)}>
-          Create an account
-        </button>
+        <Button
+          size={ButtonSize.large}
+          type={ButtonType.primary}
+          onClick={handleSubmit(onSubmit)}
+          label="Create an account"
+        />
       </form>
     </div>
   );
