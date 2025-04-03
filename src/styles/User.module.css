@@ -21,7 +21,7 @@
 
 .title {
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 18px;
   color: var(--light);
   text-align: center;
@@ -30,6 +30,7 @@
 .form {
   margin-top: 24px;
   display: flex;
+  align-items: center;
   width: 100%;
   flex-direction: column;
   row-gap: 16px;
@@ -44,7 +45,7 @@
 }
 .avatar {
   display: flex;
-  justify-content: space-around;
+  gap: 34px;
 }
 .img {
   display: flex;
@@ -57,7 +58,7 @@
   overflow: hidden;
 }
 .img svg {
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .close {
@@ -73,16 +74,15 @@
   height: 20px;
   stroke: var(--dark-sea);
 }
-
 .close:hover svg {
   stroke: #fff;
 }
-p {
+.error {
   font-size: 13px;
   text-align: center;
   color: red;
 }
-p:hover {
+.error:hover {
   color: var(--light);
 }
 .link {

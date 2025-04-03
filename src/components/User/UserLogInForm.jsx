@@ -44,12 +44,15 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   };
   return (
     <div className={styles.wrapper}>
-      <Button
-        type={ButtonType.icon}
-        size={ButtonSize.small}
-        icon={<FontAwesomeIcon icon={faClose} />}
-        onClick={closeForm}
-      />
+      <div className={styles.close}>
+        <Button
+          type={ButtonType.icon}
+          size={ButtonSize.small}
+          icon={<FontAwesomeIcon icon={faClose} />}
+          onClick={closeForm}
+        />
+      </div>
+
       <h1 className={styles.title}>Log In</h1>
       <form className={styles.form}>
         <div className={styles.group}>

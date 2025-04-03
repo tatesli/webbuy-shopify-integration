@@ -97,9 +97,8 @@ const Product = (item) => {
                 <Button
                   key={index}
                   size={ButtonSize.small}
-                  className={`${styles.default} ${
-                    selectedColor === color ? styles.active : ""
-                  }`}
+                  type={ButtonType.default}
+                  active={selectedColor === color}
                   onClick={() => handleColorClick(color)}
                   label={color}
                 />
@@ -116,9 +115,7 @@ const Product = (item) => {
                   size={ButtonSize.small}
                   type={ButtonType.default}
                   key={index}
-                  className={`${styles.size} ${
-                    selectedSize === size ? styles.active : ""
-                  }`}
+                  active={selectedSize === size}
                   onClick={() => handleSizeClick(size)}
                   label={size}
                 />
@@ -126,12 +123,12 @@ const Product = (item) => {
             </div>
           </div>
         )}
-
         <p className={styles.description}>{description}</p>
+
         <div className={styles.actions}>
           <Button
             size={ButtonSize.medium}
-            type={ButtonType.default}
+            type={ButtonType.primary}
             onClick={addItemToFav}
             label="Add to favorites"
           />

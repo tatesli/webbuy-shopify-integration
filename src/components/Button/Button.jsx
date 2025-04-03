@@ -5,6 +5,7 @@ export const ButtonType = {
   primary: "primary",
   default: "default",
   icon: "icon",
+  primaryIcon: "primaryIcon",
 };
 
 export const ButtonSize = {
@@ -22,6 +23,8 @@ export const Button = ({
   disabled,
   label,
   children,
+  active,
+  className,
 }) => {
   return (
     <button
@@ -31,6 +34,7 @@ export const Button = ({
         ${styles.button}
         ${styles[type]}
         ${styles[size]}
+        ${active ? styles.active : ""}
         ${disabled ? styles.disabled : ""}
          `}
     >

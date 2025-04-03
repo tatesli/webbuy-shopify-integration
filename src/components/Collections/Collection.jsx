@@ -84,7 +84,7 @@ const Collection = () => {
         <div className={styles.back}>
           <span>No results</span>
           <Button
-            type={ButtonType.default}
+            type={ButtonType.primary}
             size={ButtonSize.medium}
             onClick={resetFilters}
             label="Reset"

@@ -16,7 +16,7 @@ const Banner = () => {
         </p>
         <Button
           className={buttonStyles.button}
-          type={ButtonType.default}
+          type={ButtonType.primary}
           size={ButtonSize.medium}
           label="See More"
         />

@@ -121,13 +121,13 @@ const Header = () => {
         </form>
         <div className={styles.account}>
           <Button
-            type={ButtonType.icon}
+            type={ButtonType.primaryIcon}
             size={ButtonSize.small}
             icon={<FontAwesomeIcon icon={faHeart} />}
             onClick={() => navigate("/favorites")}
           />
           <Button
-            type={ButtonType.icon}
+            type={ButtonType.primaryIcon}
             size={ButtonSize.small}
             icon={<FontAwesomeIcon icon={faBagShopping} />}
             onClick={() => navigate("/cart")}

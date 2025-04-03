@@ -57,7 +57,7 @@ const WishlistCart = ({
                     <h3 className={styles.name}>{title}</h3>
                     <div className={styles.category}>{productType}</div>
                   </div>
-                  <div>{price} $</div>
+                  <div className={styles.price}>{price} $</div>
 
                   {type === WishlistCartType.cart && (
                     <div className={styles.quantity}>

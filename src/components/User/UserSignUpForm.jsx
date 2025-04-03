@@ -57,7 +57,12 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.close} onClick={closeForm}>
-        <FontAwesomeIcon icon={faClose} />
+        <Button
+          type={ButtonType.icon}
+          size={ButtonSize.small}
+          icon={<FontAwesomeIcon icon={faClose} />}
+          onClick={closeForm}
+        />
       </div>
       <h1 className={styles.title}>Sign Up</h1>
       <form className={styles.form}>
@@ -127,7 +132,7 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
               )}
             </div>
             <Button
-              type={ButtonType.default}
+              type={ButtonType.primary}
               size={ButtonSize.medium}
               onClick={handleClick}
               label="Select Avatar"
