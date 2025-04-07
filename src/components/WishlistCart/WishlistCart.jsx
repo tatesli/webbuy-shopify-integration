@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 
 import styles from "../../styles/WishlistCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
