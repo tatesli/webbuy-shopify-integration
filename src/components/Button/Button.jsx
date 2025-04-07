@@ -16,14 +16,17 @@ export const Button = ({
   disabled,
   label,
   children,
+  fullWidth,
 }) => {
   return (
     <button
       onClick={onClick}
       disabled={disabled || isLoading}
+      fullWidth
       className={`
         ${styles.button}
         ${styles[type]}
+        ${fullWidth ? styles.fullWidth : ""}
         ${disabled ? styles.disabled : ""}
          `}
     >

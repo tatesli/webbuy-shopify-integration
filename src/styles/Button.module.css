@@ -9,7 +9,6 @@
   font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
-  width: 100%;
   line-height: 20px;
   cursor: pointer;
 
@@ -52,4 +51,7 @@
 }
 .disabled:hover {
   background: var(--violet-dark);
+}
+.fullWidth {
+  width: 100%;
 }

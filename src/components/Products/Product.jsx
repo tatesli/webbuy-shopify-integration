@@ -101,7 +101,6 @@ const Product = (item) => {
                       ? ButtonType.primary
                       : ButtonType.default
                   }
-                  active={selectedColor === color}
                   onClick={() => handleColorClick(color)}
                   label={color}
                 />
@@ -121,7 +120,6 @@ const Product = (item) => {
                       : ButtonType.default
                   }
                   key={index}
-                  active={selectedSize === size}
                   onClick={() => handleSizeClick(size)}
                   label={size}
                 />
@@ -130,7 +128,6 @@ const Product = (item) => {
           </div>
         )}
         <p className={styles.description}>{description}</p>
-
         <div className={styles.actions}>
           <Button
             type={ButtonType.primary}
@@ -140,6 +137,7 @@ const Product = (item) => {
           <Button
             type={ButtonType.primary}
             onClick={addItemToCart}
+            fullWidth
             disabled={isDisabled}
             label="Add to cart"
           />
