@@ -62,7 +62,3 @@ REACT_APP_SHOPIFY_DOMAIN = your_shopify_domain
    ```
 
    This will run the app locally at `http://localhost:3000`.
-
-## Folder Structure
-
-Here's an overview of the folder structure of this project:
