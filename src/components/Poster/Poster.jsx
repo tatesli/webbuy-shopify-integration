@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, ButtonType, ButtonSize } from "../Button/Button";
+import { Button, ButtonType } from "../Button/Button";
 
 import styles from "../../styles/Home.module.css";
 import buttonStyles from "../../styles/Button.module.css";
@@ -18,7 +18,6 @@ const Poster = () => {
           <Button
             className={buttonStyles.button}
             type={ButtonType.primary}
-            size={ButtonSize.medium}
             label="Shop Now"
           />
         </div>

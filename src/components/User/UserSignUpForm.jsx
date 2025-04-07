@@ -8,7 +8,7 @@ import styles from "../../styles/User.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { Button, ButtonType, ButtonSize } from "../Button/Button";
+import { Button, ButtonType } from "../Button/Button";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
@@ -59,7 +59,6 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
       <div className={styles.close} onClick={closeForm}>
         <Button
           type={ButtonType.icon}
-          size={ButtonSize.small}
           icon={<FontAwesomeIcon icon={faClose} />}
           onClick={closeForm}
         />
@@ -133,7 +132,6 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
             </div>
             <Button
               type={ButtonType.primary}
-              size={ButtonSize.medium}
               onClick={handleClick}
               label="Select Avatar"
             />
@@ -146,7 +144,6 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
           I already have an account
         </div>
         <Button
-          size={ButtonSize.large}
           type={ButtonType.primary}
           onClick={handleSubmit(onSubmit)}
           label="Create an account"

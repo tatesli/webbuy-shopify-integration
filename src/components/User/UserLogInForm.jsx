@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { formTypes } from "./UserForm";
-import { Button, ButtonType, ButtonSize } from "../../components/Button/Button";
+import { Button, ButtonType } from "../../components/Button/Button";
 
 import { loginUser } from "../../features/user/userSlice";
 import { switchCartToUser } from "../../features/cart/cartSlice";
@@ -47,7 +47,6 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
       <div className={styles.close}>
         <Button
           type={ButtonType.icon}
-          size={ButtonSize.small}
           icon={<FontAwesomeIcon icon={faClose} />}
           onClick={closeForm}
         />
@@ -99,7 +98,6 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
           Create an account
         </div>
         <Button
-          size={ButtonSize.large}
           type={ButtonType.primary}
           onClick={handleSubmit(onSubmit)}
           label="Login"

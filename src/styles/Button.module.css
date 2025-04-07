@@ -1,29 +1,25 @@
 .button {
   color: #fff;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 10px 16px;
+  font-size: 16px;
   border-radius: 6px;
   font-weight: 500;
+  width: 100%;
   line-height: 20px;
   cursor: pointer;
+
   font-family: Montserrat, Roboto, sans-serif;
-}
-button.active {
-  background-color: var(--violet-dark);
-  color: white;
 }
 .primary {
   background: var(--violet-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
 }
 .default {
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
 }
 .primary:hover,
 .default:hover {
@@ -51,26 +47,9 @@ button.active {
 .icon:hover {
   background: var(--sea);
 }
-/* Sizes for buttons */
-.small {
-  padding: 8px 14px;
-  font-size: 14px;
-}
-
-.medium {
-  width: 148px;
-  height: 40px;
-  font-size: 16px;
-}
-
-.large {
-  width: 200px;
-  height: 40px;
-  font-size: 16px;
-}
-
-/* Styl dla przycisku nieaktywnego */
 .disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+}
+.disabled:hover {
+  background: var(--violet-dark);
 }

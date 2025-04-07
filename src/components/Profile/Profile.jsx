@@ -8,6 +8,8 @@ import { getUser } from "../../features/selectors/selectors";
 import { logoutUser } from "../../features/user/userSlice";
 import { clearCart } from "../../features/cart/cartSlice";
 import { CloseIcon } from "../Icons/Icons";
+
+import { Button, ButtonType } from "../../components/Button/Button";
 import UserForm from "../User/UserForm";
 
 import styles from "../../styles/Profile.module.css";
@@ -41,7 +43,11 @@ const Profile = ({ closeProfile }) => {
             <Link to={ROUTES.FAVORITES}>Your Favorites</Link>
           </div>
           <div className={styles.logout}>
-            <button onClick={handleLogout}>Logout</button>
+            <Button
+              type={ButtonType.primary}
+              onClick={handleLogout}
+              label="Logout"
+            />
           </div>
         </>
       ) : (

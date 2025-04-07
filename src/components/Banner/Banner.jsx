@@ -1,7 +1,7 @@
 import React from "react";
 
 import BANNER from "../../images/banner.png";
-import { Button, ButtonType, ButtonSize } from "../../components/Button/Button";
+import { Button, ButtonType } from "../../components/Button/Button";
 
 import styles from "../../styles/Banner.module.css";
 import buttonStyles from "../../styles/Button.module.css";
@@ -17,7 +17,6 @@ const Banner = () => {
         <Button
           className={buttonStyles.button}
           type={ButtonType.primary}
-          size={ButtonSize.medium}
           label="See More"
         />
       </div>

@@ -8,17 +8,10 @@ export const ButtonType = {
   primaryIcon: "primaryIcon",
 };
 
-export const ButtonSize = {
-  small: "small",
-  medium: "medium",
-  large: "large",
-};
-
 export const Button = ({
   onClick,
   type,
   icon,
-  size,
   isLoading,
   disabled,
   label,
@@ -33,8 +26,6 @@ export const Button = ({
       className={`
         ${styles.button}
         ${styles[type]}
-        ${styles[size]}
-        ${active ? styles.active : ""}
         ${disabled ? styles.disabled : ""}
          `}
     >

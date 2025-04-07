@@ -5,7 +5,7 @@ import styles from "../../styles/WishlistCart.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Button, ButtonType, ButtonSize } from "../../components/Button/Button";
+import { Button, ButtonType } from "../../components/Button/Button";
 
 import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -63,7 +63,6 @@ const WishlistCart = ({
                     <div className={styles.quantity}>
                       <Button
                         type={ButtonType.icon}
-                        size={ButtonSize.small}
                         icon={<FontAwesomeIcon icon={faMinus} />}
                         onClick={() =>
                           onChangeQuantity(item, Math.max(0, quantity - 1))
@@ -72,7 +71,6 @@ const WishlistCart = ({
                       <span>{quantity}</span>
                       <Button
                         type={ButtonType.icon}
-                        size={ButtonSize.small}
                         icon={<FontAwesomeIcon icon={faPlus} />}
                         onClick={() =>
                           onChangeQuantity(item, Math.max(1, quantity + 1))
@@ -87,7 +85,6 @@ const WishlistCart = ({
 
                   <Button
                     type={ButtonType.icon}
-                    size={ButtonSize.small}
                     icon={<FontAwesomeIcon icon={faClose} />}
                     onClick={() => dispatch(onRemove(item.id))}
                   />
@@ -101,11 +98,7 @@ const WishlistCart = ({
                 TOTAL PRICE:
                 <span> {totalPrice}$</span>
               </div>
-              <Button
-                size={ButtonSize.large}
-                type={ButtonType.primary}
-                label="Proceed to checkout"
-              />
+              <Button type={ButtonType.primary} label="Proceed to checkout" />
             </div>
           )}
         </>

@@ -6,7 +6,7 @@ import { getCollectionProducts } from "../../features/collections/collectionSlic
 import { getProductsCollection } from "../../features/selectors/selectors";
 
 import Products from "../Products/Products";
-import { Button, ButtonType, ButtonSize } from "../../components/Button/Button";
+import { Button, ButtonType } from "../../components/Button/Button";
 
 import styles from "../../styles/Collection.module.css";
 
@@ -85,7 +85,6 @@ const Collection = () => {
           <span>No results</span>
           <Button
             type={ButtonType.primary}
-            size={ButtonSize.medium}
             onClick={resetFilters}
             label="Reset"
           />

@@ -7,7 +7,7 @@ import { ROUTES } from "../../utils/routes";
 import { getProducts, getUser } from "../../features/selectors/selectors";
 import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
-import { Button, ButtonType, ButtonSize } from "../../components/Button/Button";
+import { Button, ButtonType } from "../../components/Button/Button";
 import Profile from "../Profile/Profile";
 import UserForm from "../User/UserForm";
 
@@ -122,13 +122,11 @@ const Header = () => {
         <div className={styles.account}>
           <Button
             type={ButtonType.primaryIcon}
-            size={ButtonSize.small}
             icon={<FontAwesomeIcon icon={faHeart} />}
             onClick={() => navigate("/favorites")}
           />
           <Button
             type={ButtonType.primaryIcon}
-            size={ButtonSize.small}
             icon={<FontAwesomeIcon icon={faBagShopping} />}
             onClick={() => navigate("/cart")}
           >

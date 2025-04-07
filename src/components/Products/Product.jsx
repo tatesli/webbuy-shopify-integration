@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
-import { Button, ButtonType, ButtonSize } from "../Button/Button";
+import { Button, ButtonType } from "../Button/Button";
 
 import { ROUTES } from "../../utils/routes";
 
@@ -96,8 +96,11 @@ const Product = (item) => {
               {colors.map((color, index) => (
                 <Button
                   key={index}
-                  size={ButtonSize.small}
-                  type={ButtonType.default}
+                  type={
+                    selectedColor === color
+                      ? ButtonType.primary
+                      : ButtonType.default
+                  }
                   active={selectedColor === color}
                   onClick={() => handleColorClick(color)}
                   label={color}
@@ -112,8 +115,11 @@ const Product = (item) => {
             <div className={styles.list}>
               {sizes.map((size, index) => (
                 <Button
-                  size={ButtonSize.small}
-                  type={ButtonType.default}
+                  type={
+                    selectedSize === size
+                      ? ButtonType.primary
+                      : ButtonType.default
+                  }
                   key={index}
                   active={selectedSize === size}
                   onClick={() => handleSizeClick(size)}
@@ -127,13 +133,11 @@ const Product = (item) => {
 
         <div className={styles.actions}>
           <Button
-            size={ButtonSize.medium}
             type={ButtonType.primary}
             onClick={addItemToFav}
             label="Add to favorites"
           />
           <Button
-            size={ButtonSize.large}
             type={ButtonType.primary}
             onClick={addItemToCart}
             disabled={isDisabled}
