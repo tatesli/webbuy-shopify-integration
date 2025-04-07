@@ -15,7 +15,7 @@ const Poster = () => {
           <button className={styles.button}>Shop Now</button>
         </div>
         <div className={styles.image}>
-          <img src={POSTER} />
+          <img src={POSTER} alt="Poster" />
         </div>
       </div>
     </section>

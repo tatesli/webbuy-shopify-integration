@@ -1,14 +1,16 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useSnackbar } from "notistack";
 import { formTypes } from "./UserForm";
 
 import styles from "../../styles/User.module.css";
+
 import { loginUser } from "../../features/user/userSlice";
 import { switchCartToUser } from "../../features/cart/cartSlice";
 
 const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
-
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -31,10 +33,16 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
       dispatch(switchCartToUser(storedUser));
       reset();
       closeForm();
+      enqueueSnackbar("Successfully logged in!", {
+        variant: "success",
+      });
     } else {
       setError("server", {
         type: "manual",
         message: "Invalid email or password",
+      });
+      enqueueSnackbar("Login failed!", {
+        variant: "error",
       });
     }
   };

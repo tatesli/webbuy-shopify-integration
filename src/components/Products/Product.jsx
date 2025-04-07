@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,7 @@ import styles from "../../styles/Product.module.css";
 
 const Product = (item) => {
   const dispatch = useDispatch();
-
+  const { enqueueSnackbar } = useSnackbar();
   const { title, images, description, variants } = item;
 
   const [currentImage, setCurrentImage] = useState();
@@ -40,10 +41,16 @@ const Product = (item) => {
       return;
     }
     dispatch(addToCart({ ...item, id: selectedVariant.id }));
+    enqueueSnackbar("Item added to cart!", {
+      variant: "success",
+    });
   };
 
   const addItemToFav = () => {
     dispatch(addToFavList(item));
+    enqueueSnackbar("Item added to favorites!", {
+      variant: "success",
+    });
   };
 
   const isDisabled = !selectedColor || !selectedSize;

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 import { registerUser } from "../../features/user/userSlice";
 import { formTypes } from "./UserForm";
 
@@ -11,7 +12,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
-
+  const { enqueueSnackbar } = useSnackbar();
   const [avatar, setAvatar] = useState(null);
 
   const inputFile = useRef(null);
@@ -39,6 +40,9 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
         type: "manual",
         message: "This email is already registered",
       });
+      enqueueSnackbar("User is already exists!", {
+        variant: "warning",
+      });
       return;
     }
     const newUser = { ...data, id: data.email, avatar };
@@ -47,6 +51,9 @@ const UserSignUpForm = ({ closeForm, toggleCurrentTypeForm }) => {
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     dispatch(registerUser(newUser));
     closeForm();
+    enqueueSnackbar("Registration successful!", {
+      variant: "success",
+    });
   };
   const handleClick = (e) => {
     e.preventDefault();

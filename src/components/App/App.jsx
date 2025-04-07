@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { SnackbarProvider } from "notistack";
 
 import AppRoutes from "../Routes/Routes";
 import Header from "../Header/Header";
@@ -19,15 +20,17 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="app">
-      <Header />
-      <UserForm />
-      <div className="container">
-        <Sidebar />
-        <AppRoutes />
+    <SnackbarProvider maxSnack={3}>
+      <div className="app">
+        <Header />
+        <UserForm />
+        <div className="container">
+          <Sidebar />
+          <AppRoutes />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </SnackbarProvider>
   );
 };
 

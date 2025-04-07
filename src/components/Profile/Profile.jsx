@@ -1,29 +1,30 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
+
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { getUser } from "../../features/selectors/selectors";
-
 import { logoutUser } from "../../features/user/userSlice";
 import { clearCart } from "../../features/cart/cartSlice";
-import { CloseIcon } from "../Icons/Icons";
 import UserForm from "../User/UserForm";
 
 import styles from "../../styles/Profile.module.css";
+import { CloseIcon } from "../Icons/Icons";
 
 const Profile = ({ closeProfile }) => {
   const user = useSelector(getUser);
-
   const dispatch = useDispatch();
-
+  const { enqueueSnackbar } = useSnackbar();
   const handleLogout = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
-
+    enqueueSnackbar("You have successfully logged out!", {
+      variant: "success",
+    });
     closeProfile();
   };
-
   if (!user) {
     return null;
   }
