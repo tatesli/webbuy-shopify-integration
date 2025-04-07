@@ -1,4 +1,5 @@
 import React from "react";
+import { SnackbarProvider } from "notistack";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -12,7 +13,9 @@ import App from "./components/App/App";
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <SnackbarProvider maxSnack={3} autoHideDuration={2500}>
+        <App />
+      </SnackbarProvider>
     </BrowserRouter>
   </Provider>
 );
