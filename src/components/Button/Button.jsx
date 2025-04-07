@@ -16,8 +16,6 @@ export const Button = ({
   disabled,
   label,
   children,
-  active,
-  className,
 }) => {
   return (
     <button
