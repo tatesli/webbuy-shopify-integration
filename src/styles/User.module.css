@@ -21,7 +21,7 @@
 
 .title {
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 18px;
   color: var(--light);
   text-align: center;
@@ -30,6 +30,7 @@
 .form {
   margin-top: 24px;
   display: flex;
+  align-items: center;
   width: 100%;
   flex-direction: column;
   row-gap: 16px;
@@ -44,19 +45,20 @@
 }
 .avatar {
   display: flex;
-  justify-content: space-around;
+  gap: 34px;
 }
 .img {
-  width: 40px;
-  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
 }
-
-.submit {
-  font-weight: 500;
-  line-height: 20px;
+.img svg {
+  font-size: 30px;
 }
 
 .close {
@@ -68,20 +70,19 @@
 }
 
 .close svg {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   stroke: var(--dark-sea);
 }
-
 .close:hover svg {
   stroke: #fff;
 }
-p {
+.error {
   font-size: 13px;
   text-align: center;
   color: red;
 }
-p:hover {
+.error:hover {
   color: var(--light);
 }
 .link {

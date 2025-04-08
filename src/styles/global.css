@@ -33,8 +33,7 @@ img {
   height: auto;
 }
 
-input,
-button {
+input {
   border: none;
   background: none;
   outline: none;
@@ -84,20 +83,6 @@ section {
   background: var(--dark);
   border-radius: 6px;
 }
-
-button {
-  background: var(--violet-dark);
-  border-radius: 6px;
-  padding: 9px 20px;
-  font-weight: 600;
-  line-height: 20px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--violet);
-}
-
 h2 {
   font-weight: 600;
   font-size: 20px;

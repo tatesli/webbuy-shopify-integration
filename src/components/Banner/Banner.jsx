@@ -1,8 +1,10 @@
 import React from "react";
 
 import BANNER from "../../images/banner.png";
+import { Button, ButtonType } from "../../components/Button/Button";
 
 import styles from "../../styles/Banner.module.css";
+import buttonStyles from "../../styles/Button.module.css";
 
 const Banner = () => {
   return (
@@ -12,7 +14,11 @@ const Banner = () => {
           NEW YEAR
           <span>SALE</span>
         </p>
-        <button className={styles.more}>See More</button>
+        <Button
+          className={buttonStyles.button}
+          type={ButtonType.primary}
+          label="See More"
+        />
       </div>
       <div className={styles.right}>
         <img src={BANNER} alt="Banner" className={styles.image} />
