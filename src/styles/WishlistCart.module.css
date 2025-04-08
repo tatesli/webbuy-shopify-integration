@@ -78,50 +78,8 @@
   width: 40px;
   text-align: center;
   font-size: 14px;
-  line-height: 17px;
+  font-weight: 500;
   color: var(--dark-sea);
-}
-
-.minus,
-.plus {
-  background: var(--dark-sea);
-  border-radius: 6px;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.quantity svg {
-  width: 17px;
-  height: 17px;
-  fill: rgba(255, 255, 255, 0.5);
-}
-
-.plus:hover,
-.minus:hover {
-  background: var(--violet);
-}
-
-.plus:hover svg,
-.minus:hover svg {
-  fill: rgba(255, 255, 255, 1);
-}
-
-.close {
-  cursor: pointer;
-}
-
-.close svg {
-  width: 16px;
-  height: 16px;
-  stroke: rgba(255, 255, 255, 0.5);
-}
-
-.close:hover svg {
-  stroke: rgba(255, 255, 255, 1);
 }
 
 .actions {

@@ -5,6 +5,8 @@ import { useSnackbar } from "notistack";
 import styles from "../../styles/WishlistCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { Button, ButtonType } from "../../components/Button/Button";
+
 import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
@@ -56,51 +58,45 @@ const WishlistCart = ({
                     <h3 className={styles.name}>{title}</h3>
                     <div className={styles.category}>{productType}</div>
                   </div>
-                  <div>{price} $</div>
-
+                  <div className={styles.price}>{price} $</div>
                   {type === WishlistCartType.cart && (
                     <div className={styles.quantity}>
-                      <div
-                        className={styles.minus}
+                      <Button
+                        type={ButtonType.icon}
+                        icon={<FontAwesomeIcon icon={faMinus} />}
                         onClick={() => {
                           onChangeQuantity(item, Math.max(0, quantity - 1));
                           enqueueSnackbar("Item removed from cart!", {
                             variant: "success",
                           });
                         }}
-                      >
-                        <FontAwesomeIcon icon={faMinus} />
-                      </div>
+                      />
                       <span>{quantity}</span>
-                      <div
-                        className={styles.plus}
+                      <Button
+                        type={ButtonType.icon}
+                        icon={<FontAwesomeIcon icon={faPlus} />}
                         onClick={() => {
                           onChangeQuantity(item, Math.max(1, quantity + 1));
                           enqueueSnackbar("Item added to cart!", {
                             variant: "success",
                           });
                         }}
-                      >
-                        <FontAwesomeIcon icon={faPlus} />
-                      </div>
+                      />
                     </div>
                   )}
-
                   {type === WishlistCartType.cart && (
                     <div className={styles.total}>{price * quantity}$</div>
                   )}
-
-                  <div
-                    className={styles.close}
+                  <Button
+                    type={ButtonType.icon}
+                    icon={<FontAwesomeIcon icon={faClose} />}
                     onClick={() => {
                       dispatch(onRemove(item.id));
                       enqueueSnackbar("Item removed!", {
                         variant: "success",
                       });
                     }}
-                  >
-                    <FontAwesomeIcon icon={faClose} />
-                  </div>
+                  />
                 </div>
               );
             })}
@@ -111,7 +107,7 @@ const WishlistCart = ({
                 TOTAL PRICE:
                 <span> {totalPrice}$</span>
               </div>
-              <button className={styles.proceed}>Proceed to checkout</button>
+              <Button type={ButtonType.primary} label="Proceed to checkout" />
             </div>
           )}
         </>

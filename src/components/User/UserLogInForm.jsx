@@ -2,11 +2,14 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
 import { formTypes } from "./UserForm";
-
-import styles from "../../styles/User.module.css";
+import { Button, ButtonType } from "../../components/Button/Button";
 
 import { loginUser } from "../../features/user/userSlice";
 import { switchCartToUser } from "../../features/cart/cartSlice";
+
+import styles from "../../styles/User.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   const dispatch = useDispatch();
@@ -48,11 +51,14 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
   };
   return (
     <div className={styles.wrapper}>
-      <div className={styles.close} onClick={closeForm}>
-        <svg className={styles.icon}>
-          <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
-        </svg>
+      <div className={styles.close}>
+        <Button
+          type={ButtonType.icon}
+          icon={<FontAwesomeIcon icon={faClose} />}
+          onClick={closeForm}
+        />
       </div>
+
       <h1 className={styles.title}>Log In</h1>
       <form className={styles.form}>
         <div className={styles.group}>
@@ -98,9 +104,11 @@ const UserLogInForm = ({ closeForm, toggleCurrentTypeForm }) => {
         >
           Create an account
         </div>
-        <button className={styles.submit} onClick={handleSubmit(onSubmit)}>
-          Login
-        </button>
+        <Button
+          type={ButtonType.primary}
+          onClick={handleSubmit(onSubmit)}
+          label="Login"
+        />
       </form>
     </div>
   );

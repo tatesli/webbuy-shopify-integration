@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 import { getProducts, getUser } from "../../features/selectors/selectors";
 import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
+import { Button, ButtonType } from "../../components/Button/Button";
+import Profile from "../Profile/Profile";
+import UserForm from "../User/UserForm";
 
 import styles from "../../styles/Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-
+import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faMagnifyingGlass,
   faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
 import LOGO from "../../images/logo.svg";
-import AVATAR from "../../images/avatar.png";
-import Profile from "../Profile/Profile";
-import UserForm from "../User/UserForm";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -64,11 +65,15 @@ const Header = () => {
       </div>
       <div className={styles.info}>
         <div className={styles.user} onClick={handleClick}>
-          <img
-            className={styles.avatar}
-            src={user?.avatar || AVATAR}
-            alt="avatar"
-          />
+          {user?.avatar ? (
+            <img
+              className={styles.avatar}
+              src={user?.avatar || undefined}
+              alt="avatar"
+            />
+          ) : (
+            <FontAwesomeIcon icon={faUser} />
+          )}
           <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
         {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
@@ -97,7 +102,6 @@ const Header = () => {
                     key={id}
                     to={`/products/${cleanProductId(id)}`}
                     onClick={() => {
-                      console.log("Navigating to:", `/products/${id}`);
                       setSearchValue("");
                     }}
                     className={styles.item}
@@ -116,13 +120,18 @@ const Header = () => {
           )}
         </form>
         <div className={styles.account}>
-          <Link to={ROUTES.FAVORITES} className={styles.favourites}>
-            <FontAwesomeIcon className={styles.iconFav} icon={faHeart} />
-          </Link>
-          <Link to={ROUTES.CART} className={styles.cart}>
-            <FontAwesomeIcon icon={faBagShopping} />
+          <Button
+            type={ButtonType.primaryIcon}
+            icon={<FontAwesomeIcon icon={faHeart} />}
+            onClick={() => navigate("/favorites")}
+          />
+          <Button
+            type={ButtonType.primaryIcon}
+            icon={<FontAwesomeIcon icon={faBagShopping} />}
+            onClick={() => navigate("/cart")}
+          >
             <span className={styles.count}>{cartQuantity}</span>
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

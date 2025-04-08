@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
 import { Link } from "react-router-dom";
+import { Button, ButtonType } from "../Button/Button";
 
 import { ROUTES } from "../../utils/routes";
 
@@ -25,6 +26,22 @@ const Product = (item) => {
   const colors = [...new Set(variants.map((variant) => variant.color))];
 
   const sizes = [...new Set(variants.map((variant) => variant.size))];
+
+  const handleSizeClick = (size) => {
+    if (selectedSize === size) {
+      setSelectedSize(null);
+    } else {
+      setSelectedSize(size);
+    }
+  };
+
+  const handleColorClick = (color) => {
+    if (selectedColor === color) {
+      setSelectedColor(null);
+    } else {
+      setSelectedColor(color);
+    }
+  };
 
   useEffect(() => {
     if (!images || !images.length) return;
@@ -84,15 +101,16 @@ const Product = (item) => {
             <span>Color:</span>
             <div className={styles.list}>
               {colors.map((color, index) => (
-                <div
+                <Button
                   key={index}
-                  className={`${styles.color} ${
-                    selectedColor === color ? styles.active : ""
-                  }`}
-                  onClick={() => setSelectedColor(color)}
-                >
-                  {color}
-                </div>
+                  type={
+                    selectedColor === color
+                      ? ButtonType.primary
+                      : ButtonType.default
+                  }
+                  onClick={() => handleColorClick(color)}
+                  label={color}
+                />
               ))}
             </div>
           </div>
@@ -102,33 +120,34 @@ const Product = (item) => {
             <span>Size:</span>
             <div className={styles.list}>
               {sizes.map((size, index) => (
-                <div
+                <Button
+                  type={
+                    selectedSize === size
+                      ? ButtonType.primary
+                      : ButtonType.default
+                  }
                   key={index}
-                  className={`${styles.size} ${
-                    selectedSize === size ? styles.active : ""
-                  }`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </div>
+                  onClick={() => handleSizeClick(size)}
+                  label={size}
+                />
               ))}
             </div>
           </div>
         )}
-
         <p className={styles.description}>{description}</p>
         <div className={styles.actions}>
-          <button
+          <Button
+            type={ButtonType.primary}
+            onClick={addItemToFav}
+            label="Add to favorites"
+          />
+          <Button
+            type={ButtonType.primary}
             onClick={addItemToCart}
-            className={styles.add}
+            fullWidth
             disabled={isDisabled}
-          >
-            Add to cart
-          </button>
-
-          <button onClick={addItemToFav} className={styles.favorite}>
-            Add to favorites
-          </button>
+            label="Add to cart"
+          />
         </div>
         <div className={styles.bottom}>
           <div className={styles.purchase}>19 people purchased</div>
