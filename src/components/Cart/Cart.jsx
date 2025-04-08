@@ -1,9 +1,7 @@
 import React from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
-
 import { getCart } from "../../features/selectors/selectors.js";
 import { sumBy } from "../../utils/common.js";
 

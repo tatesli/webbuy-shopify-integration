@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import AppRoutes from "../Routes/Routes";
 import Header from "../Header/Header";
 import UserForm from "../User/UserForm";
@@ -12,7 +11,6 @@ import { getProducts } from "../../features/products/productsSlice";
 
 const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getCollections());
     dispatch(getProducts());

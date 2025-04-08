@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 import styles from "../../styles/WishlistCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,6 +25,7 @@ const WishlistCart = ({
   totalPrice,
 }) => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   return (
     <section className={`${styles.container} ${styles[type]}`}>
       <h2>{type === WishlistCartType.cart ? "Your Cart" : "Favorites"}</h2>
@@ -57,35 +59,43 @@ const WishlistCart = ({
                     <div className={styles.category}>{productType}</div>
                   </div>
                   <div className={styles.price}>{price} $</div>
-
                   {type === WishlistCartType.cart && (
                     <div className={styles.quantity}>
                       <Button
                         type={ButtonType.icon}
                         icon={<FontAwesomeIcon icon={faMinus} />}
-                        onClick={() =>
-                          onChangeQuantity(item, Math.max(0, quantity - 1))
-                        }
+                        onClick={() => {
+                          onChangeQuantity(item, Math.max(0, quantity - 1));
+                          enqueueSnackbar("Item removed from cart!", {
+                            variant: "success",
+                          });
+                        }}
                       />
                       <span>{quantity}</span>
                       <Button
                         type={ButtonType.icon}
                         icon={<FontAwesomeIcon icon={faPlus} />}
-                        onClick={() =>
-                          onChangeQuantity(item, Math.max(1, quantity + 1))
-                        }
+                        onClick={() => {
+                          onChangeQuantity(item, Math.max(1, quantity + 1));
+                          enqueueSnackbar("Item added to cart!", {
+                            variant: "success",
+                          });
+                        }}
                       />
                     </div>
                   )}
-
                   {type === WishlistCartType.cart && (
                     <div className={styles.total}>{price * quantity}$</div>
                   )}
-
                   <Button
                     type={ButtonType.icon}
                     icon={<FontAwesomeIcon icon={faClose} />}
-                    onClick={() => dispatch(onRemove(item.id))}
+                    onClick={() => {
+                      dispatch(onRemove(item.id));
+                      enqueueSnackbar("Item removed!", {
+                        variant: "success",
+                      });
+                    }}
                   />
                 </div>
               );
