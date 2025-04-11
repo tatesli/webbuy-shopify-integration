@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { ROUTES } from "../../utils/routes";
-import { getProducts, getUser } from "../../features/selectors/selectors";
+import { ROUTES } from "../../pages/Routes/Routes";
+import { getAllProducts } from "../../features/products/productsSlice";
+import { getUser } from "../../features/user/userSlice";
 import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 import { Button, ButtonType } from "../../components/Button/Button";
 import Profile from "../Profile/Profile";
 import UserForm from "../User/UserForm";
 
-import styles from "../../styles/Header.module.css";
+import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -19,7 +20,7 @@ import {
   faBagShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
-import LOGO from "../../images/logo.svg";
+import LOGO from "../../assets/images/logo.svg";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showProfile, setShowProfile] = useState(false);
 
-  const allProducts = useSelector(getProducts);
+  const allProducts = useSelector(getAllProducts);
   const cartQuantity = useSelector(selectCartQuantity);
   const { user, isAuthenticated } = useSelector(getUser);
 

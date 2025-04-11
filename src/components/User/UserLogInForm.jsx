@@ -7,7 +7,7 @@ import { Button, ButtonType } from "../../components/Button/Button";
 import { loginUser } from "../../features/user/userSlice";
 import { switchCartToUser } from "../../features/cart/cartSlice";
 
-import styles from "../../styles/User.module.css";
+import styles from "./User.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 

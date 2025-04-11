@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/Button.module.css";
+import styles from "./Button.module.css";
 
 export const ButtonType = {
   primary: "primary",
@@ -22,7 +22,6 @@ export const Button = ({
     <button
       onClick={onClick}
       disabled={disabled || isLoading}
-      fullWidth
       className={`
         ${styles.button}
         ${styles[type]}

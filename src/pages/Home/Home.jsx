@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Poster from "../Poster/Poster";
-import Products from "../Products/Products";
-import Collections from "../Collections/Collections";
-import Banner from "../Banner/Banner";
+import Poster from "../../components/Poster/Poster";
+import Products from "../../components/Products/Products";
+import Collections from "../../components/Collections/Collections";
+import Banner from "../../components/Banner/Banner";
 
 import {
-  getProducts,
+  getAllProducts,
   getFilteredProducts,
-  getCollections,
-} from "../../features/selectors/selectors";
-
-import { filterByPrice } from "../../features/products/productsSlice";
+  filterByPrice,
+} from "../../features/products/productsSlice";
+import { getAllCollections } from "../../features/collections/collectionsSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const products = useSelector(getProducts);
-  const collections = useSelector(getCollections);
+  const products = useSelector(getAllProducts);
+
+  const collections = useSelector(getAllCollections);
+
   const filteredProducts = useSelector(getFilteredProducts);
 
   const [isFiltered, setIsFiltered] = useState(false);

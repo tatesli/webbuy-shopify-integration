@@ -39,3 +39,4 @@ const collectionsSlice = createSlice({
 });
 
 export default collectionsSlice.reducer;
+export const getAllCollections = (state) => state.collections.list;

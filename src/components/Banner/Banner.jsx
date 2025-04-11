@@ -1,10 +1,10 @@
 import React from "react";
 
-import BANNER from "../../images/banner.png";
+import BANNER from "../../assets/images/banner.png";
 import { Button, ButtonType } from "../../components/Button/Button";
 
-import styles from "../../styles/Banner.module.css";
-import buttonStyles from "../../styles/Button.module.css";
+import styles from "./Banner.module.css";
+import buttonStyles from "../Button/Button.module.css";
 
 const Banner = () => {
   return (

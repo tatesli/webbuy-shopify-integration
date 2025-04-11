@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getCollectionProducts } from "../../features/collections/collectionSlice";
-import { getProductsCollection } from "../../features/selectors/selectors";
+import {
+  getCollectionProducts,
+  getProductsCollection,
+} from "../../features/collections/collectionSlice";
 
-import Products from "../Products/Products";
-import { Button, ButtonType } from "../../components/Button/Button";
+import Products from "../../components/Products/Products";
 
-import styles from "../../styles/Collection.module.css";
+import styles from "./Collection.module.css";
 
 const Collection = () => {
   const { collectionId } = useParams();
@@ -83,11 +84,7 @@ const Collection = () => {
       ) : !isSuccess || filteredProducts.length === 0 ? (
         <div className={styles.back}>
           <span>No results</span>
-          <Button
-            type={ButtonType.primary}
-            onClick={resetFilters}
-            label="Reset"
-          />
+          <button onClick={resetFilters}>Reset</button>
         </div>
       ) : (
         <>

@@ -2,10 +2,10 @@ import React from "react";
 
 import { Button, ButtonType } from "../Button/Button";
 
-import styles from "../../styles/Home.module.css";
-import buttonStyles from "../../styles/Button.module.css";
+import styles from "./Home.module.css";
+import buttonStyles from "../Button/Button.module.css";
 
-import POSTER from "../../images/devices.png";
+import POSTER from "../../assets/images/devices.png";
 
 const Poster = () => {
   return (

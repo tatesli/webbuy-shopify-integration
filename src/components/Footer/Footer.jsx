@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { ROUTES } from "../../utils/routes";
+import { ROUTES } from "../../pages/Routes/Routes";
 
-import styles from "../../styles/Footer.module.css";
-import LOGO from "../../images/logo.svg";
+import styles from "./Footer.module.css";
+import LOGO from "../../assets/images/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,

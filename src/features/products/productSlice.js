@@ -65,4 +65,5 @@ const productSlice = createSlice({
 });
 
 export const { clearProduct } = productSlice.actions;
+export const getSingleProduct = (state) => state.product.product;
 export default productSlice.reducer;

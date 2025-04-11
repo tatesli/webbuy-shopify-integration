@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import styles from "../../styles/WishlistCart.module.css";
+import styles from "./WishlistCart.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Button, ButtonType } from "../../components/Button/Button";
