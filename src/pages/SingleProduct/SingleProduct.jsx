@@ -2,17 +2,20 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Product from "./Product";
-import Products from "./Products";
-
-import { getProduct, clearProduct } from "../../features/products/productSlice";
-import { getRelatedByType } from "../../features/products/productsSlice";
+import Product from "../../components/Products/Product";
+import Products from "../../components/Products/Products";
 
 import {
-  getProducts,
+  getProduct,
+  clearProduct,
   getSingleProduct,
+} from "../../features/products/productSlice";
+
+import {
+  relatedByType,
+  getAllProducts,
   getRelatedByTypeProducts,
-} from "../../features/selectors/selectors";
+} from "../../features/products/productsSlice";
 
 const SingleProduct = () => {
   const { productId } = useParams();
@@ -21,9 +24,10 @@ const SingleProduct = () => {
 
   const product = useSelector(getSingleProduct);
 
-  const products = useSelector(getProducts);
+  const products = useSelector(getAllProducts);
 
   const related = useSelector(getRelatedByTypeProducts);
+
   const isLoading = useSelector((state) => state.product.isLoading);
 
   useEffect(() => {
@@ -35,7 +39,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     if (product && products.length > 0) {
-      dispatch(getRelatedByType(product.productType));
+      dispatch(relatedByType(product.productType));
     }
   }, [dispatch, product, products]);
 

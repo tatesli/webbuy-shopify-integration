@@ -36,7 +36,7 @@ const productsSlice = createSlice({
     filterByPrice: (state, { payload }) => {
       state.filtered = state.list.filter((product) => product.price < payload);
     },
-    getRelatedByType: (state, { payload }) => {
+    relatedByType: (state, { payload }) => {
       const list = state.list.filter(
         (product) => product.productType === payload
       );
@@ -59,6 +59,8 @@ const productsSlice = createSlice({
   },
 });
 
-export const { filterByPrice, getRelatedByType } = productsSlice.actions;
-
+export const { filterByPrice, relatedByType } = productsSlice.actions;
+export const getAllProducts = (state) => state.products.list;
+export const getFilteredProducts = (state) => state.products.filtered;
+export const getRelatedByTypeProducts = (state) => state.products.related;
 export default productsSlice.reducer;

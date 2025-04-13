@@ -34,4 +34,5 @@ const favListSlice = createSlice({
 });
 
 export const { addToFavList, removeFromFavList } = favListSlice.actions;
+export const getFavorites = (state) => state.favorites.favListItem;
 export default favListSlice.reducer;

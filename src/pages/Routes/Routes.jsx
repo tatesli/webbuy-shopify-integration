@@ -1,14 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { ROUTES } from "../../utils/routes";
-
 import Home from "../Home/Home";
-import SingleProduct from "../Products/SingleProduct";
-import SingleCollection from "../Collections/SingleCollection";
+import SingleProduct from "../SingleProduct/SingleProduct";
+import SingleCollection from "../SingleCollection/SingleCollection";
 import Favorites from "../Favorites/Favorites";
 import Cart from "../Cart/Cart";
 
+export const ROUTES = {
+  HOME: "/",
+  CART: "/cart",
+  FAVORITES: "/favorites",
+  PRODUCT: "/products/:productId",
+  COLLECTION: "/collections/:collectionId",
+};
 const AppRoutes = () => {
   return (
     <Routes>

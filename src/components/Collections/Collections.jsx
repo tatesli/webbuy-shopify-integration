@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { cleanCollectionId } from "../../utils/common";
 
-import styles from "../../styles/Collections.module.css";
+import styles from "./Collections.module.css";
 
 const Collections = ({ title, collections = [], amount }) => {
   const list = collections.filter((_, i) => i < amount);
@@ -18,7 +18,7 @@ const Collections = ({ title, collections = [], amount }) => {
             className={styles.item}
             key={id}
           >
-            <img src={image} className={styles.image} />
+            <img src={image} alt="collection_img" className={styles.image} />
             <div className={styles.title}>{title}</div>
           </Link>
         ))}

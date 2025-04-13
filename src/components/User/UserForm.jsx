@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import UserSignUpForm from "./UserSignUpForm";
 import UserLogInForm from "./UserLogInForm";
-import { getUser } from "../../features/selectors/selectors";
+import { getUser } from "../../features/user/userSlice";
 
-import styles from "../../styles/User.module.css";
+import styles from "./User.module.css";
 
 import { toggleForm, toggleFormType } from "../../features/user/userSlice";
 export const formTypes = {

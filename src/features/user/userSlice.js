@@ -46,3 +46,4 @@ export const {
 } = userSlice.actions;
 
 export default userSlice.reducer;
+export const getUser = (state) => state.user;

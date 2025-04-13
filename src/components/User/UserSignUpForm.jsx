@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { registerUser } from "../../features/user/userSlice";
 import { formTypes } from "./UserForm";
 
-import styles from "../../styles/User.module.css";
+import styles from "./User.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";

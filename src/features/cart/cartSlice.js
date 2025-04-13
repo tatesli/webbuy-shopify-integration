@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Client from "shopify-buy";
 
-console.log(process.env.REACT_APP_SHOPIFY_DOMAIN);
-console.log(process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN);
-
 const client = Client.buildClient({
   domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
   storefrontAccessToken: process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN,
@@ -106,3 +103,4 @@ export const { addToCart, removeFromCart, switchCartToUser, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
+export const getCart = (state) => state.cart;

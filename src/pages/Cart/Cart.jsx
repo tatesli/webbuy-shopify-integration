@@ -1,13 +1,18 @@
 import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
-import { addToCart, removeFromCart } from "../../features/cart/cartSlice.jsx";
-import { getCart } from "../../features/selectors/selectors.js";
+import {
+  addToCart,
+  removeFromCart,
+  getCart,
+} from "../../features/cart/cartSlice.js";
+
 import { sumBy } from "../../utils/common.js";
 
 import WishlistCart, {
   WishlistCartType,
-} from "../WishlistCart/WishlistCart.jsx";
+} from "../../components/WishlistCart/WishlistCart.jsx";
 
 const Cart = () => {
   const dispatch = useDispatch();

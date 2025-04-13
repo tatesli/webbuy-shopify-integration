@@ -1,7 +1,7 @@
 import React from "react";
 
-import Poster from "../Poster/Poster";
-import Collection from "./Collection";
+import Poster from "../../components/Poster/Poster";
+import Collection from "../Collection/Collection";
 
 const SingleCollection = () => {
   return (

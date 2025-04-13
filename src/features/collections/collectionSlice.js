@@ -70,3 +70,4 @@ const collectionProductsSlice = createSlice({
   },
 });
 export default collectionProductsSlice.reducer;
+export const getProductsCollection = (state) => state.collectionProducts;

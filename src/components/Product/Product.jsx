@@ -5,16 +5,17 @@ import { useSnackbar } from "notistack";
 import { Link } from "react-router-dom";
 import { Button, ButtonType } from "../Button/Button";
 
-import { ROUTES } from "../../utils/routes";
+import { ROUTES } from "../../pages/Routes/Routes";
 
 import { addToCart } from "../../features/cart/cartSlice";
 import { addToFavList } from "../../features/favorites/favoritesSlice";
 
-import styles from "../../styles/Product.module.css";
+import styles from "./Product.module.css";
 
 const Product = (item) => {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
+
   const { title, images, description, variants } = item;
 
   const [currentImage, setCurrentImage] = useState();

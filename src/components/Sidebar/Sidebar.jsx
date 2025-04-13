@@ -2,14 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import styles from "../../styles/Sidebar.module.css";
+import styles from "./Sidebar.module.css";
 
-import { getCollections } from "../../features/selectors/selectors";
+import { getAllCollections } from "../../features/collections/collectionsSlice";
 
 import { cleanCollectionId } from "../../utils/common";
 
 const Sidebar = () => {
-  const list = useSelector(getCollections);
+  const list = useSelector(getAllCollections);
   return (
     <section className={styles.sidebar}>
       <h2 className={styles.title}>CATEGORIES</h2>
