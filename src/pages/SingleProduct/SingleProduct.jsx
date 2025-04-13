@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Product from "../../components/Products/Product";
+import Product from "../../components/Product/Product";
 import Products from "../../components/Products/Products";
 
 import {
