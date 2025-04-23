@@ -7,11 +7,13 @@
 }
 .wrapperCurrent {
   flex: 3;
+  background-color: white;
+  border-radius: 5px;
 }
 .current {
   width: 385px;
   height: 365px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
 }
 .imagesList {
@@ -19,9 +21,10 @@
   flex-direction: column;
 }
 .image {
+  background-color: white;
   width: 90px;
   height: 90px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 6px;
   cursor: pointer;
 }

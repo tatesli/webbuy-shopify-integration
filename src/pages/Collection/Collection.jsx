@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+import { Button, ButtonType } from "../../components/Button/Button";
+
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,7 +22,6 @@ const Collection = () => {
     getProductsCollection
   );
 
-  //TODO: https://www.react-hook-form.com/
   const [name, setName] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -84,7 +86,11 @@ const Collection = () => {
       ) : !isSuccess || filteredProducts.length === 0 ? (
         <div className={styles.back}>
           <span>No results</span>
-          <button onClick={resetFilters}>Reset</button>
+          <Button
+            type={ButtonType.primary}
+            onClick={resetFilters}
+            label="Reset"
+          />
         </div>
       ) : (
         <>
