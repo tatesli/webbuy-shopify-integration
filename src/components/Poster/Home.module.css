@@ -39,3 +39,11 @@
   line-height: 51px;
   margin: 10px 0 24px 0;
 }
+@media (max-width: 960px) {
+  .header {
+    width: 100%;
+  }
+  .title {
+    flex-direction: wrap;
+  }
+}

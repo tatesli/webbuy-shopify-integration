@@ -15,7 +15,7 @@ const Banner = () => {
           <span>SALE</span>
         </p>
         <Button
-          className={buttonStyles.button}
+          className={`${buttonStyles.button} ${styles.responsiveButton}`}
           type={ButtonType.primary}
           label="See More"
         />

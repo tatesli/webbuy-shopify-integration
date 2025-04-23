@@ -24,11 +24,12 @@
   display: block;
 }
 .right {
+  position: relative;
   width: 50%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  overflow: hidden;
 }
 .image {
   width: 100%;
@@ -36,9 +37,9 @@
   object-fit: cover;
 }
 .discount {
+  position: absolute;
   font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
   color: var(--bg);
   margin: 24px;
 }
@@ -46,12 +47,30 @@
   color: var(--violet);
   font-weight: 700;
 }
-/* @media (max-width: 960px) {
+
+@media (max-width: 960px) {
   .banner {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    height: 100%;
   }
-  .left {
+  .left,
+  .right {
     width: 100%;
     height: 100%;
   }
-} */
+  .discount {
+    font-size: 45px;
+    margin-bottom: 45px;
+  }
+  .text {
+    font-size: 110px;
+    line-height: 50px;
+    margin: 120px;
+  }
+
+  .text span {
+    font-size: 240px;
+    line-height: 100px;
+    margin: 80px;
+  }
+}

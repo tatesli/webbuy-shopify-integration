@@ -34,10 +34,10 @@ const Home = () => {
   return (
     <>
       <Poster />
-      <Products products={products} amount={5} title="Trending" />
-      <Collections collections={collections} amount={5} title="Worth Seeing" />
+      <Products products={products} amount={4} title="Trending" />
+      <Collections collections={collections} amount={6} title="Worth Seeing" />
       <Banner />
-      <Products products={filteredProducts} amount={5} title="Less than 100$" />
+      <Products products={filteredProducts} amount={4} title="Less than 100$" />
     </>
   );
 };

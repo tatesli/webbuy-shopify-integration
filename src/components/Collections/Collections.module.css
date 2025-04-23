@@ -7,12 +7,15 @@
 }
 
 .list {
-  display: flex;
-  column-gap: 20px;
+  /* display: flex;
+  column-gap: 20px; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
 }
 
 .item {
-  flex: 1;
+  /* flex: 1; */
   text-align: center;
 }
 
@@ -28,4 +31,12 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
+}
+@media (max-width: 960px) {
+  .section {
+    height: 100%;
+  }
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
