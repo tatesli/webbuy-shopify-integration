@@ -53,7 +53,7 @@ const SingleProduct = () => {
   return (
     <>
       <Product {...product} />
-      <Products products={related} amount={5} title="Related products" />
+      <Products products={related} amount={4} title="Related products" />
     </>
   );
 };
