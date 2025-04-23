@@ -7,16 +7,20 @@ import WishlistCart, {
   WishlistCartType,
 } from "../../components/WishlistCart/WishlistCart";
 
+import Layout from "../Layout/Layout";
+
 const Favorites = () => {
   const favorites = useSelector(getFavorites);
 
   return (
-    <WishlistCart
-      items={favorites}
-      type={WishlistCartType.favorites}
-      onRemove={removeFromFavList}
-      isLoading={false}
-    />
+    <Layout>
+      <WishlistCart
+        items={favorites}
+        type={WishlistCartType.favorites}
+        onRemove={removeFromFavList}
+        isLoading={false}
+      />
+    </Layout>
   );
 };
 

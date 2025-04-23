@@ -12,6 +12,7 @@ import {
   filterByPrice,
 } from "../../features/products/productsSlice";
 import { getAllCollections } from "../../features/collections/collectionsSlice";
+import Layout from "../Layout/Layout";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,13 +33,13 @@ const Home = () => {
   }, [dispatch, products, isFiltered]);
 
   return (
-    <>
+    <Layout>
       <Poster />
       <Products products={products} amount={4} title="Trending" />
       <Collections collections={collections} amount={6} title="Worth Seeing" />
       <Banner />
       <Products products={filteredProducts} amount={4} title="Less than 100$" />
-    </>
+    </Layout>
   );
 };
 

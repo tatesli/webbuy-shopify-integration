@@ -18,7 +18,7 @@
   width: max-content;
   display: flex;
   align-items: center;
-  min-width: 225px;
+  flex: 1;
 }
 
 .full {
@@ -29,6 +29,7 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
+  flex: 1;
 }
 
 .filter span {

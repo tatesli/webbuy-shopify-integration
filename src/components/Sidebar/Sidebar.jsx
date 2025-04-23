@@ -10,6 +10,7 @@ import { cleanCollectionId } from "../../utils/common";
 
 const Sidebar = () => {
   const list = useSelector(getAllCollections);
+
   return (
     <section className={styles.sidebar}>
       <h2 className={styles.title}>CATEGORIES</h2>

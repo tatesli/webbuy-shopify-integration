@@ -5,7 +5,7 @@ import Home from "../Home/Home";
 import SingleProduct from "../SingleProduct/SingleProduct";
 import SingleCollection from "../SingleCollection/SingleCollection";
 import Favorites from "../Favorites/Favorites";
-import Cart from "../Cart/Cart";
+import Cart from "../cart/Cart";
 
 export const ROUTES = {
   HOME: "/",
@@ -18,8 +18,11 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route index element={<Home />} />
-      <Route path={ROUTES.PRODUCT} element={<SingleProduct />} />
       <Route path={ROUTES.COLLECTION} element={<SingleCollection />} />
+      <Route
+        path={`${ROUTES.COLLECTION}/:productId`}
+        element={<SingleProduct />}
+      />
       <Route path={ROUTES.FAVORITES} element={<Favorites />} />
       <Route path={ROUTES.CART} element={<Cart />} />
     </Routes>

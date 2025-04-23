@@ -59,11 +59,10 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.logo}>
-        <Link to={ROUTES.HOME}>
-          <img src={LOGO} alt="stuff" />
-        </Link>
-      </div>
+      <Link to={ROUTES.HOME}>
+        <img src={LOGO} alt="stuff" />
+      </Link>
+
       <div className={styles.info}>
         <div className={styles.user} onClick={handleClick}>
           {user?.avatar ? (
