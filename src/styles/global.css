@@ -8,7 +8,6 @@ body {
   overflow-x: hidden;
   color: #fff;
   font-weight: 500;
-  padding-bottom: 20px;
 }
 
 h1,
@@ -30,7 +29,6 @@ p {
 
 img {
   max-width: 100%;
-  height: auto;
 }
 
 input {
@@ -55,7 +53,7 @@ li {
 }
 
 .app {
-  width: 1274px;
+  /* width: 1274px; */
   margin: 0 auto;
 }
 

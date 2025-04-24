@@ -1,6 +1,5 @@
 .home {
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -12,6 +11,7 @@
   color: var(--bg);
   font-weight: 900;
   padding-left: 42px;
+  line-height: initial;
 }
 .product {
   display: flex;

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button, ButtonType } from "../Button/Button";
 
-import styles from "./Home.module.css";
+import styles from "./Poster.module.css";
 import buttonStyles from "../Button/Button.module.css";
 
 import POSTER from "../../assets/images/devices.png";
@@ -10,7 +10,7 @@ import POSTER from "../../assets/images/devices.png";
 const Poster = () => {
   return (
     <section className={styles.home}>
-      <div className={styles.title}>BIG SALE 20%</div>
+      <h1 className={styles.title}>BIG SALE 20%</h1>
       <div className={styles.product}>
         <div className={styles.text}>
           <h1 className={styles.subtitle}>the bestseller of 2024</h1>

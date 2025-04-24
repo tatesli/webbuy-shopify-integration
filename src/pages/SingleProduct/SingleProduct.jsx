@@ -17,6 +17,8 @@ import {
   getRelatedByTypeProducts,
 } from "../../features/products/productsSlice";
 
+import Layout from "../Layout/Layout";
+
 const SingleProduct = () => {
   const { productId } = useParams();
 
@@ -43,18 +45,17 @@ const SingleProduct = () => {
     }
   }, [dispatch, product, products]);
 
-  if (isLoading) {
-    return <div>Loading product...</div>;
-  }
-  if (!product) {
-    return <div>Product not found</div>;
-  }
-
   return (
-    <>
-      <Product {...product} />
-      <Products products={related} amount={4} title="Related products" />
-    </>
+    <Layout>
+      {isLoading ? (
+        <div>Loading product...</div>
+      ) : (
+        <>
+          {product && <Product {...product} />}
+          <Products products={related} amount={4} title="Related products" />
+        </>
+      )}
+    </Layout>
   );
 };
 
