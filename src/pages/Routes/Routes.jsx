@@ -5,7 +5,7 @@ import Home from "../Home/Home";
 import SingleProduct from "../SingleProduct/SingleProduct";
 import SingleCollection from "../SingleCollection/SingleCollection";
 import Favorites from "../Favorites/Favorites";
-import Cart from "../cart/Cart";
+import Cart from "../Cart/Cart";
 
 export const ROUTES = {
   HOME: "/",

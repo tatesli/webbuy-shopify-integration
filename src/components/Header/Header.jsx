@@ -11,6 +11,7 @@ import { toggleForm } from "../../features/user/userSlice";
 import { Button, ButtonType } from "../../components/Button/Button";
 import Profile from "../Profile/Profile";
 import UserForm from "../User/UserForm";
+import Sidebar from "../Sidebar/Sidebar";
 
 import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,7 +27,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [showSidebar, setShowSidebar] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -34,6 +37,12 @@ const Header = () => {
   const cartQuantity = useSelector(selectCartQuantity);
   const { user, isAuthenticated } = useSelector(getUser);
 
+  const handleSearchClick = () => {
+    setShowSearch((prev) => !prev);
+  };
+  const handleBurgerClick = () => {
+    setShowSidebar((prev) => !prev);
+  };
   useEffect(() => {
     if (!searchValue) {
       setSearchResults([]);
@@ -60,9 +69,19 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <Link to={ROUTES.HOME}>
-        <img src={LOGO} alt="stuff" />
+        <img className={styles.logo} src={LOGO} alt="webbuy" />
       </Link>
-
+      <div
+        className={`${styles.burger} ${showSidebar ? styles.showSidebar : ""}`}
+        onClick={handleBurgerClick}
+      >
+        <button className={styles.burgerButton}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      {showSidebar && <Sidebar />}
       <div className={styles.info}>
         <div className={styles.user} onClick={handleClick}>
           {user?.avatar ? (
@@ -72,26 +91,32 @@ const Header = () => {
               alt="avatar"
             />
           ) : (
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon className={styles.userIcon} icon={faUser} />
           )}
           <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
         {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
         <UserForm />
         <form className={styles.form}>
-          <div className={styles.icon}>
+          <div className={styles.icon} onClick={handleSearchClick}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
-          <div className={styles.input}>
-            <input
-              type="search"
-              name="search"
-              placeholder="Search for anything.."
-              autoComplete="off"
-              onChange={handleSearch}
-              value={searchValue}
-            />
-          </div>
+          {showSearch && (
+            <div
+              className={`${styles.input} ${
+                showSearch ? styles.showInput : ""
+              }`}
+            >
+              <input
+                type="search"
+                name="search"
+                placeholder="Search for anything.."
+                autoComplete="off"
+                onChange={handleSearch}
+                value={searchValue}
+              />
+            </div>
+          )}
           {searchValue && (
             <div className={styles.box}>
               {searchResults.length === 0 ? (

@@ -1,5 +1,5 @@
 .container {
-  width: calc(100% - 324px);
+  /* width: calc(100% - 324px); */
   padding: 24px 32px;
   display: flex;
   flex-direction: column;

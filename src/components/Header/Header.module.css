@@ -48,13 +48,14 @@
 }
 
 .icon {
-  width: 13px;
-  height: 13px;
-  color: var(--dark-sea);
+  width: 14px;
+  height: 14px;
+  /* color: var(--dark-sea); */
 }
 
 .input {
   flex-grow: 1;
+  display: block;
 }
 
 .input input {
@@ -64,7 +65,7 @@
   color: var(--grey);
   background: none;
   outline: none;
-  width: 100%;
+  max-width: 100%;
 }
 
 .account {
@@ -133,8 +134,8 @@
   align-items: center;
   overflow: hidden;
   border-radius: 6px;
-  height: 50px;
-  width: 50px;
+  max-height: 50px;
+  max-width: 50px;
 }
 
 .image img {
@@ -143,44 +144,64 @@
   object-fit: cover;
   border-radius: 6px;
 }
-@media (max-width: 1024px) {
-  .form {
-    width: 250px;
-  }
 
-  .logo {
-    width: 220px;
-    margin-left: 20px;
-  }
-
-  .username {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .form {
-    display: none;
-  }
-
-  .logo {
-    width: 180px;
-    margin-left: 10px;
-  }
-
-  .info {
-    gap: 16px;
-    justify-content: flex-end;
-  }
-
-  .account {
-    gap: 8px;
-  }
+.burger {
+  display: none;
 }
 
 @media (max-width: 960px) {
   .header {
     width: 100%;
     flex-direction: column;
+  }
+  .logo {
+    margin-left: 90px;
+  }
+  .input {
+    display: none;
+  }
+  .showInput {
+    display: block;
+  }
+  .username {
+    display: none;
+  }
+  .userIcon {
+    padding: 10px 16px;
+  }
+  .burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 40px;
+    height: 30px;
+  }
+  .burgerButton {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .burgerButton span {
+    display: block;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .showSidebar .burgerButton span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .showSidebar .burgerButton span:nth-child(2) {
+    opacity: 0; /* Środkowa linia znika */
+  }
+
+  .showSidebar .burgerButton span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 }

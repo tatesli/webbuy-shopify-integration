@@ -9,7 +9,6 @@ const SingleCollection = () => {
   return (
     <Layout>
       <Collection />
-      <Poster />
     </Layout>
   );
 };

@@ -2,7 +2,7 @@
   display: flex;
   flex: 1;
   padding: 24px;
-  max-height: 424px;
+  max-height: fit-content;
   column-gap: 20px;
 }
 .wrapperCurrent {
@@ -72,7 +72,7 @@
   text-align: left;
   font-weight: 400;
   font-size: 12px;
-  line-height: 15px;
+  line-height: 24px;
   color: var(--grey);
 }
 
@@ -92,4 +92,25 @@
 .add:disabled {
   cursor: not-allowed;
   background: var(--bg);
+}
+@media (max-width: 960px) {
+  .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wrapperCurrent {
+    max-width: 400px;
+    margin-top: 36px;
+  }
+  .imagesList {
+    padding-top: 20px;
+  }
+  .image {
+    margin: 5px;
+  }
+  .info {
+    margin-top: 15px;
+    max-width: 400px;
+  }
 }
