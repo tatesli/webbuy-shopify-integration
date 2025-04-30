@@ -198,7 +198,7 @@
   }
 
   .showSidebar .burgerButton span:nth-child(2) {
-    opacity: 0; /* Środkowa linia znika */
+    opacity: 0;
   }
 
   .showSidebar .burgerButton span:nth-child(3) {

@@ -71,17 +71,7 @@ const Header = () => {
       <Link to={ROUTES.HOME}>
         <img className={styles.logo} src={LOGO} alt="webbuy" />
       </Link>
-      <div
-        className={`${styles.burger} ${showSidebar ? styles.showSidebar : ""}`}
-        onClick={handleBurgerClick}
-      >
-        <button className={styles.burgerButton}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      {showSidebar && <Sidebar />}
+
       <div className={styles.info}>
         <div className={styles.user} onClick={handleClick}>
           {user?.avatar ? (
@@ -158,6 +148,20 @@ const Header = () => {
             <span className={styles.count}>{cartQuantity}</span>
           </Button>
         </div>
+
+        <div
+          className={`${styles.burger} ${
+            showSidebar ? styles.showSidebar : ""
+          }`}
+          onClick={handleBurgerClick}
+        >
+          <button className={styles.burgerButton}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        {showSidebar && <Sidebar />}
       </div>
     </div>
   );

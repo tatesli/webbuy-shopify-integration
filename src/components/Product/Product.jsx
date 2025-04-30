@@ -19,29 +19,33 @@ const Product = (item) => {
   const { title, images, description, variants } = item;
 
   const [currentImage, setCurrentImage] = useState();
+  const [selectedVariant, setSelectedVariant] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
 
-  const price = variants && variants.length > 0 ? variants[0].price : 0;
+  const price = selectedVariant?.price ?? variants?.[0]?.price ?? 0;
 
   const colors = [...new Set(variants.map((variant) => variant.color))];
 
   const sizes = [...new Set(variants.map((variant) => variant.size))];
 
   const handleSizeClick = (size) => {
-    if (selectedSize === size) {
-      setSelectedSize(null);
-    } else {
-      setSelectedSize(size);
-    }
-  };
+    const newSize = selectedSize === size ? null : size;
+    setSelectedSize(newSize);
 
+    const matchedVariant = variants.find(
+      (v) => v.color === selectedColor && v.size === newSize
+    );
+    setSelectedVariant(matchedVariant || null);
+  };
   const handleColorClick = (color) => {
-    if (selectedColor === color) {
-      setSelectedColor(null);
-    } else {
-      setSelectedColor(color);
-    }
+    const newColor = selectedColor === color ? null : color;
+    setSelectedColor(newColor);
+
+    const matchedVariant = variants.find(
+      (v) => v.size === selectedSize && v.color === newColor
+    );
+    setSelectedVariant(matchedVariant || null);
   };
 
   useEffect(() => {

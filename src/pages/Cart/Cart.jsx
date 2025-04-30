@@ -28,7 +28,6 @@ const Cart = () => {
       dispatch(addToCart({ ...item, quantity }));
     }
   };
-
   const totalPrice = sumBy(
     itemsList.map(({ quantity = 1, variants = [] }) => {
       const price = variants[0]?.price || 0;
