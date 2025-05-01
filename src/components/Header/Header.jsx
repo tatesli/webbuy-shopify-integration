@@ -2,28 +2,29 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-import { ROUTES } from "../../pages/Routes/Routes";
-import { getAllProducts } from "../../features/products/productsSlice";
-import { getUser } from "../../features/user/userSlice";
-import { selectCartQuantity, cleanProductId } from "../../utils/common";
-import { toggleForm } from "../../features/user/userSlice";
-import { Button, ButtonType } from "../../components/Button/Button";
-import Profile from "../Profile/Profile";
-import UserForm from "../User/UserForm";
-import Sidebar from "../Sidebar/Sidebar";
-
-import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faMagnifyingGlass,
   faBagShopping,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import LOGO from "../../assets/images/logo.svg";
+import { ROUTES } from "../../pages/Routes/Routes";
+import { getAllProducts } from "../../features/products/productsSlice";
+import { getUser } from "../../features/user/userSlice";
+import { selectCartQuantity, cleanProductId } from "../../utils/common";
+import { toggleForm } from "../../features/user/userSlice";
 
-const Header = () => {
+import { Button, ButtonType } from "../Button";
+import { Modal } from "../Modal";
+import { Profile } from "../Profile";
+import { Sidebar } from "../Sidebar";
+import { UserForm } from "../User";
+import styles from "./Header.module.css";
+
+export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -85,28 +86,26 @@ const Header = () => {
           )}
           <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
-        {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
-        <UserForm />
-        <form className={styles.form}>
+
+        <form className={`${styles.form} ${showSearch ? styles.showForm : ""}`}>
           <div className={styles.icon} onClick={handleSearchClick}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
-          {showSearch && (
-            <div
-              className={`${styles.input} ${
-                showSearch ? styles.showInput : ""
-              }`}
-            >
-              <input
-                type="search"
-                name="search"
-                placeholder="Search for anything.."
-                autoComplete="off"
-                onChange={handleSearch}
-                value={searchValue}
-              />
-            </div>
-          )}
+
+          <div
+            className={`${styles.input} ${showSearch ? styles.showInput : ""}`}
+          >
+            <input
+              type="search"
+              name="search"
+              placeholder="Search for anything.."
+              autoComplete="off"
+              onChange={handleSearch}
+              value={searchValue}
+              autoFocus={showSearch}
+            />
+          </div>
+
           {searchValue && (
             <div className={styles.box}>
               {searchResults.length === 0 ? (
@@ -148,23 +147,25 @@ const Header = () => {
             <span className={styles.count}>{cartQuantity}</span>
           </Button>
         </div>
-
-        <div
-          className={`${styles.burger} ${
-            showSidebar ? styles.showSidebar : ""
-          }`}
-          onClick={handleBurgerClick}
-        >
-          <button className={styles.burgerButton}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <div className={styles.burger}>
+          <Button
+            type={ButtonType.primaryIcon}
+            icon={<FontAwesomeIcon icon={faBars} size="2x" />}
+            onClick={handleBurgerClick}
+          />
         </div>
-        {showSidebar && <Sidebar />}
       </div>
+      {showSidebar && (
+        <Modal
+          isOpen={showSidebar}
+          onClose={() => setShowSidebar(false)}
+          title={"Categories"}
+        >
+          <Sidebar onClose={() => setShowSidebar(false)} />
+        </Modal>
+      )}
+      {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
+      <UserForm />
     </div>
   );
 };
-
-export default Header;

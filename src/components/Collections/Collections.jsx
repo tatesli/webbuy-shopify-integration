@@ -5,7 +5,7 @@ import { cleanCollectionId } from "../../utils/common";
 
 import styles from "./Collections.module.css";
 
-const Collections = ({ title, collections = [], amount }) => {
+export const Collections = ({ title, collections = [], amount }) => {
   const list = collections.filter((_, i) => i < amount);
 
   return (
@@ -26,5 +26,3 @@ const Collections = ({ title, collections = [], amount }) => {
     </section>
   );
 };
-
-export default Collections;

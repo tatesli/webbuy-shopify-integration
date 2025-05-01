@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100%;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.content {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.question h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.question p {
+  color: var(--dark-sea);
+  line-height: 1.5;
+}

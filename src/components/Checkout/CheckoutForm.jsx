@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import { Button, ButtonType } from "../Button/Button";
 import { clearCart } from "../../features/cart/cartSlice";
 
+import { Button, ButtonType } from "../Button";
 import styles from "./Checkout.module.css";
 
-const CheckoutForm = () => {
+export const CheckoutForm = () => {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
 
@@ -30,9 +30,9 @@ const CheckoutForm = () => {
     enqueueSnackbar("Order placed!", {
       variant: "success",
     });
-    console.log(orders);
   };
   const { register, handleSubmit, reset } = useForm();
+
   return (
     <section className={styles.container}>
       <form className={styles.form}>
@@ -119,5 +119,3 @@ const CheckoutForm = () => {
     </section>
   );
 };
-
-export default CheckoutForm;

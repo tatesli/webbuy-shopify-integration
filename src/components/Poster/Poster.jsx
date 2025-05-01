@@ -1,13 +1,13 @@
 import React from "react";
 
-import { Button, ButtonType } from "../Button/Button";
+import { Button, ButtonType } from "../Button";
 
 import styles from "./Poster.module.css";
 import buttonStyles from "../Button/Button.module.css";
 
 import POSTER from "../../assets/images/devices.png";
 
-const Poster = () => {
+export const Poster = () => {
   return (
     <section className={styles.home}>
       <h1 className={styles.title}>BIG SALE 20%</h1>
@@ -28,5 +28,3 @@ const Poster = () => {
     </section>
   );
 };
-
-export default Poster;

@@ -2,13 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
-
-import styles from "./WishlistCart.module.css";
+import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Button, ButtonType } from "../../components/Button/Button";
-
-import { faClose, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Button, ButtonType } from "../Button";
+import styles from "./WishlistCart.module.css";
 
 const cleanId = (id) => id.replace("gid://shopify/Product/", "");
 
@@ -18,7 +16,7 @@ export const WishlistCartType = {
   checkout: "checkout",
 };
 
-const WishlistCart = ({
+export const WishlistCart = ({
   items,
   type,
   onRemove,
@@ -141,5 +139,3 @@ const WishlistCart = ({
     </section>
   );
 };
-
-export default WishlistCart;

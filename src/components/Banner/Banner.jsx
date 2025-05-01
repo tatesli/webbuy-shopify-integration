@@ -1,12 +1,12 @@
 import React from "react";
 
 import BANNER from "../../assets/images/banner.png";
-import { Button, ButtonType } from "../../components/Button/Button";
+import { Button, ButtonType } from "../Button";
 
 import styles from "./Banner.module.css";
 import buttonStyles from "../Button/Button.module.css";
 
-const Banner = () => {
+export const Banner = () => {
   return (
     <section className={styles.banner}>
       <div className={styles.left}>
@@ -29,5 +29,3 @@ const Banner = () => {
     </section>
   );
 };
-
-export default Banner;

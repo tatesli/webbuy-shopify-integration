@@ -3,11 +3,8 @@ import { useSelector } from "react-redux";
 
 import { getFavorites } from "../../features/favorites/favoritesSlice";
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
-import WishlistCart, {
-  WishlistCartType,
-} from "../../components/WishlistCart/WishlistCart";
 
-import Layout from "../Layout/Layout";
+import { Layout, WishlistCart, WishlistCartType } from "../../components";
 
 const Favorites = () => {
   const favorites = useSelector(getFavorites);

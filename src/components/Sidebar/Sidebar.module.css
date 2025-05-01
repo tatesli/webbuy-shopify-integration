@@ -19,10 +19,17 @@
   align-items: center;
 }
 
+.modalSidebar {
+  margin-top: 0;
+  padding: 0;
+  width: auto;
+}
+
 .link {
   color: var(--dark-sea);
   font-size: 14px;
   line-height: 17px;
+  cursor: pointer;
 }
 
 .link:hover {

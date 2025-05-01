@@ -1,10 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import { ROUTES } from "../../pages/Routes/Routes";
-
-import styles from "./Footer.module.css";
-import LOGO from "../../assets/images/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
@@ -12,7 +7,12 @@ import {
   faSquareYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
-const Footer = () => {
+import LOGO from "../../assets/images/logo.svg";
+import { ROUTES } from "../../pages/Routes";
+
+import styles from "./Footer.module.css";
+
+export const Footer = () => {
   return (
     <section className={styles.footer}>
       <div className={styles.logo}>
@@ -26,10 +26,9 @@ const Footer = () => {
       </div> */}
       <div className={styles.socials}>
         <a href="https://instagram.com">
-           <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
+          <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
         </a>
         <a href="https://facebook.com">
-           
           <FontAwesomeIcon
             icon={faSquareFacebook}
             className={styles.socialIcon}
@@ -45,5 +44,3 @@ const Footer = () => {
     </section>
   );
 };
-
-export default Footer;

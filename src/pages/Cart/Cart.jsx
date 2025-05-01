@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -7,18 +6,12 @@ import {
   removeFromCart,
   getCart,
 } from "../../features/cart/cartSlice.js";
-
 import { sumBy } from "../../utils/common.js";
 
-import WishlistCart, {
-  WishlistCartType,
-} from "../../components/WishlistCart/WishlistCart.jsx";
-
-import Layout from "../Layout/Layout";
+import { Layout, WishlistCart, WishlistCartType } from "../../components";
 
 const Cart = () => {
   const dispatch = useDispatch();
-
   const { isLoading, itemsList } = useSelector(getCart);
 
   const changeQuantity = (item, quantity) => {
@@ -34,6 +27,7 @@ const Cart = () => {
       return (Number(quantity) || 0) * (Number(price) || 0);
     })
   );
+
   return (
     <Layout>
       <WishlistCart
@@ -47,4 +41,5 @@ const Cart = () => {
     </Layout>
   );
 };
+
 export default Cart;

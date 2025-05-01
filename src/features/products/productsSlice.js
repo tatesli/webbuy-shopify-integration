@@ -13,7 +13,7 @@ export const getProducts = createAsyncThunk(
 
   async () => {
     const products = await client.product.fetchAll(100);
-
+    // console.log("%c get products", "color: white; background: red", products);
     const list = products.map((product) => {
       const image = product.images[0]?.src;
       const rawPrice = product.variants[0]?.price?.amount;
@@ -27,7 +27,7 @@ export const getProducts = createAsyncThunk(
         productType: product.productType,
       };
     });
-    console.log("%c get products", "color: white; background: red", list);
+    // console.log("%c get products", "color: white; background: red", list);
     return list;
   }
 );

@@ -1,7 +1,7 @@
 .wrapper {
   width: 100%;
   padding: 24px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
 }
 
 .filters {
