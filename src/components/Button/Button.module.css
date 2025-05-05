@@ -18,7 +18,7 @@
   background: var(--violet-dark);
 }
 .default {
-  background: transparent;
+  background: var(--dark-sea);
 }
 .primary:hover,
 .default:hover {
@@ -36,8 +36,8 @@
   border: none;
   background: var(--dark-sea);
   border-radius: 6px;
-  width: 20px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;

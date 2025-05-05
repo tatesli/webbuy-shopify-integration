@@ -19,7 +19,7 @@
   text-align: center;
 }
 .text span {
-  line-height: 183px;
+  line-height: 184px;
   font-size: 150px;
   display: block;
 }
@@ -48,12 +48,28 @@
   font-weight: 700;
 }
 
+@media (max-width: 1366px) {
+  .discount {
+    font-size: 15px;
+  }
+  .text {
+    font-size: 60px;
+  }
+  .text span {
+    font-size: 120px;
+  }
+}
+
 @media (max-width: 960px) {
   .banner {
     flex-direction: column-reverse;
     height: 100%;
   }
-  .left,
+  .left {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+  }
   .right {
     width: 100%;
     height: 100%;
@@ -63,14 +79,16 @@
     margin-bottom: 45px;
   }
   .text {
-    font-size: 110px;
+    font-size: 40px;
     line-height: 50px;
-    margin: 120px;
+    margin: 20px;
   }
-
   .text span {
-    font-size: 240px;
+    font-size: 80px;
     line-height: 100px;
-    margin: 80px;
+    margin: 10px;
+  }
+  .image {
+    height: 300px;
   }
 }

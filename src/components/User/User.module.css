@@ -1,59 +1,43 @@
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(33, 33, 35, 0.8);
-  z-index: 98;
-}
-
-.wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background: var(--dark);
-  width: 320px;
-  height: 100vh;
-  z-index: 99;
-  padding: 24px;
-}
-
-.title {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-  color: var(--light);
-  text-align: center;
-}
-
 .form {
-  margin-top: 24px;
   display: flex;
   align-items: center;
   width: 100%;
   flex-direction: column;
   row-gap: 16px;
 }
+.group {
+  width: 100%;
+}
 
 .group input {
   width: 100%;
-  background: #212123;
+  background: var(--dark-sea);
   border-radius: 8px;
-  color: var(--light);
+  color: var(--white);
   padding: 12px 24px;
+}
+.group input::placeholder {
+  color: var(--grey);
 }
 .avatar {
   display: flex;
   gap: 34px;
+  align-items: center;
+  justify-content: space-between;
 }
-.img {
+.imgWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 45px;
   height: 45px;
   border-radius: 50%;
+
+  overflow: hidden;
+}
+.img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   overflow: hidden;
 }
@@ -82,16 +66,26 @@
   text-align: center;
   color: red;
 }
+
 .error:hover {
   color: var(--light);
 }
 .link {
   font-size: 13px;
-  color: var(--dark-sea);
+  color: var(--light);
   cursor: pointer;
   text-align: center;
+  height: 20px;
 }
 
 .link:hover {
   color: var(--light);
+}
+.iconWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-sea);
 }

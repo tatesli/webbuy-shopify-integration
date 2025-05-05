@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -7,16 +6,12 @@ import {
   removeFromCart,
   getCart,
 } from "../../features/cart/cartSlice.js";
-
 import { sumBy } from "../../utils/common.js";
 
-import WishlistCart, {
-  WishlistCartType,
-} from "../../components/WishlistCart/WishlistCart.jsx";
+import { Layout, WishlistCart, WishlistCartType } from "../../components";
 
 const Cart = () => {
   const dispatch = useDispatch();
-
   const { isLoading, itemsList } = useSelector(getCart);
 
   const changeQuantity = (item, quantity) => {
@@ -26,22 +21,25 @@ const Cart = () => {
       dispatch(addToCart({ ...item, quantity }));
     }
   };
-
   const totalPrice = sumBy(
     itemsList.map(({ quantity = 1, variants = [] }) => {
       const price = variants[0]?.price || 0;
       return (Number(quantity) || 0) * (Number(price) || 0);
     })
   );
+
   return (
-    <WishlistCart
-      items={itemsList}
-      onRemove={removeFromCart}
-      onChangeQuantity={changeQuantity}
-      type={WishlistCartType.cart}
-      isLoading={isLoading}
-      totalPrice={totalPrice}
-    />
+    <Layout>
+      <WishlistCart
+        items={itemsList}
+        onRemove={removeFromCart}
+        onChangeQuantity={changeQuantity}
+        type={WishlistCartType.cart}
+        isLoading={isLoading}
+        totalPrice={totalPrice}
+      />
+    </Layout>
   );
 };
+
 export default Cart;

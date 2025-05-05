@@ -27,7 +27,7 @@ export const getProducts = createAsyncThunk(
         productType: product.productType,
       };
     });
-    console.log("%c get products", "color: white; background: red", list);
+
     return list;
   }
 );
@@ -63,7 +63,9 @@ const productsSlice = createSlice({
 });
 
 export const { filterByPrice, relatedByType } = productsSlice.actions;
+
 export const getAllProducts = (state) => state.products.list;
 export const getFilteredProducts = (state) => state.products.filtered;
 export const getRelatedByTypeProducts = (state) => state.products.related;
+
 export default productsSlice.reducer;

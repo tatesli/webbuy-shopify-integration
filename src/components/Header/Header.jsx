@@ -1,39 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-import { ROUTES } from "../../pages/Routes/Routes";
-import { getAllProducts } from "../../features/products/productsSlice";
-import { getUser } from "../../features/user/userSlice";
-import { selectCartQuantity, cleanProductId } from "../../utils/common";
-import { toggleForm } from "../../features/user/userSlice";
-import { Button, ButtonType } from "../../components/Button/Button";
-import Profile from "../Profile/Profile";
-import UserForm from "../User/UserForm";
-
-import styles from "./Header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faMagnifyingGlass,
   faBagShopping,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import LOGO from "../../assets/images/logo.svg";
+import { ROUTES } from "../../pages/Routes/Routes";
+import { getAllProducts } from "../../features/products/productsSlice";
+import { getUser } from "../../features/user/userSlice";
+import { selectCartQuantity, cleanProductId } from "../../utils/common";
+import { toggleForm } from "../../features/user/userSlice";
 
-const Header = () => {
+import { Button, ButtonType } from "../Button";
+import { Modal } from "../Modal";
+import { Profile } from "../Profile";
+import { Sidebar } from "../Sidebar";
+import { UserForm } from "../User";
+import { AdditionalFilters } from "../AdditionalFilters";
+import styles from "./Header.module.css";
+import { getSelectedFilters } from "../../features/collections/collectionSlice";
+
+export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const params = useParams();
+  const [showSidebar, setShowSidebar] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [showProfile, setShowProfile] = useState(false);
+  const selectedFilter = useSelector(getSelectedFilters);
 
   const allProducts = useSelector(getAllProducts);
   const cartQuantity = useSelector(selectCartQuantity);
   const { user, isAuthenticated } = useSelector(getUser);
 
+  const handleSearchClick = () => {
+    setShowSearch((prev) => !prev);
+  };
+  const handleBurgerClick = () => {
+    setShowSidebar((prev) => !prev);
+  };
   useEffect(() => {
     if (!searchValue) {
       setSearchResults([]);
@@ -59,11 +72,10 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.logo}>
-        <Link to={ROUTES.HOME}>
-          <img src={LOGO} alt="stuff" />
-        </Link>
-      </div>
+      <Link to={ROUTES.HOME}>
+        <img className={styles.logo} src={LOGO} alt="webbuy" />
+      </Link>
+
       <div className={styles.info}>
         <div className={styles.user} onClick={handleClick}>
           {user?.avatar ? (
@@ -73,17 +85,23 @@ const Header = () => {
               alt="avatar"
             />
           ) : (
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon
+              className={styles.userIcon}
+              icon={faUser}
+              size="2x"
+            />
           )}
           <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
-        {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
-        <UserForm />
-        <form className={styles.form}>
-          <div className={styles.icon}>
+
+        <form className={`${styles.form} ${showSearch ? styles.showForm : ""}`}>
+          <div className={styles.icon} onClick={handleSearchClick}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
-          <div className={styles.input}>
+
+          <div
+            className={`${styles.input} ${showSearch ? styles.showInput : ""}`}
+          >
             <input
               type="search"
               name="search"
@@ -91,8 +109,10 @@ const Header = () => {
               autoComplete="off"
               onChange={handleSearch}
               value={searchValue}
+              autoFocus={showSearch}
             />
           </div>
+
           {searchValue && (
             <div className={styles.box}>
               {searchResults.length === 0 ? (
@@ -123,20 +143,44 @@ const Header = () => {
         <div className={styles.account}>
           <Button
             type={ButtonType.primaryIcon}
-            icon={<FontAwesomeIcon icon={faHeart} />}
-            onClick={() => navigate("/favorites")}
+            icon={<FontAwesomeIcon icon={faHeart} size="2x" />}
+            onClick={() => navigate(ROUTES.FAVORITES)}
           />
           <Button
             type={ButtonType.primaryIcon}
-            icon={<FontAwesomeIcon icon={faBagShopping} />}
-            onClick={() => navigate("/cart")}
+            icon={<FontAwesomeIcon icon={faBagShopping} size="2x" />}
+            onClick={() => navigate(ROUTES.CART)}
           >
             <span className={styles.count}>{cartQuantity}</span>
           </Button>
         </div>
+        <div className={styles.burger}>
+          <Button
+            type={ButtonType.primaryIcon}
+            icon={<FontAwesomeIcon icon={faBars} size="2x" />}
+            onClick={handleBurgerClick}
+          />
+          {Object.keys(selectedFilter).length > 0 && (
+            <div className={styles.filter}>
+              <p>{selectedFilter.title}</p>
+            </div>
+          )}
+        </div>
       </div>
+      {showSidebar && (
+        <Modal
+          isOpen={showSidebar}
+          onClose={() => setShowSidebar(false)}
+          title={"Categories"}
+        >
+          <Sidebar onClose={() => setShowSidebar(false)} />
+          {params.collectionId && !params.productId && <AdditionalFilters />}
+        </Modal>
+      )}
+      {showProfile && (
+        <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      )}
+      <UserForm />
     </div>
   );
 };
-
-export default Header;

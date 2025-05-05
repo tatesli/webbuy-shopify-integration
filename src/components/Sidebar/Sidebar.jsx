@@ -1,44 +1,52 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+import { ROUTES } from "../../pages/Routes";
+import { cleanCollectionId } from "../../utils/common";
+import { getAllCollections } from "../../features/collections/collectionsSlice";
 
 import styles from "./Sidebar.module.css";
 
-import { getAllCollections } from "../../features/collections/collectionsSlice";
-
-import { cleanCollectionId } from "../../utils/common";
-
-const Sidebar = () => {
+export const Sidebar = ({ onClose }) => {
   const list = useSelector(getAllCollections);
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const handleClick = (id) => {
+    navigate(`/collections/${cleanCollectionId(id)}`);
+    onClose?.();
+  };
+
   return (
-    <section className={styles.sidebar}>
-      <h2 className={styles.title}>CATEGORIES</h2>
-      <nav>
-        <ul className={styles.menu}>
-          {list.map(({ id, title }) => (
-            <li key={id}>
-              <NavLink
-                className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.active : ""}`
-                }
-                to={`/collections/${cleanCollectionId(id)}`}
-              >
-                {title}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className={styles.footer}>
-        <a className={styles.link} href="/help">
-          Help
-        </a>
-        <a className={styles.link} href="/terms">
-          Terms & Conditions
-        </a>
+    <section
+      className={`${styles.sidebar} ${onClose ? styles.modalSidebar : ""}`}
+    >
+      {!onClose && <h2 className={styles.title}>CATEGORIES</h2>}
+      <div className={`${styles.menu} ${onClose ? styles.modalSidebar : ""}`}>
+        {list.map(({ id, title }) => (
+          <div
+            key={id}
+            className={`${styles.link} ${
+              params.collectionId === cleanCollectionId(id) ? styles.active : ""
+            }`}
+            onClick={() => handleClick(id)}
+          >
+            {title}
+          </div>
+        ))}
       </div>
+
+      {!onClose && (
+        <div className={styles.footer}>
+          <a className={styles.link} href={ROUTES.HELP}>
+            Help
+          </a>
+          <a className={styles.link} href={ROUTES.TERMS}>
+            Terms & Conditions
+          </a>
+        </div>
+      )}
     </section>
   );
 };
-
-export default Sidebar;
