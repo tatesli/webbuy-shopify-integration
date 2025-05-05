@@ -21,16 +21,16 @@ export const Footer = () => {
         </Link>
       </div>
       <div className={styles.socials}>
-        <a href="https://instagram.com">
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
         </a>
-        <a href="https://facebook.com">
+        <a href="https://facebook.com" target="_blank" rel="noreferrer">
           <FontAwesomeIcon
             icon={faSquareFacebook}
             className={styles.socialIcon}
           />
         </a>
-        <a href="https://youtube.com">
+        <a href="https://youtube.com" target="_blank" rel="noreferrer">
           <FontAwesomeIcon
             icon={faSquareYoutube}
             className={styles.socialIcon}
