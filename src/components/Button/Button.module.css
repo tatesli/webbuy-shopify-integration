@@ -18,7 +18,7 @@
   background: var(--violet-dark);
 }
 .default {
-  background: transparent;
+  background: var(--dark-sea);
 }
 .primary:hover,
 .default:hover {

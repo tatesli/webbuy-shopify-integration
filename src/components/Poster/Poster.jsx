@@ -5,7 +5,7 @@ import { Button, ButtonType } from "../Button";
 import styles from "./Poster.module.css";
 import buttonStyles from "../Button/Button.module.css";
 
-import POSTER from "../../assets/images/devices.png";
+import POSTER from "../../assets/images/poster.png";
 
 export const Poster = () => {
   return (
@@ -14,7 +14,7 @@ export const Poster = () => {
       <div className={styles.product}>
         <div className={styles.text}>
           <h1 className={styles.subtitle}>the bestseller of 2024</h1>
-          <div className={styles.head}>LENNON r2d2 NVIDIA 5090 TI</div>
+          <div className={styles.head}>IPhone 16 Apple intelligence</div>
           <Button
             className={buttonStyles.button}
             type={ButtonType.primary}

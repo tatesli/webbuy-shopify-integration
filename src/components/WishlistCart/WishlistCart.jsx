@@ -60,7 +60,9 @@ export const WishlistCart = ({
 
               return (
                 <div className={styles.item} key={key}>
-                  <img className={styles.image} src={image} alt={title} />
+                  <div className={styles.imageWrapper}>
+                    <img className={styles.image} src={image} alt={title} />
+                  </div>
                   <div className={styles.info}>
                     <h3 className={styles.name}>{title}</h3>
                     <div className={styles.category}>{productType}</div>

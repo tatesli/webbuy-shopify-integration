@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Order.module.css";
 import { Layout } from "../../components";
+import { format } from "date-fns";
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [email, setEmail] = useState("");
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
+
     if (!userData) return;
 
     const user = JSON.parse(userData);
@@ -15,7 +18,7 @@ const Orders = () => {
 
     const ordersKey = `orders_${email}`;
     const savedOrders = JSON.parse(localStorage.getItem(ordersKey)) || [];
-    console.log("Loaded orders:", savedOrders);
+
     setOrders(savedOrders);
   }, []);
 
@@ -23,34 +26,31 @@ const Orders = () => {
     return <p>You must be signed in to view your order history.</p>;
   }
 
-  if (orders.length === 0) {
-    return <p>You have no orders yet.</p>;
-  }
-
   return (
     <Layout>
       <section className={styles.container}>
-        <h2>Your Orders</h2>
-        {orders.map((order, index) => (
-          <div
-            key={index}
-            style={{
-              marginBottom: "1rem",
-              border: "1px solid #ccc",
-              padding: "1rem",
-            }}
-          >
-            <h3>Order #{index + 1}</h3>
-            <p>Date: {new Date(order.date).toLocaleString()}</p>
-            <ul>
-              {order.cart.map((product, idx) => (
-                <li key={idx}>
-                  {product.title} — {product.quantity} × {product.price} PLN
-                </li>
-              ))}
-            </ul>
+        <h2 className={styles.title}>Your Orders</h2>
+        {orders.length === 0 ? (
+          <div className={styles.empty}>
+            <p>You have no orders yet.</p>
           </div>
-        ))}
+        ) : (
+          orders.map((order, index) => (
+            <div key={index} className={styles.orderCard}>
+              <h3 className={styles.orderHeader}>Order #{index + 1}</h3>
+              <p className={styles.orderDate}>
+                Date: {format(new Date(order.date), "dd.MM.yyyy")}
+              </p>
+              <ul className={styles.productList}>
+                {order.cart.map((product, idx) => (
+                  <li key={idx} className={styles.productItem}>
+                    {product.title} — {product.quantity} × {product.price} PLN
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        )}
       </section>
     </Layout>
   );

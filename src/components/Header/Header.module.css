@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: space-between;
   flex-grow: 1;
+  width: 100%;
 }
 
 .user {
@@ -50,7 +51,6 @@
 .icon {
   width: 14px;
   height: 14px;
-  /* color: var(--dark-sea); */
 }
 
 .input {
@@ -180,8 +180,16 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 40px;
-    height: 30px;
+    position: relative;
+  }
+  .filter {
+    position: absolute;
+    top: 75%;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--violet);
   }
   .burgerButton {
     all: unset;
@@ -203,5 +211,8 @@
 
   .showSidebar .burgerButton span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+  .header {
+    padding: 10px;
   }
 }

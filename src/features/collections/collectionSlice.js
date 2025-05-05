@@ -17,7 +17,7 @@ export const getCollectionProducts = createAsyncThunk(
           productsFirst: 100,
         }
       );
-      console.log(collection);
+
       const products = collection.products.map((product) => {
         const image = product.images[0]?.src;
         const rawPrice = product.variants[0]?.price?.amount;
@@ -28,7 +28,6 @@ export const getCollectionProducts = createAsyncThunk(
             name: option.name,
             values: option.values.map((value) => ({
               value: value.value,
-              // If you need other properties from the Scalar object, you can add them here
             })),
           };
         });

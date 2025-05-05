@@ -8,7 +8,6 @@ import { clearCart } from "../../features/cart/cartSlice";
 
 import { Button, ButtonType } from "../Button";
 import styles from "./Checkout.module.css";
-import { isTemplateSpan } from "typescript";
 
 export const CheckoutForm = () => {
   const cart = useSelector(getCart);
@@ -19,6 +18,7 @@ export const CheckoutForm = () => {
   const onSubmit = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     const email = user?.email?.toLowerCase();
+
     if (!email) {
       enqueueSnackbar("Sign in to view your purchase history!", {
         variant: "error",
@@ -34,13 +34,12 @@ export const CheckoutForm = () => {
       cart: items,
       date: new Date().toISOString(),
     };
-    console.log("itemsList:", items);
 
     orders.push(newOrder);
-    console.log("Saving new order:", newOrder);
-    console.log("All orders now:", orders);
+
     localStorage.setItem(ordersKey, JSON.stringify(orders));
     localStorage.removeItem("cart");
+
     dispatch(clearCart());
     reset();
     enqueueSnackbar("Order placed!", {

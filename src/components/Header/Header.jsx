@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
@@ -22,17 +22,20 @@ import { Modal } from "../Modal";
 import { Profile } from "../Profile";
 import { Sidebar } from "../Sidebar";
 import { UserForm } from "../User";
+import { AdditionalFilters } from "../AdditionalFilters";
 import styles from "./Header.module.css";
+import { getSelectedFilters } from "../../features/collections/collectionSlice";
 
 export const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const params = useParams();
   const [showSidebar, setShowSidebar] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [showProfile, setShowProfile] = useState(false);
+  const selectedFilter = useSelector(getSelectedFilters);
 
   const allProducts = useSelector(getAllProducts);
   const cartQuantity = useSelector(selectCartQuantity);
@@ -82,7 +85,11 @@ export const Header = () => {
               alt="avatar"
             />
           ) : (
-            <FontAwesomeIcon className={styles.userIcon} icon={faUser} />
+            <FontAwesomeIcon
+              className={styles.userIcon}
+              icon={faUser}
+              size="2x"
+            />
           )}
           <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
@@ -136,13 +143,13 @@ export const Header = () => {
         <div className={styles.account}>
           <Button
             type={ButtonType.primaryIcon}
-            icon={<FontAwesomeIcon icon={faHeart} />}
-            onClick={() => navigate("/favorites")}
+            icon={<FontAwesomeIcon icon={faHeart} size="2x" />}
+            onClick={() => navigate(ROUTES.FAVORITES)}
           />
           <Button
             type={ButtonType.primaryIcon}
-            icon={<FontAwesomeIcon icon={faBagShopping} />}
-            onClick={() => navigate("/cart")}
+            icon={<FontAwesomeIcon icon={faBagShopping} size="2x" />}
+            onClick={() => navigate(ROUTES.CART)}
           >
             <span className={styles.count}>{cartQuantity}</span>
           </Button>
@@ -153,6 +160,11 @@ export const Header = () => {
             icon={<FontAwesomeIcon icon={faBars} size="2x" />}
             onClick={handleBurgerClick}
           />
+          {Object.keys(selectedFilter).length > 0 && (
+            <div className={styles.filter}>
+              <p>{selectedFilter.title}</p>
+            </div>
+          )}
         </div>
       </div>
       {showSidebar && (
@@ -162,9 +174,12 @@ export const Header = () => {
           title={"Categories"}
         >
           <Sidebar onClose={() => setShowSidebar(false)} />
+          {params.collectionId && !params.productId && <AdditionalFilters />}
         </Modal>
       )}
-      {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
+      {showProfile && (
+        <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      )}
       <UserForm />
     </div>
   );

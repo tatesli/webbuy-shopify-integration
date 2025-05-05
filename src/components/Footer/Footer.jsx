@@ -20,10 +20,6 @@ export const Footer = () => {
           <img src={LOGO} alt="stuff" />
         </Link>
       </div>
-      {/* <div className={styles.rights}>
-        Developed by {""}
-        <a href="https://github.com/tatesli">Tetiana Slidenko</a>
-      </div> */}
       <div className={styles.socials}>
         <a href="https://instagram.com">
           <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
