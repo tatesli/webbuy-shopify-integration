@@ -15,7 +15,8 @@
   background-color: white;
   border-radius: 5px;
   min-width: 300px;
-  /* max-width: 500px; */
+  height: 500px;
+  flex: 1;
 }
 .currentImg {
   object-fit: contain;
@@ -127,6 +128,7 @@
     height: 400px;
     margin-top: 36px;
     max-height: none;
+    flex: auto;
   }
   .imagesList {
     padding-top: 20px;

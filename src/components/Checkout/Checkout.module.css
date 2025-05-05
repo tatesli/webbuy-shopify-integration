@@ -12,11 +12,14 @@
 }
 .formGroup input {
   width: 100%;
-  background: #212123;
+  background: var(--dark-sea);
   color: var(--light);
   border-radius: 8px;
   padding: 12px 14px;
   margin-top: 10px;
+}
+.formGroup input::placeholder {
+  color: var(--grey);
 }
 .btnWrapper {
   margin-top: 18px;

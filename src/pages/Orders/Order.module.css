@@ -1,37 +1,34 @@
 .container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
+  padding: 20px;
   font-family: sans-serif;
+  height: -webkit-fill-available;
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: 24px;
+  margin-bottom: 20px;
   text-align: center;
-  color: #333;
 }
 
 .orderCard {
-  border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  background-color: #fafafa;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: var(--light);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .orderHeader {
-  font-size: 1.2rem;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #444;
+  margin-bottom: 10px;
+  color: var(--dark-sea);
 }
 
 .orderDate {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.8rem;
+  font-size: 14px;
+  color: var(--dark-sea);
+  margin-bottom: 10px;
 }
 
 .productList {
@@ -42,11 +39,17 @@
 
 .productItem {
   padding: 0.3rem 0;
-  border-bottom: 1px dashed #ccc;
-  font-size: 0.95rem;
-  color: #333;
+  font-size: 14px;
+  color: var(--dark-sea);
 }
 
 .productItem:last-child {
   border-bottom: none;
+}
+
+.empty {
+  height: calc(100% - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
