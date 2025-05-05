@@ -33,7 +33,7 @@ const Home = () => {
     <Layout>
       <Poster />
       <Products products={products} amount={4} title="Trending" />
-      <Collections collections={collections} amount={6} title="Worth Seeing" />
+      <Collections collections={collections} title="Worth Seeing" />
       <Banner />
       <Products products={filteredProducts} amount={4} title="Less than 100$" />
     </Layout>

@@ -164,7 +164,9 @@ export const Header = () => {
           <Sidebar onClose={() => setShowSidebar(false)} />
         </Modal>
       )}
-      {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
+      {showProfile && (
+        <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      )}
       <UserForm />
     </div>
   );

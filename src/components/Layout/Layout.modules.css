@@ -33,6 +33,7 @@
   flex: 1;
   margin-left: 310px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @media (max-width: 1280px) {

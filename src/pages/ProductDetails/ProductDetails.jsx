@@ -43,7 +43,7 @@ const ProductDetails = () => {
       ) : (
         <>
           {product && <Product product={product} />}
-          <Products products={related} amount={4} title="Related products" />
+          <Products products={related} amount={20} title="Related products" />
         </>
       )}
     </Layout>
