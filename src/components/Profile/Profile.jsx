@@ -56,6 +56,12 @@ export const Profile = ({ onClose, isOpen }) => {
             >
               Your Favorites
             </Button>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.ORDERS)}
+            >
+              Your Orders
+            </Button>
           </div>
           <div className={styles.logout}>
             <Button
