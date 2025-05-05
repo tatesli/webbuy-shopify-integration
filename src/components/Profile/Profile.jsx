@@ -48,6 +48,7 @@ export const Profile = ({ closeProfile }) => {
           <div className={styles.links}>
             <Link to={ROUTES.CART}>Your Cart</Link>
             <Link to={ROUTES.FAVORITES}>Your Favorites</Link>
+            <Link to={ROUTES.ORDERS}>Your Orders</Link>
           </div>
           <div className={styles.logout}>
             <Button

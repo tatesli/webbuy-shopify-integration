@@ -5,6 +5,7 @@ import Cart from "../Cart";
 import Checkout from "../Checkout";
 import Collection from "../Collection";
 import Favorites from "../Favorites";
+import Orders from "../Orders";
 import Home from "../Home";
 import ProductDetails from "../ProductDetails";
 import Help from "../Help";
@@ -14,6 +15,7 @@ export const ROUTES = {
   HOME: "/",
   CART: "/cart",
   FAVORITES: "/favorites",
+  ORDERS: "/orders",
   PRODUCT: "/products/:productId",
   COLLECTION: "/collections/:collectionId",
   CHECKOUT: "/checkout",
@@ -33,6 +35,7 @@ const AppRoutes = () => {
       />
       <Route path={ROUTES.FAVORITES} element={<Favorites />} />
       <Route path={ROUTES.CART} element={<Cart />} />
+      <Route path={ROUTES.ORDERS} element={<Orders />} />
       <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
       <Route path={ROUTES.HELP} element={<Help />} />
       <Route path={ROUTES.TERMS} element={<Terms />} />
