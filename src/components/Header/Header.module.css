@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: space-between;
   flex-grow: 1;
+  width: 100%;
 }
 
 .user {
@@ -50,7 +51,6 @@
 .icon {
   width: 14px;
   height: 14px;
-  /* color: var(--dark-sea); */
 }
 
 .input {
@@ -63,9 +63,7 @@
   font-size: 12px;
   line-height: 14px;
   color: var(--grey);
-  background: none;
-  outline: none;
-  max-width: 100%;
+  width: 100%;
 }
 
 .account {
@@ -160,6 +158,14 @@
   .input {
     display: none;
   }
+  .form {
+    width: inherit;
+    background-color: transparent;
+  }
+  .showForm {
+    width: 300px;
+    background: var(--dark);
+  }
   .showInput {
     display: block;
   }
@@ -174,8 +180,16 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 40px;
-    height: 30px;
+    position: relative;
+  }
+  .filter {
+    position: absolute;
+    top: 75%;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--violet);
   }
   .burgerButton {
     all: unset;
@@ -186,13 +200,7 @@
     height: 20px;
     cursor: pointer;
   }
-  .burgerButton span {
-    display: block;
-    height: 4px;
-    background-color: white;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
+
   .showSidebar .burgerButton span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
@@ -203,5 +211,8 @@
 
   .showSidebar .burgerButton span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+  .header {
+    padding: 10px;
   }
 }

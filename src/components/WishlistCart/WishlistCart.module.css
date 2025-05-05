@@ -5,7 +5,7 @@
 }
 
 .cart .item {
-  grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 16px;
+  grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 40px;
 }
 
 .favorites .item {
@@ -31,17 +31,22 @@
   background: var(--bg);
   padding: 12px 16px;
   display: grid;
-  grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 16px;
+  grid-template-columns: 100px 2fr 1fr 1.5fr 1fr 40px;
   align-items: center;
   border-radius: 6px;
 }
 
-.image {
-  object-fit: cover;
-  object-position: center;
-  height: 38px;
-  width: 100%;
+.imageWrapper {
+  width: 100px;
+  height: 100px;
+  background-color: var(--white);
   border-radius: 6px;
+}
+
+.image {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }
 
 .info {

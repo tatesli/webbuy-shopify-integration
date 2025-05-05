@@ -1,38 +1,59 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
-import { Button, ButtonType } from "../Button/Button";
+import { getCart } from "../../features/cart/cartSlice";
 import { clearCart } from "../../features/cart/cartSlice";
 
+import { Button, ButtonType } from "../Button";
 import styles from "./Checkout.module.css";
 
-const CheckoutForm = () => {
+export const CheckoutForm = () => {
+  const cart = useSelector(getCart);
+  const items = cart.itemsList;
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    const rawOrders = localStorage.getItem("orders");
-    const rawCart = localStorage.getItem("cart");
+  const onSubmit = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const email = user?.email?.toLowerCase();
 
+    if (!email) {
+      enqueueSnackbar("Sign in to view your purchase history!", {
+        variant: "error",
+      });
+      return;
+    }
+
+    const ordersKey = `orders_${email}`;
+    const rawOrders = localStorage.getItem(ordersKey);
     const orders = rawOrders ? JSON.parse(rawOrders) : [];
-    const cart = rawCart ? JSON.parse(rawCart) : [];
+
     const newOrder = {
-      ...data,
-      cart,
+      cart: items,
+      date: new Date().toISOString(),
     };
+
     orders.push(newOrder);
-    localStorage.setItem("orders", JSON.stringify(orders));
+
+    localStorage.setItem(ordersKey, JSON.stringify(orders));
     localStorage.removeItem("cart");
+
     dispatch(clearCart());
     reset();
     enqueueSnackbar("Order placed!", {
       variant: "success",
     });
-    console.log(orders);
   };
-  const { register, handleSubmit, reset } = useForm();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
   return (
     <section className={styles.container}>
       <form className={styles.form}>
@@ -42,8 +63,13 @@ const CheckoutForm = () => {
             type="text"
             autoComplete="off"
             placeholder="Enter First Name"
-            {...register("firstName", { required: true })}
+            {...register("firstName", {
+              required: " Name is required",
+            })}
           />
+          {errors.firstName && (
+            <p className={styles.error}>{errors.firstName.message}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>Last Name</label>
@@ -51,32 +77,44 @@ const CheckoutForm = () => {
             placeholder="Enter Last Name"
             autoComplete="off"
             type="text"
-            {...register("lastName", { required: true })}
+            {...register("lastName", {
+              required: "Last Name is required",
+            })}
           />
+          {errors.lastName && (
+            <p className={styles.error}>{errors.lastName.message}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>Country</label>
           <input
             placeholder="Enter country"
             type="text"
-            {...register("country", { required: true })}
+            {...register("country", { required: "Country is required" })}
           />
+          {errors.country && (
+            <p className={styles.error}>{errors.country.message}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>City</label>
           <input
             placeholder="Enter city"
             type="text"
-            {...register("city", { required: true })}
+            {...register("city", { required: "City is required" })}
           />
+          {errors.city && <p className={styles.error}>{errors.city.message}</p>}
         </div>
         <div className={styles.formGroup}>
           <label>Address 1</label>
           <input
             placeholder="Enter address 1"
             type="text"
-            {...register("address1", { required: true })}
+            {...register("address1", { required: "Address is required" })}
           />
+          {errors.address1 && (
+            <p className={styles.error}>{errors.address1.message}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>Address 2</label>
@@ -90,9 +128,12 @@ const CheckoutForm = () => {
           <label>Phone Number</label>
           <input
             placeholder="+48"
-            type="tel"
-            {...register("phone", { required: true })}
+            type="number"
+            {...register("phone", { required: "Phone Number is required" })}
           />
+          {errors.phone && (
+            <p className={styles.error}>{errors.phone.message}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>Zip Code</label>
@@ -107,6 +148,7 @@ const CheckoutForm = () => {
               },
             })}
           />
+          {errors.zip && <p className={styles.error}>{errors.zip.message}</p>}
         </div>
       </form>
       <div className={styles.btnWrapper}>
@@ -119,5 +161,3 @@ const CheckoutForm = () => {
     </section>
   );
 };
-
-export default CheckoutForm;

@@ -1,26 +1,24 @@
 import React from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
-
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../pages/Routes/Routes";
-import { getUser } from "../../features/user/userSlice";
-import { logoutUser } from "../../features/user/userSlice";
-import { clearCart } from "../../features/cart/cartSlice";
-
-import { Button, ButtonType } from "../../components/Button/Button";
-import UserForm from "../User/UserForm";
-
-import styles from "./Profile.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-const Profile = ({ closeProfile }) => {
-  const user = useSelector(getUser);
+import { ROUTES } from "../../pages/Routes/Routes";
+import { clearCart } from "../../features/cart/cartSlice";
+import { getUser } from "../../features/user/userSlice";
+import { logoutUser } from "../../features/user/userSlice";
 
+import { Button, ButtonType } from "../Button";
+import { UserForm } from "../User";
+import styles from "./Profile.module.css";
+import { Modal } from "../Modal";
+
+export const Profile = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
-
+  const user = useSelector(getUser);
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const handleLogout = () => {
@@ -29,42 +27,54 @@ const Profile = ({ closeProfile }) => {
     enqueueSnackbar("You have successfully logged out!", {
       variant: "success",
     });
-    closeProfile();
+    onClose();
   };
+
   if (!user) {
     return null;
   }
+  const handleLinkClick = (path) => {
+    navigate(path);
+    onClose();
+  };
 
   return (
-    <div className={styles.wrapper}>
+    <Modal isOpen={isOpen} onClose={onClose} title="Profile">
       {user ? (
         <>
-          <div className={styles.close}>
-            <Button
-              type={ButtonType.icon}
-              icon={<FontAwesomeIcon icon={faClose} />}
-              onClick={closeProfile}
-            />
-          </div>
-
           <h1 className={styles.title}>Welcome, {user.user?.name}!</h1>
           <div className={styles.links}>
-            <Link to={ROUTES.CART}>Your Cart</Link>
-            <Link to={ROUTES.FAVORITES}>Your Favorites</Link>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.CART)}
+            >
+              Your Cart
+            </Button>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.FAVORITES)}
+            >
+              Your Favorites
+            </Button>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.ORDERS)}
+            >
+              Your Orders
+            </Button>
           </div>
           <div className={styles.logout}>
             <Button
               type={ButtonType.primary}
               onClick={handleLogout}
               label="Logout"
+              fullWidth
             />
           </div>
         </>
       ) : (
         <UserForm />
       )}
-    </div>
+    </Modal>
   );
 };
-
-export default Profile;
