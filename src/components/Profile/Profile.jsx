@@ -6,26 +6,16 @@ import { useSnackbar } from "notistack";
 import { ROUTES } from "../../pages/Routes/Routes";
 import { clearCart } from "../../features/cart/cartSlice";
 import { getUser } from "../../features/user/userSlice";
-import { ROUTES } from "../../pages/Routes/Routes";
-import { clearCart } from "../../features/cart/cartSlice";
-import { getUser } from "../../features/user/userSlice";
 import { logoutUser } from "../../features/user/userSlice";
 
 import { Button, ButtonType } from "../Button";
 import { UserForm } from "../User";
-import styles from "./Profile.module.css";
-import { Modal } from "../Modal";
-import { Button, ButtonType } from "../Button";
-import { UserForm } from "../User";
-import styles from "./Profile.module.css";
 import { Modal } from "../Modal";
 
-export const Profile = ({ onClose, isOpen }) => {
+import styles from "./Profile.module.css";
+
 export const Profile = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
-  const user = useSelector(getUser);
-  const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
   const user = useSelector(getUser);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -54,13 +44,8 @@ export const Profile = ({ onClose, isOpen }) => {
   if (!user) {
     return null;
   }
-  const handleLinkClick = (path) => {
-    navigate(path);
-    onClose();
-  };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Profile">
     <Modal isOpen={isOpen} onClose={onClose} title="Profile">
       {user ? (
         <>
@@ -122,7 +107,6 @@ export const Profile = ({ onClose, isOpen }) => {
       ) : (
         <UserForm />
       )}
-    </Modal>
     </Modal>
   );
 };
