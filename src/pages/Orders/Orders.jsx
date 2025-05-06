@@ -42,9 +42,11 @@ const Orders = () => {
                 Date: {format(new Date(order.date), "dd.MM.yyyy")}
               </p>
               <ul className={styles.productList}>
+                {console.log(order.cart)}
                 {order.cart.map((product, idx) => (
                   <li key={idx} className={styles.productItem}>
-                    {product.title} — {product.quantity} × {product.price} PLN
+                    {product.title} — {product.quantity} ×{" "}
+                    {product.variants[0]?.price} USD
                   </li>
                 ))}
               </ul>

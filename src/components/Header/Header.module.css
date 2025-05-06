@@ -180,16 +180,22 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+  }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
   }
   .filter {
     position: absolute;
-    top: 75%;
-    right: 0;
+    top: 36px;
+    right: 20px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: var(--violet);
+    transform: translate(50%, -50%);
   }
   .burgerButton {
     all: unset;

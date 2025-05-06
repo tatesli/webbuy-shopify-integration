@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { Button, ButtonType } from "../Button/Button";
 import { ROUTES } from "../../pages/Routes";
 import { cleanCollectionId } from "../../utils/common";
 import { getAllCollections } from "../../features/collections/collectionsSlice";
@@ -24,7 +24,7 @@ export const Sidebar = ({ onClose }) => {
     >
       {!onClose && <h2 className={styles.title}>CATEGORIES</h2>}
       <div className={`${styles.menu} ${onClose ? styles.modalSidebar : ""}`}>
-        {list.map(({ id, title }) => (
+        {/* {list.map(({ id, title }) => (
           <div
             key={id}
             className={`${styles.link} ${
@@ -34,7 +34,32 @@ export const Sidebar = ({ onClose }) => {
           >
             {title}
           </div>
-        ))}
+        ))} */}
+        {list.map(({ id, title }) => {
+          const isActive = params.collectionId === cleanCollectionId(id);
+
+          if (onClose) {
+            return (
+              <Button
+                key={id}
+                type={ButtonType.default}
+                className={`${styles.link} ${isActive ? styles.active : ""}`}
+                label={title}
+                onClick={() => handleClick(id)}
+                fullWidth
+              />
+            );
+          }
+          return (
+            <div
+              key={id}
+              className={`${styles.link} ${isActive ? styles.active : ""}`}
+              onClick={() => handleClick(id)}
+            >
+              {title}
+            </div>
+          );
+        })}
       </div>
 
       {!onClose && (

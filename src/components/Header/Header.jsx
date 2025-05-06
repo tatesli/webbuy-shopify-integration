@@ -155,16 +155,18 @@ export const Header = () => {
           </Button>
         </div>
         <div className={styles.burger}>
-          <Button
-            type={ButtonType.primaryIcon}
-            icon={<FontAwesomeIcon icon={faBars} size="2x" />}
-            onClick={handleBurgerClick}
-          />
-          {Object.keys(selectedFilter).length > 0 && (
-            <div className={styles.filter}>
-              <p>{selectedFilter.title}</p>
-            </div>
-          )}
+          <div className={styles.wrapper}>
+            <Button
+              type={ButtonType.primaryIcon}
+              icon={<FontAwesomeIcon icon={faBars} size="2x" />}
+              onClick={handleBurgerClick}
+            />
+            {Object.keys(selectedFilter).length > 0 && (
+              <div className={styles.filter}>
+                <p>{selectedFilter.title}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {showSidebar && (
