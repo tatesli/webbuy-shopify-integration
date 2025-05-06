@@ -1,0 +1,10 @@
+[build]
+  command = "yarn build"
+  publish = "build"
+
+[build.environment]
+   node_version = "20.0.0"
+
+# Wyłącz Go — jeśli jakieś funkcje próbują go używać
+[functions]
+  node_bundler = "esbuild"

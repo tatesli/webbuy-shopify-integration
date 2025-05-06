@@ -103,3 +103,11 @@
 .total span {
   color: #fff;
 }
+@media (max-width: 960px) {
+  .container {
+    max-width: 100%;
+  }
+  .cart .item {
+    display: flex;
+  }
+}
