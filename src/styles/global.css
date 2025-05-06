@@ -8,7 +8,6 @@ body {
   overflow-x: hidden;
   color: #fff;
   font-weight: 500;
-  padding-bottom: 20px;
 }
 
 h1,
@@ -28,13 +27,7 @@ p {
   box-sizing: border-box;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-input,
-button {
+input {
   border: none;
   background: none;
   outline: none;
@@ -56,7 +49,6 @@ li {
 }
 
 .app {
-  width: 1274px;
   margin: 0 auto;
 }
 
@@ -84,20 +76,6 @@ section {
   background: var(--dark);
   border-radius: 6px;
 }
-
-button {
-  background: var(--violet-dark);
-  border-radius: 6px;
-  padding: 9px 20px;
-  font-weight: 600;
-  line-height: 20px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--violet);
-}
-
 h2 {
   font-weight: 600;
   font-size: 20px;
@@ -107,9 +85,8 @@ h2 {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  margin: 0;
 }
 
 input[type="number"] {

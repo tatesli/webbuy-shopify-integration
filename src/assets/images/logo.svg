@@ -1,0 +1,11 @@
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    width="300" height="100" viewBox="0 0 300 100">
+    <text x="50" y="55" font-size="45" font-family="Arial" fill="#6c3eb8" text-anchor="middle" alignment-baseline="middle">
+        W
+    </text>
+    <text x="65" y="55" font-size="34" font-family="Arial" fill="#FFFFFF" text-anchor="start" alignment-baseline="middle">
+       ebBuy
+    </text>
+</svg>

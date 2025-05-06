@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Client from "shopify-buy";
 
 const client = Client.buildClient({
-  domain: "edu-dev-shop.myshopify.com",
-  storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
+  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
+  storefrontAccessToken: process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN,
 });
 
 export const getCollections = createAsyncThunk(
@@ -39,3 +39,4 @@ const collectionsSlice = createSlice({
 });
 
 export default collectionsSlice.reducer;
+export const getAllCollections = (state) => state.collections.list;

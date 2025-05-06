@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { collectionId } from "../Sidebar/Sidebar";
+import { cleanCollectionId } from "../../utils/common";
 
-import styles from "../../styles/Collections.module.css";
+import styles from "./Collections.module.css";
 
-const Collections = ({ title, collections = [], amount }) => {
+export const Collections = ({ title, collections = [], amount = 6 }) => {
   const list = collections.filter((_, i) => i < amount);
 
   return (
@@ -14,14 +14,11 @@ const Collections = ({ title, collections = [], amount }) => {
       <div className={styles.list}>
         {list.map(({ id, title, image }) => (
           <Link
-            to={`/collections/${collectionId(id)}`}
+            to={`/collections/${cleanCollectionId(id)}`}
             className={styles.item}
             key={id}
           >
-            <div
-              className={styles.image}
-              style={{ backgroundImage: `url(${image})` }}
-            />
+            <img src={image} alt="collection_img" className={styles.image} />
             <div className={styles.title}>{title}</div>
           </Link>
         ))}
@@ -29,5 +26,3 @@ const Collections = ({ title, collections = [], amount }) => {
     </section>
   );
 };
-
-export default Collections;
