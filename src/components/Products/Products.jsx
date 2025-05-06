@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { cleanProductId } from "../../utils/common";
 
 import styles from "./Products.module.css";
 
-const Products = ({ title, style = {}, products = [], amount }) => {
+export const Products = ({ title, style = {}, products = [], amount }) => {
+  const { collectionId } = useParams();
   const list = products.filter((_, i) => i < amount);
 
   return (
@@ -14,11 +15,16 @@ const Products = ({ title, style = {}, products = [], amount }) => {
       <div className={styles.list}>
         {list.map(({ id, title, image, price }) => (
           <Link
-            to={`/products/${cleanProductId(id)}`}
+            to={`${
+              collectionId ? `/collections/${collectionId}` : ""
+            }/products/${cleanProductId(id)}`}
             key={id}
             className={styles.product}
           >
-            <img className={styles.image} src={image} alt="product" />
+            <div className={styles.imgWrapper}>
+              <img className={styles.image} src={image} alt="product" />
+            </div>
+
             <div className={styles.wrapper}>
               <h3 className={styles.title}>{title}</h3>
               <div className={styles.info}>
@@ -37,5 +43,3 @@ const Products = ({ title, style = {}, products = [], amount }) => {
     </section>
   );
 };
-
-export default Products;

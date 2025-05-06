@@ -19,16 +19,17 @@
   text-align: center;
 }
 .text span {
-  line-height: 183px;
+  line-height: 184px;
   font-size: 150px;
   display: block;
 }
 .right {
+  position: relative;
   width: 50%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  overflow: hidden;
 }
 .image {
   width: 100%;
@@ -36,13 +37,58 @@
   object-fit: cover;
 }
 .discount {
+  position: absolute;
   font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
   color: var(--bg);
   margin: 24px;
 }
 .discount span {
   color: var(--violet);
   font-weight: 700;
+}
+
+@media (max-width: 1366px) {
+  .discount {
+    font-size: 15px;
+  }
+  .text {
+    font-size: 60px;
+  }
+  .text span {
+    font-size: 120px;
+  }
+}
+
+@media (max-width: 960px) {
+  .banner {
+    flex-direction: column-reverse;
+    height: 100%;
+  }
+  .left {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+  }
+  .right {
+    width: 100%;
+    height: 100%;
+  }
+  .discount {
+    font-size: 45px;
+    margin-bottom: 45px;
+  }
+  .text {
+    font-size: 40px;
+    line-height: 50px;
+    margin: 20px;
+  }
+  .text span {
+    font-size: 80px;
+    line-height: 100px;
+    margin: 10px;
+  }
+  .image {
+    height: 300px;
+  }
 }

@@ -3,20 +3,21 @@ import { useSelector } from "react-redux";
 
 import { getFavorites } from "../../features/favorites/favoritesSlice";
 import { removeFromFavList } from "../../features/favorites/favoritesSlice";
-import WishlistCart, {
-  WishlistCartType,
-} from "../../components/WishlistCart/WishlistCart";
+
+import { Layout, WishlistCart, WishlistCartType } from "../../components";
 
 const Favorites = () => {
   const favorites = useSelector(getFavorites);
 
   return (
-    <WishlistCart
-      items={favorites}
-      type={WishlistCartType.favorites}
-      onRemove={removeFromFavList}
-      isLoading={false}
-    />
+    <Layout>
+      <WishlistCart
+        items={favorites}
+        type={WishlistCartType.favorites}
+        onRemove={removeFromFavList}
+        isLoading={false}
+      />
+    </Layout>
   );
 };
 

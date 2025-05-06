@@ -5,16 +5,12 @@
   padding: 25px 20px;
 }
 
-.logo {
-  margin-left: 45px;
-  width: 304px;
-}
-
 .info {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-grow: 1;
+  width: 100%;
 }
 
 .user {
@@ -53,13 +49,13 @@
 }
 
 .icon {
-  width: 13px;
-  height: 13px;
-  color: var(--dark-sea);
+  width: 14px;
+  height: 14px;
 }
 
 .input {
   flex-grow: 1;
+  display: block;
 }
 
 .input input {
@@ -67,8 +63,6 @@
   font-size: 12px;
   line-height: 14px;
   color: var(--grey);
-  background: none;
-  outline: none;
   width: 100%;
 }
 
@@ -138,8 +132,8 @@
   align-items: center;
   overflow: hidden;
   border-radius: 6px;
-  height: 50px;
-  width: 50px;
+  max-height: 50px;
+  max-width: 50px;
 }
 
 .image img {
@@ -147,4 +141,84 @@
   width: 100%;
   object-fit: cover;
   border-radius: 6px;
+}
+
+.burger {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .header {
+    width: 100%;
+    flex-direction: column;
+  }
+  .logo {
+    margin-left: 90px;
+  }
+  .input {
+    display: none;
+  }
+  .form {
+    width: inherit;
+    background-color: transparent;
+  }
+  .showForm {
+    width: 300px;
+    background: var(--dark);
+  }
+  .showInput {
+    display: block;
+  }
+  .username {
+    display: none;
+  }
+  .userIcon {
+    padding: 10px 16px;
+  }
+  .burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .filter {
+    position: absolute;
+    top: 36px;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--violet);
+    transform: translate(50%, -50%);
+  }
+  .burgerButton {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .showSidebar .burgerButton span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .showSidebar .burgerButton span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .showSidebar .burgerButton span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .header {
+    padding: 10px;
+  }
 }

@@ -1,0 +1,42 @@
+.wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
+  background-color: var(--dark);
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--grey);
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter input:checked + label {
+  color: var(--white);
+}
+
+.filter input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--violet);
+  cursor: pointer;
+}
+
+.type {
+  flex: 1;
+}

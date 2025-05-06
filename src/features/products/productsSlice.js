@@ -12,8 +12,9 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
 
   async () => {
-    const products = await client.product.fetchAll();
-    return products.map((product) => {
+    const products = await client.product.fetchAll(100);
+
+    const list = products.map((product) => {
       const image = product.images[0]?.src;
       const rawPrice = product.variants[0]?.price?.amount;
       const price = rawPrice ? parseFloat(rawPrice) : 0;
@@ -26,6 +27,8 @@ export const getProducts = createAsyncThunk(
         productType: product.productType,
       };
     });
+
+    return list;
   }
 );
 
@@ -60,7 +63,9 @@ const productsSlice = createSlice({
 });
 
 export const { filterByPrice, relatedByType } = productsSlice.actions;
+
 export const getAllProducts = (state) => state.products.list;
 export const getFilteredProducts = (state) => state.products.filtered;
 export const getRelatedByTypeProducts = (state) => state.products.related;
+
 export default productsSlice.reducer;

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Poster from "../../components/Poster/Poster";
-import Products from "../../components/Products/Products";
-import Collections from "../../components/Collections/Collections";
-import Banner from "../../components/Banner/Banner";
+import { Poster, Products, Collections, Banner } from "../../components";
 
 import {
   getAllProducts,
@@ -12,6 +9,7 @@ import {
   filterByPrice,
 } from "../../features/products/productsSlice";
 import { getAllCollections } from "../../features/collections/collectionsSlice";
+import { Layout } from "../../components";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,13 +30,13 @@ const Home = () => {
   }, [dispatch, products, isFiltered]);
 
   return (
-    <>
+    <Layout>
       <Poster />
-      <Products products={products} amount={5} title="Trending" />
-      <Collections collections={collections} amount={5} title="Worth Seeing" />
+      <Products products={products} amount={4} title="Trending" />
+      <Collections collections={collections} title="Worth Seeing" />
       <Banner />
-      <Products products={filteredProducts} amount={5} title="Less than 100$" />
-    </>
+      <Products products={filteredProducts} amount={4} title="Less than 100$" />
+    </Layout>
   );
 };
 
