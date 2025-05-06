@@ -39,9 +39,10 @@
 .socialIcon:hover {
   color: var(--violet);
 }
-@media (max-width: 960px) {
+@media (max-width: 640px) {
   .footer {
     flex-direction: column;
     width: 100%;
+    padding-bottom: 20px;
   }
 }
