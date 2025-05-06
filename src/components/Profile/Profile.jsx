@@ -1,51 +1,80 @@
 import React from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/routes";
+import { useSnackbar } from "notistack";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-import { logoutUser } from "../../features/user/userSlice";
+import { ROUTES } from "../../pages/Routes/Routes";
 import { clearCart } from "../../features/cart/cartSlice";
-import UserForm from "../User/UserForm";
+import { getUser } from "../../features/user/userSlice";
+import { logoutUser } from "../../features/user/userSlice";
 
-import styles from "../../styles/Profile.module.css";
+import { Button, ButtonType } from "../Button";
+import { UserForm } from "../User";
+import styles from "./Profile.module.css";
+import { Modal } from "../Modal";
 
-const Profile = ({ closeProfile }) => {
-  const user = useSelector((state) => state.user.user);
-
+export const Profile = ({ onClose, isOpen }) => {
   const dispatch = useDispatch();
+  const user = useSelector(getUser);
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleLogout = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
-
-    closeProfile();
+    enqueueSnackbar("You have successfully logged out!", {
+      variant: "success",
+    });
+    onClose();
   };
-  if (!user) return null;
+
+  if (!user) {
+    return null;
+  }
+  const handleLinkClick = (path) => {
+    navigate(path);
+    onClose();
+  };
 
   return (
-    <div className={styles.wrapper}>
+    <Modal isOpen={isOpen} onClose={onClose} title="Profile">
       {user ? (
         <>
-          <div className={styles.close} onClick={closeProfile}>
-            <svg className={styles.icon}>
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`} />
-            </svg>
-          </div>
-          <h1 className={styles.title}>Welcome, {user.name}!</h1>
+          <h1 className={styles.title}>Welcome, {user.user?.name}!</h1>
           <div className={styles.links}>
-            <Link to={ROUTES.CART}>Your Cart</Link>
-            <Link to={ROUTES.FAVORITES}>Your Favorites</Link>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.CART)}
+            >
+              Your Cart
+            </Button>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.FAVORITES)}
+            >
+              Your Favorites
+            </Button>
+            <Button
+              type={ButtonType.default}
+              onClick={() => handleLinkClick(ROUTES.ORDERS)}
+            >
+              Your Orders
+            </Button>
           </div>
           <div className={styles.logout}>
-            <button onClick={handleLogout}>Logout</button>
+            <Button
+              type={ButtonType.primary}
+              onClick={handleLogout}
+              label="Logout"
+              fullWidth
+            />
           </div>
         </>
       ) : (
         <UserForm />
       )}
-    </div>
+    </Modal>
   );
 };
-
-export default Profile;

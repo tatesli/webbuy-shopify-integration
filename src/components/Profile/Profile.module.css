@@ -1,0 +1,16 @@
+.title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-align: center;
+  gap: 10px;
+}
+.logout {
+  display: flex;
+  flex-direction: column;
+}

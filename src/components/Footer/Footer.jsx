@@ -1,12 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faSquareFacebook,
+  faSquareYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
-import { ROUTES } from "../../utils/routes";
+import LOGO from "../../assets/images/logo.svg";
+import { ROUTES } from "../../pages/Routes";
 
-import styles from "../../styles/Footer.module.css";
-import LOGO from "../../images/logo.svg";
+import styles from "./Footer.module.css";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <section className={styles.footer}>
       <div className={styles.logo}>
@@ -14,29 +20,23 @@ const Footer = () => {
           <img src={LOGO} alt="stuff" />
         </Link>
       </div>
-      <div className={styles.rights}>
-        Developed by {""}
-        <a href="https://github.com/tatesli">Tetiana Slidenko</a>
-      </div>
       <div className={styles.socials}>
-        <a href="https://instagram.com">
-          <svg className="icon">
-            <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#instagram`} />
-          </svg>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
         </a>
-        <a href="https://facebook.com">
-          <svg className="icon">
-            <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#facebook`} />
-          </svg>
+        <a href="https://facebook.com" target="_blank" rel="noreferrer">
+          <FontAwesomeIcon
+            icon={faSquareFacebook}
+            className={styles.socialIcon}
+          />
         </a>
-        <a href="https://youtube.com">
-          <svg className="icon">
-            <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#youtube`} />
-          </svg>
+        <a href="https://youtube.com" target="_blank" rel="noreferrer">
+          <FontAwesomeIcon
+            icon={faSquareYoutube}
+            className={styles.socialIcon}
+          />
         </a>
       </div>
     </section>
   );
 };
-
-export default Footer;

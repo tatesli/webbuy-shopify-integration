@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Client from "shopify-buy";
 
 const client = Client.buildClient({
-  domain: "edu-dev-shop.myshopify.com",
-  storefrontAccessToken: "39b5cd1ccff7d43bc2e65fb56c9f5970",
+  domain: process.env.REACT_APP_SHOPIFY_DOMAIN,
+  storefrontAccessToken: process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN,
 });
 
 export const getCollectionProducts = createAsyncThunk(
@@ -11,16 +11,27 @@ export const getCollectionProducts = createAsyncThunk(
 
   async (collectionId, { rejectWithValue }) => {
     try {
-      const collections = await client.collection.fetchAllWithProducts(
-        `gid://shopify/Collection/${collectionId}`
+      const collection = await client.collection.fetchWithProducts(
+        `gid://shopify/Collection/${collectionId}`,
+        {
+          productsFirst: 100,
+        }
       );
-      const collection = collections.find((collection) => {
-        return collection.id === `gid://shopify/Collection/${collectionId}`;
-      });
+
       const products = collection.products.map((product) => {
         const image = product.images[0]?.src;
         const rawPrice = product.variants[0]?.price?.amount;
         const price = rawPrice ? parseFloat(rawPrice) : 0;
+        const options = product.options.map((option) => {
+          return {
+            id: option.id,
+            name: option.name,
+            values: option.values.map((value) => ({
+              value: value.value,
+            })),
+          };
+        });
+
         return {
           id: product.id,
           title: product.title,
@@ -28,17 +39,42 @@ export const getCollectionProducts = createAsyncThunk(
           image,
           price,
           productType: product.productType,
+          options,
         };
       });
+
+      const availableOptions = products.reduce((acc, product) => {
+        product.options.forEach((option) => {
+          if (!acc[option.name]) {
+            acc[option.name] = new Set();
+          }
+
+          option.values.forEach((value) => {
+            acc[option.name].add(value.value);
+          });
+        });
+
+        return acc;
+      }, {});
+
+      const uniqueOptions = Object.fromEntries(
+        Object.entries(availableOptions).map(([key, value]) => [
+          key,
+          [...value],
+        ])
+      );
+
       return {
         title: collection.title,
         products,
+        uniqueOptions,
       };
     } catch (error) {
       throw rejectWithValue(error);
     }
   }
 );
+
 const collectionProductsSlice = createSlice({
   name: "collectionProduct",
   initialState: {
@@ -47,8 +83,28 @@ const collectionProductsSlice = createSlice({
     isLoading: false,
     isSuccess: false,
     error: null,
+    selectedFilters: {},
+    availableOptions: {},
   },
-  reducers: {},
+  reducers: {
+    setFilter: (state, action) => {
+      const { option, value } = action.payload;
+      const currentFilters = { ...state.selectedFilters };
+
+      if (currentFilters[option]?.includes(value)) {
+        currentFilters[option] = currentFilters[option].filter(
+          (filter) => filter !== value
+        );
+      } else {
+        currentFilters[option] = [...(currentFilters[option] || []), value];
+      }
+
+      state.selectedFilters = currentFilters;
+    },
+    resetFilters: (state) => {
+      state.selectedFilters = {};
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCollectionProducts.pending, (state) => {
       state.isLoading = true;
@@ -60,6 +116,8 @@ const collectionProductsSlice = createSlice({
       state.isSuccess = true;
       state.list = action.payload.products;
       state.title = action.payload.title;
+      state.availableOptions = action.payload.uniqueOptions;
+      state.selectedFilters = {};
     });
     builder.addCase(getCollectionProducts.rejected, (state, action) => {
       state.isLoading = false;
@@ -69,3 +127,11 @@ const collectionProductsSlice = createSlice({
   },
 });
 export default collectionProductsSlice.reducer;
+
+export const { setFilter, resetFilters } = collectionProductsSlice.actions;
+
+export const getProductsCollection = (state) => state.collectionProducts;
+export const getAvailableOptions = (state) =>
+  state.collectionProducts.availableOptions;
+export const getSelectedFilters = (state) =>
+  state.collectionProducts.selectedFilters;

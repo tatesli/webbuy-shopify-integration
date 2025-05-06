@@ -1,35 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faMagnifyingGlass,
+  faBagShopping,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 
-import { ROUTES } from "../../utils/routes";
-import { getProducts } from "../../features/selectors/selectors";
-import { selectCartQuantity } from "../../utils/common";
+import LOGO from "../../assets/images/logo.svg";
+import { ROUTES } from "../../pages/Routes/Routes";
+import { getAllProducts } from "../../features/products/productsSlice";
+import { getUser } from "../../features/user/userSlice";
+import { selectCartQuantity, cleanProductId } from "../../utils/common";
 import { toggleForm } from "../../features/user/userSlice";
 
-import styles from "../../styles/Header.module.css";
+import { Button, ButtonType } from "../Button";
+import { Modal } from "../Modal";
+import { Profile } from "../Profile";
+import { Sidebar } from "../Sidebar";
+import { UserForm } from "../User";
+import { AdditionalFilters } from "../AdditionalFilters";
+import styles from "./Header.module.css";
+import { getSelectedFilters } from "../../features/collections/collectionSlice";
 
-import LOGO from "../../images/logo.svg";
-import AVATAR from "../../images/avatar.jpg";
-import Profile from "../Profile/Profile";
-import UserForm from "../User/UserForm";
-
-const Header = () => {
+export const Header = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const params = useParams();
+  const [showSidebar, setShowSidebar] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [showProfile, setShowProfile] = useState(false);
+  const selectedFilter = useSelector(getSelectedFilters);
 
-  const allProducts = useSelector(getProducts);
+  const allProducts = useSelector(getAllProducts);
   const cartQuantity = useSelector(selectCartQuantity);
-  console.log("Cart quantity:", cartQuantity);
-  const user = useSelector((state) => state.user.user);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const { user, isAuthenticated } = useSelector(getUser);
 
-  console.log(user);
-  console.log(isAuthenticated);
-
+  const handleSearchClick = () => {
+    setShowSearch((prev) => !prev);
+  };
+  const handleBurgerClick = () => {
+    setShowSidebar((prev) => !prev);
+  };
   useEffect(() => {
     if (!searchValue) {
       setSearchResults([]);
@@ -53,33 +70,38 @@ const Header = () => {
     }
   };
 
-  const cleanId = (id) => id.replace("gid://shopify/Product/", "");
-
   return (
     <div className={styles.header}>
-      <div className={styles.logo}>
-        <Link to={ROUTES.HOME}>
-          <img src={LOGO} alt="stuff" />
-        </Link>
-      </div>
+      <Link to={ROUTES.HOME}>
+        <img className={styles.logo} src={LOGO} alt="webbuy" />
+      </Link>
+
       <div className={styles.info}>
         <div className={styles.user} onClick={handleClick}>
-          <img
-            className={styles.avatar}
-            src={user?.avatar || AVATAR}
-            alt="avatar"
-          />
+          {user?.avatar ? (
+            <img
+              className={styles.avatar}
+              src={user?.avatar || undefined}
+              alt="avatar"
+            />
+          ) : (
+            <FontAwesomeIcon
+              className={styles.userIcon}
+              icon={faUser}
+              size="2x"
+            />
+          )}
           <div className={styles.username}>{user?.name || "Guest"}</div>
         </div>
-        {showProfile && <Profile closeProfile={() => setShowProfile(false)} />}
-        <UserForm />
-        <form className={styles.form}>
-          <div className={styles.icon}>
-            <svg className="icon">
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#search`} />
-            </svg>
+
+        <form className={`${styles.form} ${showSearch ? styles.showForm : ""}`}>
+          <div className={styles.icon} onClick={handleSearchClick}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
-          <div className={styles.input}>
+
+          <div
+            className={`${styles.input} ${showSearch ? styles.showInput : ""}`}
+          >
             <input
               type="search"
               name="search"
@@ -87,8 +109,10 @@ const Header = () => {
               autoComplete="off"
               onChange={handleSearch}
               value={searchValue}
+              autoFocus={showSearch}
             />
           </div>
+
           {searchValue && (
             <div className={styles.box}>
               {searchResults.length === 0 ? (
@@ -97,9 +121,8 @@ const Header = () => {
                 searchResults.map(({ id, title, image }) => (
                   <Link
                     key={id}
-                    to={`/products/${cleanId(id)}`}
+                    to={`/products/${cleanProductId(id)}`}
                     onClick={() => {
-                      console.log("Navigating to:", `/products/${id}`);
                       setSearchValue("");
                     }}
                     className={styles.item}
@@ -118,21 +141,48 @@ const Header = () => {
           )}
         </form>
         <div className={styles.account}>
-          <Link to={ROUTES.FAVORITES} className={styles.favourites}>
-            <svg className={styles["icon-fav"]}>
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#heart`} />
-            </svg>
-          </Link>
-          <Link to={ROUTES.CART} className={styles.cart}>
-            <svg className={styles["icon-cart"]}>
-              <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`} />
-            </svg>
+          <Button
+            type={ButtonType.primaryIcon}
+            icon={<FontAwesomeIcon icon={faHeart} size="2x" />}
+            onClick={() => navigate(ROUTES.FAVORITES)}
+          />
+          <Button
+            type={ButtonType.primaryIcon}
+            icon={<FontAwesomeIcon icon={faBagShopping} size="2x" />}
+            onClick={() => navigate(ROUTES.CART)}
+          >
             <span className={styles.count}>{cartQuantity}</span>
-          </Link>
+          </Button>
+        </div>
+        <div className={styles.burger}>
+          <div className={styles.wrapper}>
+            <Button
+              type={ButtonType.primaryIcon}
+              icon={<FontAwesomeIcon icon={faBars} size="2x" />}
+              onClick={handleBurgerClick}
+            />
+            {Object.keys(selectedFilter).length > 0 && (
+              <div className={styles.filter}>
+                <p>{selectedFilter.title}</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
+      {showSidebar && (
+        <Modal
+          isOpen={showSidebar}
+          onClose={() => setShowSidebar(false)}
+          title={"Categories"}
+        >
+          <Sidebar onClose={() => setShowSidebar(false)} />
+          {params.collectionId && !params.productId && <AdditionalFilters />}
+        </Modal>
+      )}
+      {showProfile && (
+        <Profile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      )}
+      <UserForm />
     </div>
   );
 };
-
-export default Header;

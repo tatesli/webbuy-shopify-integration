@@ -1,0 +1,91 @@
+.form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  row-gap: 16px;
+}
+.group {
+  width: 100%;
+}
+
+.group input {
+  width: 100%;
+  background: var(--dark-sea);
+  border-radius: 8px;
+  color: var(--white);
+  padding: 12px 24px;
+}
+.group input::placeholder {
+  color: var(--grey);
+}
+.avatar {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  justify-content: space-between;
+}
+.imgWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+.img svg {
+  font-size: 30px;
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.close svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--dark-sea);
+}
+.close:hover svg {
+  stroke: #fff;
+}
+.error {
+  font-size: 13px;
+  text-align: center;
+  color: red;
+}
+
+.error:hover {
+  color: var(--light);
+}
+.link {
+  font-size: 13px;
+  color: var(--light);
+  cursor: pointer;
+  text-align: center;
+  height: 20px;
+}
+
+.link:hover {
+  color: var(--light);
+}
+.iconWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-sea);
+}

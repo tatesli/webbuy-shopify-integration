@@ -1,9 +1,12 @@
 import React from "react";
 
-import styles from "../../styles/Banner.module.css";
-import BANNER from "../../images/banner.png";
+import BANNER from "../../assets/images/banner.png";
+import { Button, ButtonType } from "../Button";
 
-const Banner = () => {
+import styles from "./Banner.module.css";
+import buttonStyles from "../Button/Button.module.css";
+
+export const Banner = () => {
   return (
     <section className={styles.banner}>
       <div className={styles.left}>
@@ -11,12 +14,14 @@ const Banner = () => {
           NEW YEAR
           <span>SALE</span>
         </p>
-        <button className={styles.more}>See More</button>
+        <Button
+          className={`${buttonStyles.button} ${styles.responsiveButton}`}
+          type={ButtonType.primary}
+          label="See More"
+        />
       </div>
-      <div
-        className={styles.right}
-        style={{ backgroundImage: `url(${BANNER})` }}
-      >
+      <div className={styles.right}>
+        <img src={BANNER} alt="Banner" className={styles.image} />
         <p className={styles.discount}>
           save up to<span> 50%</span> off
         </p>
@@ -24,5 +29,3 @@ const Banner = () => {
     </section>
   );
 };
-
-export default Banner;
